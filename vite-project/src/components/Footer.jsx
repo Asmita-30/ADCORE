@@ -258,7 +258,7 @@ function Footer() {
           }}
         >
           <span style={{ color: C.textMuted, fontSize: "0.8rem" }}>
-            © 2026 Adrix Core Technologies. All rights reserved. Built in India 🇮🇳
+            © 2026 Adrix Core Technologies. All rights reserved. Built in ADRIX TEAM.
           </span>
           <div style={{ display: "flex", gap: "1.5rem" }}>
             {[{ label: "Terms & Conditions", path: "/terms" }, { label: "Privacy Policy", path: "/privacy" }].map((item) => (
