@@ -406,6 +406,8 @@ function Process() {
 // ─── ABOUT SECTION ──────────────────────────────────────────
 // src/pages/Home.jsx - Updated About section with centered text on mobile
 
+// src/pages/Home.jsx - Fixed About section with proper text alignment
+
 function About() {
   const sectionRef = useRef();
 
@@ -440,27 +442,28 @@ function About() {
         .about-stats-icon {
           font-size: 2rem !important;
           margin-bottom: 0.5rem !important;
-          flex-shrink: 0 !important;
-        }
-        .about-stats-content {
-          text-align: center !important;
-          width: 100% !important;
         }
         .about-stats-value {
           font-size: 1.3rem !important;
           margin-bottom: 0.1rem !important;
-          text-align: center !important;
         }
         .about-stats-label {
           font-size: 0.7rem !important;
-          text-align: center !important;
-        }
-        .about-text {
-          text-align: center !important;
         }
         .about-description {
           text-align: center !important;
-          padding: 0 0.5rem !important;
+          padding: 0 !important;
+          width: 100% !important;
+        }
+        .about-description p {
+          text-align: center !important;
+          padding: 0 !important;
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+        }
+        .about-container {
+          padding: 0 !important;
+          width: 100% !important;
         }
       }
       
@@ -477,6 +480,9 @@ function About() {
         .about-stats-label {
           font-size: 0.65rem !important;
         }
+        .about-description p {
+          font-size: 0.85rem !important;
+        }
       }
     `;
     document.head.appendChild(style);
@@ -492,7 +498,7 @@ function About() {
       padding: "clamp(3rem, 8vw, 6.25rem) clamp(1rem, 5vw, 2rem)", 
       background: C.bg 
     }}>
-      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 1rem" }}>
         <div className="about-animate" style={{ textAlign: "center", marginBottom: "clamp(2rem, 5vw, 3rem)" }}>
           <div style={{
             display: "inline-block", 
@@ -535,20 +541,26 @@ function About() {
         }}>
           {/* Left Side - Text Content */}
           <motion.div 
-            className="about-animate" 
+            className="about-animate about-container" 
             initial={{ opacity: 0, x: -40 }} 
             whileInView={{ opacity: 1, x: 0 }} 
             viewport={{ once: true }} 
             transition={{ duration: 0.6 }}
+            style={{ width: "100%", padding: "0" }}
           >
-            <div className="about-description">
+            <div className="about-description" style={{ width: "100%" }}>
               <p style={{ 
                 fontFamily: "'Inter', sans-serif", 
                 fontSize: "clamp(0.9rem, 4vw, 1.05rem)", 
                 lineHeight: 1.75, 
                 color: C.textLead, 
                 marginBottom: "1.25rem",
-                textAlign: "left"
+                marginLeft: 0,
+                marginRight: 0,
+                padding: 0,
+                textAlign: "left",
+                wordWrap: "break-word",
+                overflowWrap: "break-word"
               }}>
                 Adrix Core was founded by a two-time Smart India Hackathon champion. We build web, mobile, and AI solutions that are production-ready — not just good-looking demos.
               </p>
@@ -558,7 +570,12 @@ function About() {
                 lineHeight: 1.7, 
                 color: C.textBody, 
                 marginBottom: "2rem",
-                textAlign: "left"
+                marginLeft: 0,
+                marginRight: 0,
+                padding: 0,
+                textAlign: "left",
+                wordWrap: "break-word",
+                overflowWrap: "break-word"
               }}>
                 We've delivered real products — from port management systems to civic tech platforms. Our engineering-first approach means we build for performance, maintainability, and scale from day one.
               </p>
@@ -603,24 +620,22 @@ function About() {
                   }}>
                     {icon}
                   </div>
-                  <div className="about-stats-content">
-                    <div className="about-stats-value" style={{
-                      fontFamily: "'Sora', sans-serif",
-                      fontSize: "clamp(1.1rem, 4vw, 1.4rem)",
-                      fontWeight: 700,
-                      color: color,
-                      marginBottom: "0.25rem",
-                    }}>
-                      {val}
-                    </div>
-                    <div className="about-stats-label" style={{ 
-                      fontFamily: "'Inter', sans-serif", 
-                      fontSize: "clamp(0.65rem, 3vw, 0.7rem)", 
-                      color: C.textMuted,
-                      lineHeight: 1.3
-                    }}>
-                      {label}
-                    </div>
+                  <div className="about-stats-value" style={{
+                    fontFamily: "'Sora', sans-serif",
+                    fontSize: "clamp(1.1rem, 4vw, 1.4rem)",
+                    fontWeight: 700,
+                    color: color,
+                    marginBottom: "0.25rem",
+                  }}>
+                    {val}
+                  </div>
+                  <div className="about-stats-label" style={{ 
+                    fontFamily: "'Inter', sans-serif", 
+                    fontSize: "clamp(0.65rem, 3vw, 0.7rem)", 
+                    color: C.textMuted,
+                    lineHeight: 1.3
+                  }}>
+                    {label}
                   </div>
                 </div>
               ))}
