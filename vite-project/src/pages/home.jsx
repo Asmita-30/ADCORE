@@ -12,9 +12,10 @@ import codingImage from "../assets/images/coding.jpeg";
 import blogImg1 from "../assets/images/webblog.jpg";
 import blogImg2 from "../assets/images/blog2.jpg";
 import blogImg3 from "../assets/images/blog3alt.webp";
-import ecommerceImg from "../assets/images/ecommerce.png";
-import financeImg from "../assets/images/finance-app.png";
-import aiImg from "../assets/images/ai-analytics.png";
+// Add these imports at the top of your Homepage component
+import ecomReactImg from "../assets/images/E-commerce.png";
+import transportImg from "../assets/images/Transport.jpeg";
+import bizcartImg from "../assets/images/CAB.jpeg";
 
 // Only Hero background image
 import heroBg from "../assets/images/hero-bg.jpg.jpeg";
@@ -613,29 +614,38 @@ function ServicesSection() {
 }
 
 // ─── PORTFOLIO ────────────────────────────────────────────────────────────────
+// Projects data for homepage - Updated with 3 specific projects
 const PROJECTS = [
   {
-    image: ecommerceImg,
+    id: 1,
+    title: "E-Commerce React Platform",
     label: "Web Development",
-    title: "E-Commerce Platform",
-    // FIX C-05: No fabricated metrics
-    desc: "Custom storefront with product catalog, cart, and payment gateway.",
-    liveUrl: "https://shopease-demo.com",
+    desc: "Modern e-commerce platform with product catalog, shopping cart, secure payment integration, and comprehensive admin dashboard for inventory management.",
+    image: ecomReactImg,
+    liveUrl: "https://www.wix.com/website-template/view/html/wh-1064?originUrl=https%3A%2F%2Fwww.wix.com%2Fwebsite%2Ftemplates%3Fcriteria%3DEcommerce%2BShop&tpClick=view_button&esi=d86b1cb8-4b3e-42c5-ad3d-c568ff02e51a",
+    techStack: ["React", "Node.js", "MongoDB", "Razorpay", "Redux"],
+    features: ["Product Catalog", "Shopping Cart", "Payment Gateway", "Admin Dashboard"]
   },
   {
-    image: financeImg,
-    label: "Mobile App",
-    title: "Finance Mobile App",
-    desc: "Cross-platform personal finance tracker with real-time analytics.",
-    liveUrl: "https://moneyflow-demo.com",
+    id: 2,
+    title: "Transport Management System",
+    label: "Web Development",
+    desc: "Complete transport management system with real-time fleet tracking, route optimization algorithms, driver assignment, and fuel consumption monitoring.",
+    image: transportImg,
+    liveUrl: "https://transport-ashy.vercel.app/",
+    techStack: ["React", "Spring Boot", "PostgreSQL", "Google Maps API", "WebSocket"],
+    features: ["Fleet Tracking", "Route Optimization", "Driver Assignment", "Analytics Dashboard"]
   },
   {
-    image: aiImg,
-    label: "AI Integration",
-    title: "AI Analytics Dashboard",
-    desc: "Claude API-powered insights dashboard for business intelligence.",
-    liveUrl: "https://dataviz-demo.com",
-  },
+    id: 3,
+    title: "BizCart Cabs",
+    label: "Transport & Logistics",
+    desc: "Complete cab booking and fleet management platform with real-time driver tracking, fare calculation, ride history, and admin analytics dashboard.",
+    image: bizcartImg,
+    liveUrl: "https://bizcartcabs.com/index.html",
+    techStack: ["HTML/CSS", "JavaScript", "PHP", "MySQL", "Google Maps API"],
+    features: ["Ride Booking", "Driver Tracking", "Payment Integration", "Admin Dashboard"]
+  }
 ];
 
 function Portfolio() {
@@ -649,132 +659,215 @@ function Portfolio() {
   }, []);
 
   return (
-    <section id="portfolio" ref={ref} style={{ 
-      position: "relative", 
-      zIndex: 5, 
-      padding: "80px 2rem 100px", 
-      background: C.bg 
-    }}>
-      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-        <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-          <div style={{
-            display: "inline-block", 
-            background: "#1E3A5F", 
-            borderRadius: 20,
-            padding: "0.3rem 1rem", 
-            fontSize: "0.75rem", 
-            fontFamily: "'Inter', sans-serif",
-            fontWeight: 500, 
-            color: C.blueHover, 
-            letterSpacing: "0.08em",
-            textTransform: "uppercase", 
-            marginBottom: "1rem",
-          }}>
-            ✦ PORTFOLIO
-          </div>
-          <h2 style={{
-            fontFamily: "'Sora', sans-serif", fontSize: "clamp(1.8rem, 4vw, 2.5rem)",
-            fontWeight: 700, color: C.textPrimary, lineHeight: 1.2, marginBottom: "0.75rem",
-          }}>
-            Featured Work
-          </h2>
-          <p style={{ fontFamily: "'Inter', sans-serif", color: C.textBody, fontSize: "1rem" }}>
-            Real projects. Real outcomes.
-          </p>
-        </div>
-
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "1.5rem" }}>
-          {PROJECTS.map((p) => (
-            <motion.div
-              key={p.title}
-              className="port-item"
-              whileHover={{ y: -6, boxShadow: `0 20px 50px rgba(37,99,235,0.12)` }}
-              style={{
-                borderRadius: 14, overflow: "hidden",
-                border: `1px solid ${C.border}`, cursor: "pointer", opacity: 0,
-                background: C.surface,
-              }}
-            >
-              <div style={{ height: 220, overflow: "hidden", position: "relative" }}>
-                <img src={p.image} alt={p.title} style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.4s" }}
-                  onMouseEnter={(e) => (e.target.style.transform = "scale(1.04)")}
-                  onMouseLeave={(e) => (e.target.style.transform = "scale(1)")}
-                />
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileHover={{ opacity: 1 }}
-                  style={{
-                    position: "absolute", inset: 0, background: "rgba(0,0,0,0.82)",
-                    display: "flex", alignItems: "center", justifyContent: "center", gap: "1rem", flexDirection: "column",
-                  }}
-                >
-                  <motion.a
-                    href={p.liveUrl} target="_blank" rel="noopener noreferrer"
-                    whileHover={{ scale: 1.05 }}
-                    style={{
-                      background: C.blue, border: "none", padding: "0.7rem 1.75rem",
-                      borderRadius: "8px", color: "#fff", fontFamily: "'Inter', sans-serif",
-                      fontWeight: 600, fontSize: "0.875rem", cursor: "pointer",
-                      textDecoration: "none", display: "inline-block",
-                    }}
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    Live Preview →
-                  </motion.a>
-                  {/* FIX CV-05: "Build Something Similar" CTA */}
-                  <Link
-                    to={`/contact?service=${encodeURIComponent(p.label)}`}
-                    onClick={(e) => e.stopPropagation()}
-                    style={{
-                      background: "transparent", border: `1px solid ${C.blueHover}`,
-                      padding: "0.7rem 1.75rem", borderRadius: "8px",
-                      color: "#fff", fontFamily: "'Inter', sans-serif",
-                      fontWeight: 600, fontSize: "0.875rem", cursor: "pointer",
-                      textDecoration: "none", display: "inline-block",
-                    }}
-                  >
-                    Build Something Similar
-                  </Link>
-                </motion.div>
-              </div>
-              <div style={{ padding: "1.25rem 1.5rem" }}>
-                <div style={{
-                  fontFamily: "'Inter', sans-serif", color: C.blueHover, fontSize: "0.75rem",
-                  letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.3rem",
-                }}>
-                  {p.label}
-                </div>
-                <div style={{ fontFamily: "'Sora', sans-serif", fontSize: "1.05rem", fontWeight: 600, color: C.textPrimary, marginBottom: "0.4rem" }}>
-                  {p.title}
-                </div>
-                <div style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.85rem", color: C.textBody, lineHeight: 1.5 }}>
-                  {p.desc}
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        <div style={{ textAlign: "center", marginTop: "3rem" }}>
-          <Link to="/portfolio" style={{ textDecoration: "none" }}>
-            <motion.button
-              whileHover={{ scale: 1.04, background: C.surfaceHover }}
-              whileTap={{ scale: 0.98 }}
-              style={{
-                background: "transparent", border: `1px solid ${C.border}`, padding: "0.8rem 2rem",
-                borderRadius: "8px", color: C.textPrimary, fontFamily: "'Inter', sans-serif",
-                fontWeight: 600, fontSize: "0.9rem", cursor: "pointer", transition: "background 0.2s",
-              }}
-            >
-              View All Projects →
-            </motion.button>
-          </Link>
-        </div>
+    // Homepage Featured Work Section - Updated with 3 projects
+<section id="portfolio" ref={ref} style={{ 
+  position: "relative", 
+  zIndex: 5, 
+  padding: "80px 2rem 100px", 
+  background: C.bg 
+}}>
+  <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+    <div style={{ textAlign: "center", marginBottom: "3rem" }}>
+      <div style={{
+        display: "inline-block", 
+        background: "#1E3A5F", 
+        borderRadius: 20,
+        padding: "0.3rem 1rem", 
+        fontSize: "0.75rem", 
+        fontFamily: "'Inter', sans-serif",
+        fontWeight: 500, 
+        color: C.blueHover, 
+        letterSpacing: "0.08em",
+        textTransform: "uppercase", 
+        marginBottom: "1rem",
+      }}>
+        ✦ PORTFOLIO
       </div>
-    </section>
-  );
-}
+      <h2 style={{
+        fontFamily: "'Sora', sans-serif", fontSize: "clamp(1.8rem, 4vw, 2.5rem)",
+        fontWeight: 700, color: C.textPrimary, lineHeight: 1.2, marginBottom: "0.75rem",
+      }}>
+        Featured Work
+      </h2>
+      <p style={{ fontFamily: "'Inter', sans-serif", color: C.textBody, fontSize: "1rem" }}>
+        Real projects. Real outcomes.
+      </p>
+    </div>
 
+    <div style={{ 
+      display: "grid", 
+      gridTemplateColumns: "repeat(3, 1fr)", 
+      gap: "1.5rem",
+      justifyContent: "center"
+    }}>
+      {PROJECTS.map((p, index) => (
+        <motion.div
+          key={p.title}
+          className="port-item"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: index * 0.1, duration: 0.5 }}
+          whileHover={{ y: -6, boxShadow: `0 20px 50px rgba(37,99,235,0.12)` }}
+          style={{
+            borderRadius: 14, 
+            overflow: "hidden",
+            border: `1px solid ${C.border}`, 
+            cursor: "pointer",
+            background: C.surface,
+          }}
+        >
+          <div style={{ height: 220, overflow: "hidden", position: "relative" }}>
+            <img 
+              src={p.image} 
+              alt={p.title} 
+              style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.4s" }}
+              onMouseEnter={(e) => (e.target.style.transform = "scale(1.04)")}
+              onMouseLeave={(e) => (e.target.style.transform = "scale(1)")}
+            />
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileHover={{ opacity: 1 }}
+              style={{
+                position: "absolute", 
+                inset: 0, 
+                background: "rgba(0,0,0,0.85)",
+                display: "flex", 
+                alignItems: "center", 
+                justifyContent: "center", 
+                gap: "1rem", 
+                flexDirection: "column",
+              }}
+            >
+              {/* Live Preview Button */}
+              <motion.a
+                href={p.liveUrl} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.05, background: C.blueHover }}
+                whileTap={{ scale: 0.98 }}
+                style={{
+                  background: C.blue, 
+                  border: "none", 
+                  padding: "0.7rem 1.75rem",
+                  borderRadius: "8px", 
+                  color: "#fff", 
+                  fontFamily: "'Inter', sans-serif",
+                  fontWeight: 600, 
+                  fontSize: "0.875rem", 
+                  cursor: "pointer",
+                  textDecoration: "none", 
+                  display: "inline-block",
+                }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                Live Preview →
+              </motion.a>
+              
+              {/* Build Something Similar Button */}
+              <Link
+                to={`/contact?service=${encodeURIComponent(p.label)}`}
+                onClick={(e) => e.stopPropagation()}
+                style={{
+                  background: "transparent", 
+                  border: `1px solid ${C.blueHover}`,
+                  padding: "0.7rem 1.75rem", 
+                  borderRadius: "8px",
+                  color: "#fff", 
+                  fontFamily: "'Inter', sans-serif",
+                  fontWeight: 600, 
+                  fontSize: "0.875rem", 
+                  cursor: "pointer",
+                  textDecoration: "none", 
+                  display: "inline-block",
+                  transition: "all 0.2s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.background = C.blueHover;
+                  e.target.style.borderColor = C.blueHover;
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.background = "transparent";
+                  e.target.style.borderColor = C.blueHover;
+                }}
+              >
+                Build Something Similar
+              </Link>
+            </motion.div>
+          </div>
+          <div style={{ padding: "1.25rem 1.5rem" }}>
+            <div style={{
+              fontFamily: "'Inter', sans-serif", 
+              color: C.blueHover, 
+              fontSize: "0.75rem",
+              letterSpacing: "0.08em", 
+              textTransform: "uppercase", 
+              marginBottom: "0.3rem",
+            }}>
+              {p.label}
+            </div>
+            <div style={{ 
+              fontFamily: "'Sora', sans-serif", 
+              fontSize: "1.05rem", 
+              fontWeight: 600, 
+              color: C.textPrimary, 
+              marginBottom: "0.4rem" 
+            }}>
+              {p.title}
+            </div>
+            <div style={{ 
+              fontFamily: "'Inter', sans-serif", 
+              fontSize: "0.85rem", 
+              color: C.textBody, 
+              lineHeight: 1.5 
+            }}>
+              {p.desc}
+            </div>
+            {/* Tech Stack Tags */}
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem", marginTop: "0.75rem" }}>
+              {p.techStack.slice(0, 3).map((tech, i) => (
+                <span key={i} style={{
+                  background: C.codeBg,
+                  padding: "0.15rem 0.5rem",
+                  borderRadius: 10,
+                  fontSize: "0.6rem",
+                  color: C.cyan,
+                  fontFamily: "'Inter', sans-serif"
+                }}>
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      ))}
+    </div>
+
+    <div style={{ textAlign: "center", marginTop: "3rem" }}>
+      <Link to="/portfolio" style={{ textDecoration: "none" }}>
+        <motion.button
+          whileHover={{ scale: 1.04, background: C.surfaceHover, borderColor: C.blueHover }}
+          whileTap={{ scale: 0.98 }}
+          style={{
+            background: "transparent", 
+            border: `1px solid ${C.border}`, 
+            padding: "0.8rem 2rem",
+            borderRadius: "8px", 
+            color: C.textPrimary, 
+            fontFamily: "'Inter', sans-serif",
+            fontWeight: 600, 
+            fontSize: "0.9rem", 
+            cursor: "pointer", 
+            transition: "all 0.2s",
+          }}
+        >
+          View All Projects →
+        </motion.button>
+      </Link>
+    </div>
+  </div>
+</section>
+  )}
 // ─── PRICING SECTION ─────────────────────────────────────────────────────────
 const PRICING_PLANS = [
   {
