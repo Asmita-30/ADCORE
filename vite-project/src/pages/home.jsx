@@ -350,6 +350,7 @@ function Process() {
 }
 
 // ─── ABOUT SECTION ──────────────────────────────────────────
+// ─── ABOUT SECTION ──────────────────────────────────────────
 function About() {
   const sectionRef = useRef();
 
@@ -403,31 +404,92 @@ function About() {
           </h2>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "clamp(2rem, 5vw, 4rem)", alignItems: "center" }}>
-          <motion.div className="about-animate" initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "clamp(0.9rem, 4vw, 1.05rem)", lineHeight: 1.75, color: C.textLead, marginBottom: "1.25rem" }}>
+        <div style={{ 
+          display: "grid", 
+          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", 
+          gap: "clamp(2rem, 5vw, 4rem)", 
+          alignItems: "center" 
+        }}>
+          {/* Left Side - Text Content */}
+          <motion.div 
+            className="about-animate" 
+            initial={{ opacity: 0, x: -40 }} 
+            whileInView={{ opacity: 1, x: 0 }} 
+            viewport={{ once: true }} 
+            transition={{ duration: 0.6 }}
+          >
+            <p style={{ 
+              fontFamily: "'Inter', sans-serif", 
+              fontSize: "clamp(0.9rem, 4vw, 1.05rem)", 
+              lineHeight: 1.75, 
+              color: C.textLead, 
+              marginBottom: "1.25rem" 
+            }}>
               Adrix Core was founded by a two-time Smart India Hackathon champion. We build web, mobile, and AI solutions that are production-ready — not just good-looking demos.
             </p>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "clamp(0.85rem, 3vw, 0.95rem)", lineHeight: 1.7, color: C.textBody, marginBottom: "2rem" }}>
+            <p style={{ 
+              fontFamily: "'Inter', sans-serif", 
+              fontSize: "clamp(0.85rem, 3vw, 0.95rem)", 
+              lineHeight: 1.7, 
+              color: C.textBody, 
+              marginBottom: "2rem" 
+            }}>
               We've delivered real products — from port management systems to civic tech platforms. Our engineering-first approach means we build for performance, maintainability, and scale from day one.
             </p>
 
-            <div style={{ display: "flex", gap: "1.5rem", flexWrap: "wrap" }}>
+            {/* Stats Cards - Improved for mobile */}
+            <div style={{ 
+              display: "grid", 
+              gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))", 
+              gap: "1rem",
+              marginTop: "1rem"
+            }}>
               {[
-                { val: "4hr", label: "Response SLA" },
-                { val: "Fixed", label: "Price Quotes" },
-                { val: "2×", label: "National SIH Winners" },
-              ].map(({ val, label }) => (
-                <div key={label}>
+                { val: "4hr", label: "Response SLA", icon: "⚡", color: C.blueHover },
+                { val: "Fixed", label: "Price Quotes", icon: "💰", color: C.cyan },
+                { val: "2×", label: "National SIH Winners", icon: "🏆", color: C.blueHover },
+              ].map(({ val, label, icon, color }) => (
+                <div
+                  key={label}
+                  style={{
+                    background: C.surface,
+                    border: `1px solid ${C.border}`,
+                    borderRadius: "12px",
+                    padding: "1rem 0.75rem",
+                    textAlign: "center",
+                    transition: "all 0.3s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = color;
+                    e.currentTarget.style.transform = "translateY(-4px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = C.border;
+                    e.currentTarget.style.transform = "translateY(0)";
+                  }}
+                >
+                  <div style={{ 
+                    fontSize: "1.8rem", 
+                    marginBottom: "0.5rem",
+                    display: "block"
+                  }}>
+                    {icon}
+                  </div>
                   <div style={{
                     fontFamily: "'Sora', sans-serif",
-                    fontSize: "clamp(1.2rem, 4vw, 1.5rem)",
+                    fontSize: "clamp(1.2rem, 4vw, 1.6rem)",
                     fontWeight: 700,
-                    color: C.blueHover,
+                    color: color,
+                    marginBottom: "0.25rem",
                   }}>
                     {val}
                   </div>
-                  <div style={{ fontFamily: "'Inter', sans-serif", fontSize: "clamp(0.7rem, 3vw, 0.78rem)", color: C.textMuted, marginTop: 3, letterSpacing: "0.04em" }}>
+                  <div style={{ 
+                    fontFamily: "'Inter', sans-serif", 
+                    fontSize: "clamp(0.65rem, 3vw, 0.75rem)", 
+                    color: C.textMuted, 
+                    lineHeight: 1.3
+                  }}>
                     {label}
                   </div>
                 </div>
@@ -435,7 +497,14 @@ function About() {
             </div>
           </motion.div>
 
-          <motion.div className="about-animate" initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}>
+          {/* Right Side - Image */}
+          <motion.div 
+            className="about-animate" 
+            initial={{ opacity: 0, x: 40 }} 
+            whileInView={{ opacity: 1, x: 0 }} 
+            viewport={{ once: true }} 
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             <div style={{
               position: "relative",
               borderRadius: 16,
@@ -467,7 +536,6 @@ function About() {
     </section>
   );
 }
-
 // ─── SERVICES SECTION ──────────────────────────────────────────
 const SERVICES = [
   { icon: "🌐", name: "Web App Development", desc: "Full-stack web applications with React, Spring Boot, and modern architectures.", path: "/web-app-development", tags: ["React.js", "Spring Boot", "TypeScript"] },
