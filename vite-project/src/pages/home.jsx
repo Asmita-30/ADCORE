@@ -34,6 +34,60 @@ const C = {
   codeBg: "#0F172A",
 };
 
+// Add global responsive styles
+const GlobalStyles = () => (
+  <style>{`
+    @media (max-width: 768px) {
+      .about-stats-grid {
+        grid-template-columns: 1fr !important;
+        gap: 0.75rem !important;
+      }
+      .about-stats-card {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        text-align: left !important;
+        padding: 0.8rem 1rem !important;
+        gap: 1rem !important;
+      }
+      .about-stats-icon {
+        font-size: 1.8rem !important;
+        margin-bottom: 0 !important;
+        flex-shrink: 0 !important;
+      }
+      .about-stats-content {
+        flex: 1 !important;
+      }
+      .about-stats-value {
+        font-size: 1.2rem !important;
+        margin-bottom: 0.1rem !important;
+      }
+      .about-stats-label {
+        font-size: 0.7rem !important;
+      }
+      .about-text {
+        text-align: center !important;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .about-stats-card {
+        padding: 0.6rem 0.8rem !important;
+        gap: 0.8rem !important;
+      }
+      .about-stats-icon {
+        font-size: 1.5rem !important;
+      }
+      .about-stats-value {
+        font-size: 1rem !important;
+      }
+      .about-stats-label {
+        font-size: 0.65rem !important;
+      }
+    }
+  `}</style>
+);
+
 // ─── HERO SECTION ──────────────────────────────────────────
 function Hero() {
   const { scrollY } = useScroll();
@@ -350,7 +404,8 @@ function Process() {
 }
 
 // ─── ABOUT SECTION ──────────────────────────────────────────
-// ─── ABOUT SECTION ──────────────────────────────────────────
+// src/pages/Home.jsx - Updated About section with centered text on mobile
+
 function About() {
   const sectionRef = useRef();
 
@@ -360,6 +415,74 @@ function About() {
       { opacity: 0, y: 40 },
       { opacity: 1, y: 0, stagger: 0.15, duration: 0.7, scrollTrigger: { trigger: sectionRef.current, start: "top 80%" } }
     );
+  }, []);
+
+  // Add responsive styles for about section
+  useEffect(() => {
+    const style = document.createElement('style');
+    style.textContent = `
+      @media (max-width: 768px) {
+        .about-stats-grid {
+          grid-template-columns: 1fr !important;
+          gap: 0.75rem !important;
+          max-width: 100% !important;
+          margin: 0 auto !important;
+        }
+        .about-stats-card {
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          text-align: center !important;
+          padding: 0.8rem 1rem !important;
+          gap: 1rem !important;
+          flex-direction: column !important;
+        }
+        .about-stats-icon {
+          font-size: 2rem !important;
+          margin-bottom: 0.5rem !important;
+          flex-shrink: 0 !important;
+        }
+        .about-stats-content {
+          text-align: center !important;
+          width: 100% !important;
+        }
+        .about-stats-value {
+          font-size: 1.3rem !important;
+          margin-bottom: 0.1rem !important;
+          text-align: center !important;
+        }
+        .about-stats-label {
+          font-size: 0.7rem !important;
+          text-align: center !important;
+        }
+        .about-text {
+          text-align: center !important;
+        }
+        .about-description {
+          text-align: center !important;
+          padding: 0 0.5rem !important;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .about-stats-card {
+          padding: 0.7rem 0.5rem !important;
+        }
+        .about-stats-icon {
+          font-size: 1.8rem !important;
+        }
+        .about-stats-value {
+          font-size: 1.2rem !important;
+        }
+        .about-stats-label {
+          font-size: 0.65rem !important;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+    return () => {
+      document.head.removeChild(style);
+    };
   }, []);
 
   return (
@@ -418,31 +541,35 @@ function About() {
             viewport={{ once: true }} 
             transition={{ duration: 0.6 }}
           >
-            <p style={{ 
-              fontFamily: "'Inter', sans-serif", 
-              fontSize: "clamp(0.9rem, 4vw, 1.05rem)", 
-              lineHeight: 1.75, 
-              color: C.textLead, 
-              marginBottom: "1.25rem" 
-            }}>
-              Adrix Core was founded by a two-time Smart India Hackathon champion. We build web, mobile, and AI solutions that are production-ready — not just good-looking demos.
-            </p>
-            <p style={{ 
-              fontFamily: "'Inter', sans-serif", 
-              fontSize: "clamp(0.85rem, 3vw, 0.95rem)", 
-              lineHeight: 1.7, 
-              color: C.textBody, 
-              marginBottom: "2rem" 
-            }}>
-              We've delivered real products — from port management systems to civic tech platforms. Our engineering-first approach means we build for performance, maintainability, and scale from day one.
-            </p>
+            <div className="about-description">
+              <p style={{ 
+                fontFamily: "'Inter', sans-serif", 
+                fontSize: "clamp(0.9rem, 4vw, 1.05rem)", 
+                lineHeight: 1.75, 
+                color: C.textLead, 
+                marginBottom: "1.25rem",
+                textAlign: "left"
+              }}>
+                Adrix Core was founded by a two-time Smart India Hackathon champion. We build web, mobile, and AI solutions that are production-ready — not just good-looking demos.
+              </p>
+              <p style={{ 
+                fontFamily: "'Inter', sans-serif", 
+                fontSize: "clamp(0.85rem, 3vw, 0.95rem)", 
+                lineHeight: 1.7, 
+                color: C.textBody, 
+                marginBottom: "2rem",
+                textAlign: "left"
+              }}>
+                We've delivered real products — from port management systems to civic tech platforms. Our engineering-first approach means we build for performance, maintainability, and scale from day one.
+              </p>
+            </div>
 
-            {/* Stats Cards - Improved for mobile */}
-            <div style={{ 
+            {/* Stats Cards - Responsive Grid */}
+            <div className="about-stats-grid" style={{ 
               display: "grid", 
-              gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))", 
+              gridTemplateColumns: "repeat(3, 1fr)",
               gap: "1rem",
-              marginTop: "1rem"
+              marginTop: "1.5rem"
             }}>
               {[
                 { val: "4hr", label: "Response SLA", icon: "⚡", color: C.blueHover },
@@ -451,11 +578,12 @@ function About() {
               ].map(({ val, label, icon, color }) => (
                 <div
                   key={label}
+                  className="about-stats-card"
                   style={{
                     background: C.surface,
                     border: `1px solid ${C.border}`,
                     borderRadius: "12px",
-                    padding: "1rem 0.75rem",
+                    padding: "1rem 0.5rem",
                     textAlign: "center",
                     transition: "all 0.3s ease",
                   }}
@@ -468,29 +596,31 @@ function About() {
                     e.currentTarget.style.transform = "translateY(0)";
                   }}
                 >
-                  <div style={{ 
-                    fontSize: "1.8rem", 
+                  <div className="about-stats-icon" style={{ 
+                    fontSize: "2rem", 
                     marginBottom: "0.5rem",
                     display: "block"
                   }}>
                     {icon}
                   </div>
-                  <div style={{
-                    fontFamily: "'Sora', sans-serif",
-                    fontSize: "clamp(1.2rem, 4vw, 1.6rem)",
-                    fontWeight: 700,
-                    color: color,
-                    marginBottom: "0.25rem",
-                  }}>
-                    {val}
-                  </div>
-                  <div style={{ 
-                    fontFamily: "'Inter', sans-serif", 
-                    fontSize: "clamp(0.65rem, 3vw, 0.75rem)", 
-                    color: C.textMuted, 
-                    lineHeight: 1.3
-                  }}>
-                    {label}
+                  <div className="about-stats-content">
+                    <div className="about-stats-value" style={{
+                      fontFamily: "'Sora', sans-serif",
+                      fontSize: "clamp(1.1rem, 4vw, 1.4rem)",
+                      fontWeight: 700,
+                      color: color,
+                      marginBottom: "0.25rem",
+                    }}>
+                      {val}
+                    </div>
+                    <div className="about-stats-label" style={{ 
+                      fontFamily: "'Inter', sans-serif", 
+                      fontSize: "clamp(0.65rem, 3vw, 0.7rem)", 
+                      color: C.textMuted,
+                      lineHeight: 1.3
+                    }}>
+                      {label}
+                    </div>
                   </div>
                 </div>
               ))}
@@ -536,6 +666,7 @@ function About() {
     </section>
   );
 }
+
 // ─── SERVICES SECTION ──────────────────────────────────────────
 const SERVICES = [
   { icon: "🌐", name: "Web App Development", desc: "Full-stack web applications with React, Spring Boot, and modern architectures.", path: "/web-app-development", tags: ["React.js", "Spring Boot", "TypeScript"] },
@@ -1442,6 +1573,7 @@ function Contact() {
 export default function Home() {
   return (
     <>
+      <GlobalStyles />
       <Hero />
       <Process />
       <About />
