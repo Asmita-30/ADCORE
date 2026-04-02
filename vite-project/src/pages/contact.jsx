@@ -226,35 +226,44 @@ function Contact() {
   };
 
   const contactInfo = [
-    {
-      icon: "📧",
-      label: "Email",
-      value: "adrixcoretech@gmail.com",
-      link: "mailto:adrixcoretech@gmail.com",
-      color: COLORS.primaryAccent
-    },
-    {
-      icon: "📞",
-      label: "Phone",
-      value: "+91 74475 08006",
-      link: "tel:+917447508006",
-      color: COLORS.secondaryAccent
-    },
-    {
-      icon: "💬",
-      label: "WhatsApp",
-      value: "+91 74475 08006",
-      link: "https://wa.me/917447508006",
-      color: COLORS.whatsapp
-    },
-    {
-      icon: "📍",
-      label: "Location",
-      value: "Navi Mumbai, Maharashtra, India",
-      link: null,
-      color: COLORS.primaryAccent
-    }
-  ];
+  {
+    icon: "📧",
+    label: "Email",
+    value: "adrixcoretech@gmail.com",
+    link: "mailto:adrixcoretech@gmail.com",
+    color: COLORS.primaryAccent,
+    isSingleValue: true
+  },
+  {
+    icon: "📞",
+    label: "Phone",
+    values: [
+      { value: "+91 74475 08006", link: "tel:+917447508006" },
+      { value: "+91 80808 22156", link: "tel:+918080822156" }
+    ],
+    color: COLORS.secondaryAccent,
+    isMultipleValues: true
+  },
+  {
+    icon: "💬",
+    label: "WhatsApp",
+    values: [
+      { value: "+91 74475 08006", link: "https://wa.me/917447508006" },
+      { value: "+91 80808 22156", link: "https://wa.me/918080822156" }
+    ],
+    color: COLORS.whatsapp,
+    isMultipleValues: true
+  },
+  {
+    icon: "📍",
+    label: "Location",
+    value: "Navi Mumbai, Maharashtra, India",
+    link: null,
+    color: COLORS.primaryAccent,
+    isSingleValue: true
+  }
+];
+
 
   // Responsive styles
   const responsiveStyles = `
@@ -597,62 +606,90 @@ function Contact() {
       </section>
 
       {/* Contact Info Cards */}
-      <section className="section-padding" style={{ padding: "20px 2rem", position: "relative", zIndex: 2, background: COLORS.primaryBg }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div className="contact-cards" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "1.5rem" }}>
-            {contactInfo.map((info, index) => (
-              <motion.div
-                key={info.label}
-                className="contact-card"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-                whileHover={{ y: -4, borderColor: info.color }}
-                style={{
-                  background: COLORS.cardBg,
-                  border: `1px solid ${COLORS.borderDefault}`,
-                  borderRadius: 20,
-                  padding: "1.5rem",
-                  textAlign: "center",
-                  transition: "all 0.3s ease"
-                }}
-              >
-                <div className="contact-card-icon" style={{ fontSize: "2.5rem", marginBottom: "0.5rem" }}>{info.icon}</div>
-                <h3 className="contact-card-label" style={{ 
-                  fontFamily: "'Sora', sans-serif", 
-                  fontSize: "0.85rem", 
-                  fontWeight: 600, 
-                  color: info.color, 
-                  marginBottom: "0.5rem" 
-                }}>
-                  {info.label}
-                </h3>
-                {info.link ? (
-                  <a 
-                    href={info.link} 
-                    target={info.label === "WhatsApp" ? "_blank" : undefined}
-                    rel={info.label === "WhatsApp" ? "noopener noreferrer" : undefined}
-                    className="contact-card-value"
-                    style={{ 
-                      color: COLORS.bodyText, 
-                      textDecoration: "none",
-                      fontSize: "0.875rem",
-                      transition: "color 0.2s"
-                    }}
-                    onMouseEnter={(e) => e.target.style.color = info.color}
-                    onMouseLeave={(e) => e.target.style.color = COLORS.bodyText}
-                  >
-                    {info.value}
-                  </a>
-                ) : (
-                  <p className="contact-card-value" style={{ color: COLORS.bodyText, fontSize: "0.875rem" }}>{info.value}</p>
-                )}
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+
+<section className="section-padding" style={{ padding: "20px 2rem", position: "relative", zIndex: 2, background: COLORS.primaryBg }}>
+  <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+    <div className="contact-cards" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem" }}>
+      {contactInfo.map((info, index) => (
+        <motion.div
+          key={info.label}
+          className="contact-card"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: index * 0.1, duration: 0.5 }}
+          whileHover={{ y: -4, borderColor: info.color }}
+          style={{
+            background: COLORS.cardBg,
+            border: `1px solid ${COLORS.borderDefault}`,
+            borderRadius: 20,
+            padding: "1.5rem",
+            textAlign: "center",
+            transition: "all 0.3s ease"
+          }}
+        >
+          <div className="contact-card-icon" style={{ fontSize: "2.5rem", marginBottom: "0.5rem" }}>{info.icon}</div>
+          <h3 className="contact-card-label" style={{ 
+            fontFamily: "'Sora', sans-serif", 
+            fontSize: "0.85rem", 
+            fontWeight: 600, 
+            color: info.color, 
+            marginBottom: "0.75rem" 
+          }}>
+            {info.label}
+          </h3>
+          
+          {info.isMultipleValues ? (
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+              {info.values.map((item, idx) => (
+                <a 
+                  key={idx}
+                  href={item.link} 
+                  target={info.label === "WhatsApp" ? "_blank" : undefined}
+                  rel={info.label === "WhatsApp" ? "noopener noreferrer" : undefined}
+                  className="contact-card-value"
+                  style={{ 
+                    color: COLORS.bodyText, 
+                    textDecoration: "none",
+                    fontSize: "0.875rem",
+                    transition: "color 0.2s",
+                    display: "block",
+                    wordBreak: "break-word"
+                  }}
+                  onMouseEnter={(e) => e.target.style.color = info.color}
+                  onMouseLeave={(e) => e.target.style.color = COLORS.bodyText}
+                >
+                  {item.value}
+                </a>
+              ))}
+            </div>
+          ) : info.link ? (
+            <a 
+              href={info.link} 
+              target={info.label === "WhatsApp" ? "_blank" : undefined}
+              rel={info.label === "WhatsApp" ? "noopener noreferrer" : undefined}
+              className="contact-card-value"
+              style={{ 
+                color: COLORS.bodyText, 
+                textDecoration: "none",
+                fontSize: "0.875rem",
+                transition: "color 0.2s",
+                display: "block",
+                wordBreak: "break-word"
+              }}
+              onMouseEnter={(e) => e.target.style.color = info.color}
+              onMouseLeave={(e) => e.target.style.color = COLORS.bodyText}
+            >
+              {info.value}
+            </a>
+          ) : (
+            <p className="contact-card-value" style={{ color: COLORS.bodyText, fontSize: "0.875rem" }}>{info.value}</p>
+          )}
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* Main Contact Section with Calendly */}
       <section ref={formRef} className="section-padding" style={{ padding: "40px 2rem 80px", position: "relative", zIndex: 2, background: COLORS.primaryBg }}>
