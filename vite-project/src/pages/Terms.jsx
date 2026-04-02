@@ -256,10 +256,154 @@ function Terms() {
     });
   };
 
+  // Responsive styles
+  const responsiveStyles = `
+    @media (max-width: 1024px) {
+      .hero-padding {
+        padding: 100px 1.5rem 50px !important;
+      }
+      .content-padding {
+        padding: 40px 1.5rem 60px !important;
+      }
+      .hero-title {
+        font-size: clamp(2rem, 4vw, 2.5rem) !important;
+      }
+      .hero-subtitle {
+        font-size: 1rem !important;
+      }
+      .section-header {
+        padding: 1rem 1.2rem !important;
+      }
+      .section-content {
+        padding: 0 1.2rem 1.2rem 3rem !important;
+      }
+      .contact-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1rem !important;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero-padding {
+        padding: 80px 1rem 40px !important;
+      }
+      .content-padding {
+        padding: 30px 1rem 50px !important;
+      }
+      .hero-title {
+        font-size: clamp(1.5rem, 5vw, 1.8rem) !important;
+      }
+      .hero-subtitle {
+        font-size: 0.85rem !important;
+      }
+      .hero-badge {
+        font-size: 0.7rem !important;
+      }
+      .section-header {
+        padding: 0.9rem 1rem !important;
+        gap: 0.6rem !important;
+      }
+      .section-header-icon {
+        font-size: 1rem !important;
+        width: 25px !important;
+      }
+      .section-header-number {
+        font-size: 0.7rem !important;
+        min-width: 30px !important;
+      }
+      .section-header-title {
+        font-size: 0.9rem !important;
+      }
+      .section-content {
+        padding: 0 1rem 1rem 2rem !important;
+      }
+      .section-text {
+        font-size: 0.85rem !important;
+        line-height: 1.6 !important;
+      }
+      .section-list {
+        margin: 0.6rem 0 !important;
+      }
+      .section-list-item {
+        font-size: 0.85rem !important;
+        margin-bottom: 0.4rem !important;
+      }
+      .subsection-title {
+        font-size: 0.8rem !important;
+      }
+      .subsection-text {
+        font-size: 0.85rem !important;
+      }
+      .contact-grid {
+        grid-template-columns: 1fr !important;
+        gap: 0.8rem !important;
+      }
+      .contact-card {
+        padding: 0.8rem !important;
+      }
+      .contact-card-label {
+        font-size: 0.65rem !important;
+      }
+      .contact-card-value {
+        font-size: 0.8rem !important;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .hero-padding {
+        padding: 70px 0.8rem 35px !important;
+      }
+      .content-padding {
+        padding: 25px 0.8rem 40px !important;
+      }
+      .hero-title {
+        font-size: 1.4rem !important;
+      }
+      .hero-subtitle {
+        font-size: 0.8rem !important;
+      }
+      .section-header {
+        padding: 0.8rem 0.8rem !important;
+        gap: 0.5rem !important;
+      }
+      .section-header-icon {
+        font-size: 0.9rem !important;
+        width: 22px !important;
+      }
+      .section-header-number {
+        font-size: 0.65rem !important;
+        min-width: 25px !important;
+      }
+      .section-header-title {
+        font-size: 0.85rem !important;
+      }
+      .section-content {
+        padding: 0 0.8rem 0.8rem 1.5rem !important;
+      }
+      .section-text {
+        font-size: 0.8rem !important;
+      }
+      .section-list-item {
+        font-size: 0.8rem !important;
+      }
+      .subsection-text {
+        font-size: 0.8rem !important;
+      }
+      .contact-card {
+        padding: 0.7rem !important;
+      }
+      .contact-card-value {
+        font-size: 0.75rem !important;
+      }
+    }
+  `;
+
   return (
     <>
+      <style>{responsiveStyles}</style>
+      
       {/* Hero Section */}
-      <section ref={heroRef} style={{ 
+      <section ref={heroRef} className="hero-padding" style={{ 
         minHeight: "50vh", 
         display: "flex", 
         alignItems: "center", 
@@ -287,6 +431,7 @@ function Terms() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
+              className="hero-badge"
               style={{
                 display: "inline-block",
                 background: "#1E3A5F",
@@ -307,6 +452,7 @@ function Terms() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
+              className="hero-title"
               style={{
                 fontFamily: "'Sora', sans-serif",
                 fontSize: "clamp(2.5rem,5vw,4rem)",
@@ -329,6 +475,7 @@ function Terms() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
+              className="hero-subtitle"
               style={{
                 fontSize: "1rem",
                 color: C.textBody,
@@ -344,7 +491,7 @@ function Terms() {
       </section>
 
       {/* Content Section */}
-      <section className="tnc-container" style={{ padding: "40px 2rem 80px", position: "relative", zIndex: 2, background: C.surface }}>
+      <section className="tnc-container content-padding" style={{ padding: "40px 2rem 80px", position: "relative", zIndex: 2, background: C.surface }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           {sections.map((s) => {
             const isOpen = openSections.has(s.id);
@@ -366,7 +513,7 @@ function Terms() {
                 }}
               >
                 <div 
-                  className="tnc-section-header" 
+                  className="tnc-section-header section-header" 
                   onClick={() => toggleSection(s.id)}
                   style={{
                     display: "flex",
@@ -379,14 +526,14 @@ function Terms() {
                   onMouseEnter={(e) => { e.currentTarget.style.background = C.surfaceHover }}
                   onMouseLeave={(e) => { e.currentTarget.style.background = "transparent" }}
                 >
-                  <span style={{ fontSize: "1.2rem", color: C.blue, width: "30px" }}>{s.icon}</span>
-                  <span style={{
+                  <span className="section-header-icon" style={{ fontSize: "1.2rem", color: C.blue, width: "30px" }}>{s.icon}</span>
+                  <span className="section-header-number" style={{
                     fontFamily: "'Inter', sans-serif",
                     fontSize: "0.8rem",
                     color: C.textMuted,
                     minWidth: "35px"
                   }}>{String(s.id).padStart(2, "0")}</span>
-                  <span style={{
+                  <span className="section-header-title" style={{
                     fontFamily: "'Sora', sans-serif",
                     fontWeight: 600,
                     fontSize: "1rem",
@@ -402,31 +549,31 @@ function Terms() {
                 </div>
 
                 {isOpen && (
-                  <div style={{
+                  <div className="section-content" style={{
                     padding: "0 1.5rem 1.5rem 4rem",
                     borderTop: `1px solid ${C.border}`
                   }}>
                     {s.isContact ? (
-                      <div style={{
+                      <div className="contact-grid" style={{
                         display: "grid",
                         gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
                         gap: "1rem"
                       }}>
                         {contactDetails.map((c, i) => (
-                          <div key={i} style={{
+                          <div key={i} className="contact-card" style={{
                             background: C.surface,
                             border: `1px solid ${C.border}`,
                             borderRadius: 12,
                             padding: "1rem"
                           }}>
-                            <div style={{
+                            <div className="contact-card-label" style={{
                               fontSize: "0.7rem",
                               letterSpacing: "0.1em",
                               textTransform: "uppercase",
                               color: C.textMuted,
                               marginBottom: "0.3rem"
                             }}>{c.label}</div>
-                            <div style={{
+                            <div className="contact-card-value" style={{
                               fontSize: "0.9rem",
                               color: C.textBody
                             }}>
@@ -446,7 +593,7 @@ function Terms() {
                     ) : (
                       <>
                         {s.content && (
-                          <p style={{
+                          <p className="section-text" style={{
                             fontSize: "0.9rem",
                             lineHeight: 1.7,
                             color: C.textBody,
@@ -455,13 +602,13 @@ function Terms() {
                           }}>{s.content}</p>
                         )}
                         {s.list && (
-                          <ul style={{
+                          <ul className="section-list" style={{
                             listStyle: "none",
                             margin: "0.8rem 0",
                             padding: 0
                           }}>
                             {s.list.map((item, i) => (
-                              <li key={i} style={{
+                              <li key={i} className="section-list-item" style={{
                                 display: "flex",
                                 alignItems: "flex-start",
                                 gap: "0.6rem",
@@ -477,7 +624,7 @@ function Terms() {
                           </ul>
                         )}
                         {s.listFooter && (
-                          <p style={{
+                          <p className="section-text" style={{
                             fontSize: "0.9rem",
                             lineHeight: 1.7,
                             color: C.textBody,
@@ -486,14 +633,14 @@ function Terms() {
                         )}
                         {s.subsections && s.subsections.map((sub, i) => (
                           <div key={i} style={{ marginBottom: "1.2rem" }}>
-                            <div style={{
+                            <div className="subsection-title" style={{
                               fontFamily: "'Sora', sans-serif",
                               fontSize: "0.85rem",
                               fontWeight: 600,
                               color: C.blue,
                               marginBottom: "0.5rem"
                             }}>{sub.title}</div>
-                            <p style={{
+                            <p className="subsection-text" style={{
                               fontSize: "0.9rem",
                               lineHeight: 1.7,
                               color: C.textBody

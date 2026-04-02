@@ -268,8 +268,125 @@ function Privacy() {
 
   return (
     <>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap');
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+          .hero-padding {
+            padding: 100px 1rem 50px !important;
+          }
+          .content-padding {
+            padding: 30px 1rem 60px !important;
+          }
+          .section-header {
+            padding: 1rem !important;
+            gap: 0.5rem !important;
+          }
+          .section-content {
+            padding: 0 1rem 1rem 1rem !important;
+          }
+          .section-icon {
+            font-size: 1rem !important;
+            width: 25px !important;
+          }
+          .section-number {
+            font-size: 0.7rem !important;
+            min-width: 25px !important;
+          }
+          .section-title {
+            font-size: 0.85rem !important;
+          }
+          .contact-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .content-text {
+            font-size: 0.85rem !important;
+          }
+        }
+        
+        @media (max-width: 640px) {
+          .hero-title {
+            font-size: 1.8rem !important;
+          }
+          .hero-subtitle {
+            font-size: 0.9rem !important;
+          }
+          .hero-badge {
+            font-size: 0.7rem !important;
+          }
+          .list-item {
+            font-size: 0.8rem !important;
+          }
+          .subsection-title {
+            font-size: 0.8rem !important;
+          }
+        }
+        
+        @media (min-width: 641px) and (max-width: 768px) {
+          .hero-padding {
+            padding: 110px 1.5rem 60px !important;
+          }
+          .content-padding {
+            padding: 40px 1.5rem 70px !important;
+          }
+          .contact-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+        }
+        
+        @media (min-width: 769px) and (max-width: 1024px) {
+          .hero-padding {
+            padding: 120px 2rem 70px !important;
+          }
+          .content-padding {
+            padding: 50px 2rem 80px !important;
+          }
+          .contact-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+        }
+        
+        @media (min-width: 1025px) {
+          .hero-padding {
+            padding: 120px 2rem 80px !important;
+          }
+          .content-padding {
+            padding: 60px 2rem 80px !important;
+          }
+          .contact-grid {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+          }
+        }
+        
+        ::-webkit-scrollbar {
+          width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+          background: ${C.bg};
+        }
+        
+        ::-webkit-scrollbar-thumb {
+          background: ${C.blue};
+          border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+          background: ${C.blueHover};
+        }
+        
+        .pp-section {
+          transition: all 0.3s ease;
+        }
+        
+        .pp-section-header {
+          transition: background 0.2s ease;
+        }
+      `}</style>
+
       {/* Hero Section */}
-      <section ref={heroRef} style={{ 
+      <section ref={heroRef} className="hero-padding" style={{ 
         minHeight: "50vh", 
         display: "flex", 
         alignItems: "center", 
@@ -279,7 +396,6 @@ function Privacy() {
         background: C.bg,
         overflow: "hidden"
       }}>
-        {/* Background decorative gradients */}
         <div style={{
           position: "absolute",
           top: 0,
@@ -292,17 +408,18 @@ function Privacy() {
         }} />
         
         <motion.div style={{ opacity, scale }} className="hero-animate" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
-          <div style={{ textAlign: "center", maxWidth: 900, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", maxWidth: 900, margin: "0 auto", padding: "0 1rem" }}>
             <motion.div 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
+              className="hero-badge"
               style={{
                 display: "inline-block",
                 background: "#1E3A5F",
                 borderRadius: 20,
                 padding: "0.3rem 1rem",
-                fontSize: "0.75rem",
+                fontSize: "clamp(0.7rem, 3vw, 0.75rem)",
                 fontFamily: "'Inter', sans-serif",
                 fontWeight: 500,
                 color: C.blueHover,
@@ -317,10 +434,11 @@ function Privacy() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
+              className="hero-title"
               style={{
                 fontFamily: "'Sora', sans-serif",
-                fontSize: "clamp(2.5rem,5vw,4rem)",
-                fontWeight: 800,
+                fontSize: "clamp(2rem, 5vw, 4rem)",
+                fontWeight: 700,
                 marginBottom: "1.5rem",
                 color: C.textPrimary,
                 lineHeight: 1.2,
@@ -339,8 +457,9 @@ function Privacy() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
+              className="hero-subtitle"
               style={{
-                fontSize: "1rem",
+                fontSize: "clamp(0.85rem, 3vw, 1rem)",
                 color: C.textBody,
                 lineHeight: 1.6,
                 maxWidth: 700,
@@ -354,8 +473,8 @@ function Privacy() {
       </section>
 
       {/* Content Section */}
-      <section className="pp-container" style={{ padding: "40px 2rem 80px", position: "relative", zIndex: 2, background: C.surface }}>
-        <div style={{ maxWidth: 1000, margin: "0 auto" }}>
+      <section className="pp-container content-padding" style={{ padding: "40px 2rem 80px", position: "relative", zIndex: 2, background: C.surface }}>
+        <div style={{ maxWidth: 1000, margin: "0 auto", padding: "0 clamp(0.5rem, 3vw, 1rem)" }}>
           {sections.map((s) => {
             const isOpen = openSections.has(s.id);
             return (
@@ -381,25 +500,26 @@ function Privacy() {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    gap: "1rem",
-                    padding: "1.2rem 1.5rem",
+                    gap: "clamp(0.5rem, 2vw, 1rem)",
+                    padding: "clamp(0.8rem, 3vw, 1.2rem) clamp(1rem, 4vw, 1.5rem)",
                     cursor: "pointer",
-                    transition: "background 0.2s"
+                    transition: "background 0.2s",
+                    flexWrap: "wrap"
                   }}
                   onMouseEnter={(e) => { e.currentTarget.style.background = C.surfaceHover }}
                   onMouseLeave={(e) => { e.currentTarget.style.background = "transparent" }}
                 >
-                  <span style={{ fontSize: "1.2rem", color: C.blue, width: "30px" }}>{s.icon}</span>
-                  <span style={{
+                  <span className="section-icon" style={{ fontSize: "clamp(0.9rem, 3vw, 1.2rem)", color: C.blue, width: "clamp(20px, 5vw, 30px)" }}>{s.icon}</span>
+                  <span className="section-number" style={{
                     fontFamily: "'Inter', sans-serif",
-                    fontSize: "0.8rem",
+                    fontSize: "clamp(0.7rem, 2.5vw, 0.8rem)",
                     color: C.textMuted,
-                    minWidth: "35px"
+                    minWidth: "clamp(25px, 5vw, 35px)"
                   }}>{String(s.id).padStart(2, "0")}</span>
-                  <span style={{
+                  <span className="section-title" style={{
                     fontFamily: "'Sora', sans-serif",
                     fontWeight: 600,
-                    fontSize: "1rem",
+                    fontSize: "clamp(0.85rem, 3vw, 1rem)",
                     color: C.textPrimary,
                     flex: 1
                   }}>{s.title}</span>
@@ -407,38 +527,39 @@ function Privacy() {
                     color: C.textMuted,
                     transition: "transform 0.3s",
                     transform: isOpen ? "rotate(180deg)" : "rotate(0)",
-                    fontSize: "0.8rem"
+                    fontSize: "clamp(0.7rem, 2.5vw, 0.8rem)"
                   }}>▼</span>
                 </div>
 
                 {isOpen && (
-                  <div style={{
-                    padding: "0 1.5rem 1.5rem 4rem",
+                  <div className="section-content" style={{
+                    padding: "0 clamp(1rem, 4vw, 1.5rem) clamp(1rem, 4vw, 1.5rem) clamp(2rem, 8vw, 4rem)",
                     borderTop: `1px solid ${C.border}`
                   }}>
                     {s.isContact ? (
-                      <div style={{
+                      <div className="contact-grid" style={{
                         display: "grid",
                         gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-                        gap: "1rem"
+                        gap: "clamp(0.8rem, 3vw, 1rem)"
                       }}>
                         {contactDetails.map((c, i) => (
                           <div key={i} style={{
                             background: C.surface,
                             border: `1px solid ${C.border}`,
                             borderRadius: 12,
-                            padding: "1rem"
+                            padding: "clamp(0.8rem, 3vw, 1rem)"
                           }}>
                             <div style={{
-                              fontSize: "0.7rem",
+                              fontSize: "clamp(0.65rem, 2.5vw, 0.7rem)",
                               letterSpacing: "0.1em",
                               textTransform: "uppercase",
                               color: C.textMuted,
                               marginBottom: "0.3rem"
                             }}>{c.label}</div>
                             <div style={{
-                              fontSize: "0.9rem",
-                              color: C.textBody
+                              fontSize: "clamp(0.8rem, 3vw, 0.9rem)",
+                              color: C.textBody,
+                              wordBreak: "break-word"
                             }}>
                               {c.isEmail ? (
                                 <a href={`mailto:${c.value}`} style={{ color: C.blue, textDecoration: "none" }}>{c.value}</a>
@@ -456,8 +577,8 @@ function Privacy() {
                     ) : (
                       <>
                         {s.content && (
-                          <p style={{
-                            fontSize: "0.9rem",
+                          <p className="content-text" style={{
+                            fontSize: "clamp(0.85rem, 3vw, 0.9rem)",
                             lineHeight: 1.7,
                             color: C.textBody,
                             marginBottom: "1rem",
@@ -467,16 +588,16 @@ function Privacy() {
                         
                         {s.subsections && s.subsections.map((sub, i) => (
                           <div key={i} style={{ marginBottom: "1.2rem" }}>
-                            <div style={{
+                            <div className="subsection-title" style={{
                               fontFamily: "'Sora', sans-serif",
-                              fontSize: "0.85rem",
+                              fontSize: "clamp(0.8rem, 3vw, 0.85rem)",
                               fontWeight: 600,
                               color: C.blue,
                               marginBottom: "0.5rem"
                             }}>{sub.title}</div>
                             {sub.content && (
-                              <p style={{
-                                fontSize: "0.9rem",
+                              <p className="content-text" style={{
+                                fontSize: "clamp(0.85rem, 3vw, 0.9rem)",
                                 lineHeight: 1.7,
                                 color: C.textBody,
                                 marginBottom: "0.5rem",
@@ -490,24 +611,24 @@ function Privacy() {
                                 padding: 0
                               }}>
                                 {sub.list.map((item, j) => (
-                                  <li key={j} style={{
+                                  <li key={j} className="list-item" style={{
                                     display: "flex",
                                     alignItems: "flex-start",
                                     gap: "0.6rem",
-                                    fontSize: "0.9rem",
+                                    fontSize: "clamp(0.8rem, 3vw, 0.9rem)",
                                     lineHeight: 1.6,
                                     color: C.textBody,
                                     marginBottom: "0.5rem"
                                   }}>
-                                    <span style={{ color: C.blue, fontSize: "0.8rem" }}>▹</span>
-                                    {item}
+                                    <span style={{ color: C.blue, fontSize: "clamp(0.7rem, 2.5vw, 0.8rem)" }}>▹</span>
+                                    <span>{item}</span>
                                   </li>
                                 ))}
                               </ul>
                             )}
                             {sub.listFooter && (
-                              <p style={{
-                                fontSize: "0.9rem",
+                              <p className="content-text" style={{
+                                fontSize: "clamp(0.85rem, 3vw, 0.9rem)",
                                 lineHeight: 1.7,
                                 color: C.textBody,
                                 marginTop: "0.5rem"
@@ -523,24 +644,24 @@ function Privacy() {
                             padding: 0
                           }}>
                             {s.list.map((item, i) => (
-                              <li key={i} style={{
+                              <li key={i} className="list-item" style={{
                                 display: "flex",
                                 alignItems: "flex-start",
                                 gap: "0.6rem",
-                                fontSize: "0.9rem",
+                                fontSize: "clamp(0.8rem, 3vw, 0.9rem)",
                                 lineHeight: 1.6,
                                 color: C.textBody,
                                 marginBottom: "0.5rem"
                               }}>
-                                <span style={{ color: C.blue, fontSize: "0.8rem" }}>▹</span>
-                                {item}
+                                <span style={{ color: C.blue, fontSize: "clamp(0.7rem, 2.5vw, 0.8rem)" }}>▹</span>
+                                <span>{item}</span>
                               </li>
                             ))}
                           </ul>
                         )}
                         {s.listFooter && (
-                          <p style={{
-                            fontSize: "0.9rem",
+                          <p className="content-text" style={{
+                            fontSize: "clamp(0.85rem, 3vw, 0.9rem)",
                             lineHeight: 1.7,
                             color: C.textBody,
                             marginBottom: "1rem",

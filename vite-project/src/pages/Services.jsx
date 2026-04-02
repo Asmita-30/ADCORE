@@ -27,7 +27,7 @@ const COLORS = {
   whatsapp: "#25D366"
 };
 
-// Import images (you can replace these with your actual images)
+// Import images
 import webDevImg from "../assets/images/E-commerce.png";
 import mobileAppImg from "../assets/images/mobile.png";
 import uiuxImg from "../assets/images/mobile2.png";
@@ -293,7 +293,110 @@ function Services() {
           transform: translateY(-4px);
         }
         
-        /* Scrollbar styling */
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+          .services-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .process-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .tech-stack-grid {
+            gap: 0.5rem !important;
+          }
+          .hero-padding {
+            padding: 100px 1rem 60px !important;
+          }
+          .section-padding {
+            padding: 60px 1rem !important;
+          }
+          .filter-buttons {
+            gap: 0.5rem !important;
+          }
+          .filter-button {
+            padding: 0.4rem 1rem !important;
+            font-size: 0.75rem !important;
+          }
+          .modal-content {
+            margin: 60px 1rem 40px 1rem !important;
+            padding: 1.5rem !important;
+          }
+          .modal-header {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+          }
+          .included-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .cta-padding {
+            padding: 2rem !important;
+          }
+        }
+        
+        @media (max-width: 640px) {
+          .service-card h3 {
+            font-size: 1rem !important;
+          }
+          .service-card p {
+            font-size: 0.8rem !important;
+          }
+          .service-card .tech-tag {
+            font-size: 0.6rem !important;
+          }
+          .process-step {
+            padding: 1.5rem !important;
+          }
+          .process-step h3 {
+            font-size: 1rem !important;
+          }
+          .process-step p {
+            font-size: 0.8rem !important;
+          }
+          .tech-stack-item {
+            padding: 0.4rem 0.8rem !important;
+            font-size: 0.75rem !important;
+          }
+        }
+        
+        @media (min-width: 641px) and (max-width: 768px) {
+          .services-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+          .process-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+          .hero-padding {
+            padding: 110px 1.5rem 70px !important;
+          }
+          .section-padding {
+            padding: 70px 1.5rem !important;
+          }
+        }
+        
+        @media (min-width: 769px) and (max-width: 1024px) {
+          .services-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+          .process-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+          .hero-padding {
+            padding: 120px 2rem 80px !important;
+          }
+          .section-padding {
+            padding: 80px 2rem !important;
+          }
+        }
+        
+        @media (min-width: 1025px) {
+          .services-grid {
+            grid-template-columns: repeat(3, 1fr) !important;
+          }
+          .process-grid {
+            grid-template-columns: repeat(4, 1fr) !important;
+          }
+        }
+        
         ::-webkit-scrollbar {
           width: 8px;
         }
@@ -313,121 +416,120 @@ function Services() {
       `}</style>
 
       {/* Hero Section */}
-  
-<section ref={heroRef} style={{ 
-  minHeight: "60vh", 
-  display: "flex", 
-  alignItems: "center", 
-  justifyContent: "center",
-  position: "relative",
-  padding: "120px 2rem 80px",
-  background: `linear-gradient(rgba(10, 15, 30, 0.82), rgba(10, 15, 30, 0.88)), url(${servicesHeroBg})`,
-  backgroundSize: "cover",
-  backgroundPosition: "center",
-  backgroundAttachment: "fixed",
-  overflow: "hidden"
-}}>
-  {/* Optional: Add a subtle overlay gradient for depth */}
-  <div
-    style={{
-      position: "absolute",
-      inset: 0,
-      pointerEvents: "none",
-      background: "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(37,99,235,0.1) 0%, transparent 70%)",
-    }}
-  />
-  
-  <motion.div style={{ opacity, scale }} className="hero-animate" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
-    <div style={{ textAlign: "center", maxWidth: 900, margin: "0 auto", position: "relative", zIndex: 2 }}>
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }}
-        style={{ 
-          fontFamily: "'Inter', sans-serif", 
-          fontSize: "0.75rem", 
-          letterSpacing: "0.2em", 
-          color: COLORS.primaryAccent, 
-          marginBottom: "1rem",
-          textTransform: "uppercase",
-          display: "inline-block",
-          background: "rgba(30, 58, 95, 0.8)",
-          backdropFilter: "blur(8px)",
-          padding: "0.3rem 1rem",
-          borderRadius: "20px"
-        }}
-      >
-        What We Build
-      </motion.div>
-      <motion.h1 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4 }}
-        style={{ 
-          fontFamily: "'Sora', sans-serif", 
-          fontSize: "clamp(2.5rem, 5vw, 4rem)", 
-          fontWeight: 700, 
-          marginBottom: "1.5rem", 
-          color: COLORS.primaryText,
-          lineHeight: "1.2"
-        }}
-      >
-        Expert Digital <span style={{ color: COLORS.primaryAccent }}>Solutions</span>
-      </motion.h1>
-      <motion.p 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6 }}
-        style={{ 
-          fontSize: "1.125rem", 
-          color: COLORS.bodyText, 
-          lineHeight: 1.6, 
-          maxWidth: 700, 
-          margin: "0 auto",
-          fontFamily: "'Inter', sans-serif"
-        }}
-      >
-        From web apps to AI integration — we build products that solve real business problems.
-        Choose your service and let's create something exceptional together.
-      </motion.p>
-    </div>
-  </motion.div>
-</section>
-
-{/* Filter Bar */}
-<section style={{ padding: "2rem 2rem 0", position: "relative", zIndex: 2, background: COLORS.primaryBg }}>
-  <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-    <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", justifyContent: "center" }}>
-      {filters.map((filter) => (
-        <motion.button
-          key={filter.id}
-          onClick={() => setActiveFilter(filter.id)}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
+      <section ref={heroRef} className="hero-padding" style={{ 
+        minHeight: "60vh", 
+        display: "flex", 
+        alignItems: "center", 
+        justifyContent: "center",
+        position: "relative",
+        padding: "120px 2rem 80px",
+        background: `linear-gradient(rgba(10, 15, 30, 0.82), rgba(10, 15, 30, 0.88)), url(${servicesHeroBg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+        overflow: "hidden"
+      }}>
+        <div
           style={{
-            padding: "0.6rem 1.5rem",
-            borderRadius: 40,
-            background: activeFilter === filter.id ? COLORS.primaryAccent : "transparent",
-            border: `1px solid ${activeFilter === filter.id ? COLORS.primaryAccent : COLORS.borderDefault}`,
-            color: activeFilter === filter.id ? COLORS.primaryText : COLORS.bodyText,
-            fontFamily: "'Inter', sans-serif",
-            fontSize: "0.875rem",
-            fontWeight: 500,
-            cursor: "pointer",
-            transition: "all 0.2s ease"
+            position: "absolute",
+            inset: 0,
+            pointerEvents: "none",
+            background: "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(37,99,235,0.1) 0%, transparent 70%)",
           }}
-        >
-          {filter.label}
-        </motion.button>
-      ))}
-    </div>
-  </div>
-</section>
+        />
+        
+        <motion.div style={{ opacity, scale }} className="hero-animate" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
+          <div style={{ textAlign: "center", maxWidth: 900, margin: "0 auto", position: "relative", zIndex: 2, padding: "0 1rem" }}>
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              style={{ 
+                fontFamily: "'Inter', sans-serif", 
+                fontSize: "clamp(0.7rem, 3vw, 0.75rem)", 
+                letterSpacing: "0.2em", 
+                color: COLORS.primaryAccent, 
+                marginBottom: "1rem",
+                textTransform: "uppercase",
+                display: "inline-block",
+                background: "rgba(30, 58, 95, 0.8)",
+                backdropFilter: "blur(8px)",
+                padding: "0.3rem 1rem",
+                borderRadius: "20px"
+              }}
+            >
+              What We Build
+            </motion.div>
+            <motion.h1 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              style={{ 
+                fontFamily: "'Sora', sans-serif", 
+                fontSize: "clamp(2rem, 5vw, 4rem)", 
+                fontWeight: 700, 
+                marginBottom: "1.5rem", 
+                color: COLORS.primaryText,
+                lineHeight: "1.2"
+              }}
+            >
+              Expert Digital <span style={{ color: COLORS.primaryAccent }}>Solutions</span>
+            </motion.h1>
+            <motion.p 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              style={{ 
+                fontSize: "clamp(0.9rem, 4vw, 1.125rem)", 
+                color: COLORS.bodyText, 
+                lineHeight: 1.6, 
+                maxWidth: 700, 
+                margin: "0 auto",
+                fontFamily: "'Inter', sans-serif"
+              }}
+            >
+              From web apps to AI integration — we build products that solve real business problems.
+              Choose your service and let's create something exceptional together.
+            </motion.p>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Filter Bar */}
+      <section className="section-padding" style={{ padding: "2rem 2rem 0", position: "relative", zIndex: 2, background: COLORS.primaryBg }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <div className="filter-buttons" style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", justifyContent: "center" }}>
+            {filters.map((filter) => (
+              <motion.button
+                key={filter.id}
+                className="filter-button"
+                onClick={() => setActiveFilter(filter.id)}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                style={{
+                  padding: "clamp(0.4rem, 2vw, 0.6rem) clamp(1rem, 3vw, 1.5rem)",
+                  borderRadius: 40,
+                  background: activeFilter === filter.id ? COLORS.primaryAccent : "transparent",
+                  border: `1px solid ${activeFilter === filter.id ? COLORS.primaryAccent : COLORS.borderDefault}`,
+                  color: activeFilter === filter.id ? COLORS.primaryText : COLORS.bodyText,
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "clamp(0.75rem, 3vw, 0.875rem)",
+                  fontWeight: 500,
+                  cursor: "pointer",
+                  transition: "all 0.2s ease"
+                }}
+              >
+                {filter.label}
+              </motion.button>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Services Grid */}
-      <section ref={sectionRef} style={{ padding: "80px 2rem", position: "relative", zIndex: 2, background: COLORS.primaryBg }}>
+      <section ref={sectionRef} className="section-padding" style={{ padding: "80px 2rem", position: "relative", zIndex: 2, background: COLORS.primaryBg }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div className="services-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))", gap: "2rem" }}>
+          <div className="services-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "2rem" }}>
             {filteredServices.map((service, index) => (
               <motion.div
                 key={service.id}
@@ -447,7 +549,7 @@ function Services() {
                   transition: "all 0.3s ease"
                 }}
               >
-                <div style={{ height: 200, overflow: "hidden", position: "relative" }}>
+                <div style={{ height: "clamp(160px, 30vw, 200px)", overflow: "hidden", position: "relative" }}>
                   <img 
                     src={service.image} 
                     alt={service.name}
@@ -463,18 +565,18 @@ function Services() {
                     background: `linear-gradient(135deg, ${service.accentColor}20, transparent)`
                   }} />
                 </div>
-                <div style={{ padding: "1.5rem" }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
-                    <span style={{ fontSize: "2rem" }}>{service.icon}</span>
+                <div style={{ padding: "clamp(1rem, 4vw, 1.5rem)" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem", flexWrap: "wrap" }}>
+                    <span style={{ fontSize: "clamp(1.5rem, 5vw, 2rem)" }}>{service.icon}</span>
                     <h3 style={{ 
                       fontFamily: "'Sora', sans-serif", 
-                      fontSize: "1.2rem", 
+                      fontSize: "clamp(1rem, 4vw, 1.2rem)", 
                       fontWeight: 600, 
                       color: service.accentColor 
                     }}>{service.name}</h3>
                   </div>
                   <p style={{ 
-                    fontSize: "0.875rem", 
+                    fontSize: "clamp(0.8rem, 3vw, 0.875rem)", 
                     color: COLORS.bodyText, 
                     lineHeight: 1.5, 
                     marginBottom: "1rem",
@@ -484,11 +586,11 @@ function Services() {
                   </p>
                   <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", marginBottom: "1rem" }}>
                     {service.techStack.slice(0, 3).map((tech, i) => (
-                      <span key={i} style={{
+                      <span key={i} className="tech-tag" style={{
                         background: `rgba(37, 99, 235, 0.1)`,
                         padding: "0.2rem 0.6rem",
                         borderRadius: 12,
-                        fontSize: "0.7rem",
+                        fontSize: "clamp(0.6rem, 2.5vw, 0.7rem)",
                         color: COLORS.secondaryAccent,
                         fontFamily: "'Inter', sans-serif",
                         display: "inline-flex",
@@ -503,24 +605,24 @@ function Services() {
                         background: `rgba(37, 99, 235, 0.1)`,
                         padding: "0.2rem 0.6rem",
                         borderRadius: 12,
-                        fontSize: "0.7rem",
+                        fontSize: "clamp(0.6rem, 2.5vw, 0.7rem)",
                         color: COLORS.mutedText
                       }}>
                         +{service.techStack.length - 3}
                       </span>
                     )}
                   </div>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "1rem" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "1rem", flexWrap: "wrap", gap: "0.5rem" }}>
                     <div>
-                      <span style={{ fontSize: "0.7rem", color: COLORS.mutedText }}>Starting from</span>
+                      <span style={{ fontSize: "clamp(0.65rem, 2.5vw, 0.7rem)", color: COLORS.mutedText }}>Starting from</span>
                       <div style={{ 
                         fontFamily: "'Sora', sans-serif", 
-                        fontSize: "1.1rem", 
+                        fontSize: "clamp(0.9rem, 4vw, 1.1rem)", 
                         fontWeight: 600, 
                         color: service.accentColor 
                       }}>{service.startingPrice}</div>
                     </div>
-                    <span style={{ color: COLORS.primaryAccent, fontSize: "0.8rem", fontWeight: 500 }}>Learn more →</span>
+                    <span style={{ color: COLORS.primaryAccent, fontSize: "clamp(0.7rem, 3vw, 0.8rem)", fontWeight: 500 }}>Learn more →</span>
                   </div>
                 </div>
               </motion.div>
@@ -530,12 +632,12 @@ function Services() {
       </section>
 
       {/* Our Process Section */}
-      <section className="process-section" style={{ padding: "80px 2rem", background: COLORS.cardBg, position: "relative", zIndex: 2 }}>
+      <section className="process-section section-padding" style={{ padding: "80px 2rem", background: COLORS.cardBg, position: "relative", zIndex: 2 }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", textAlign: "center" }}>
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
             <div style={{ 
               fontFamily: "'Inter', sans-serif", 
-              fontSize: "0.7rem", 
+              fontSize: "clamp(0.65rem, 3vw, 0.7rem)", 
               letterSpacing: "0.2em", 
               color: COLORS.primaryAccent, 
               marginBottom: "1rem",
@@ -545,15 +647,15 @@ function Services() {
             </div>
             <h2 style={{ 
               fontFamily: "'Sora', sans-serif", 
-              fontSize: "clamp(1.8rem, 3vw, 2.5rem)", 
+              fontSize: "clamp(1.5rem, 5vw, 2.5rem)", 
               fontWeight: 700, 
-              marginBottom: "3rem", 
+              marginBottom: "clamp(2rem, 5vw, 3rem)", 
               color: COLORS.primaryText 
             }}>
               How We <span style={{ color: COLORS.primaryAccent }}>Build</span>
             </h2>
           </motion.div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "2rem" }}>
+          <div className="process-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "2rem" }}>
             {[
               { step: "01", title: "Discovery & Scoping", desc: "30-min call → requirements document → fixed-price proposal within 24hrs", icon: "🔍", color: COLORS.primaryAccent },
               { step: "02", title: "Design & Prototype", desc: "Figma wireframes → high-fidelity mockups → client sign-off before development", icon: "🎨", color: COLORS.secondaryAccent },
@@ -572,28 +674,28 @@ function Services() {
                   background: COLORS.primaryBg,
                   border: `1px solid ${COLORS.borderDefault}`,
                   borderRadius: 20,
-                  padding: "2rem",
+                  padding: "clamp(1.5rem, 4vw, 2rem)",
                   textAlign: "center",
                   transition: "all 0.3s ease"
                 }}
               >
-                <div style={{ fontSize: "3rem", marginBottom: "1rem" }}>{step.icon}</div>
+                <div style={{ fontSize: "clamp(2rem, 6vw, 3rem)", marginBottom: "1rem" }}>{step.icon}</div>
                 <div style={{ 
                   fontFamily: "'Sora', sans-serif", 
-                  fontSize: "2rem", 
+                  fontSize: "clamp(1.5rem, 4vw, 2rem)", 
                   fontWeight: 700, 
                   color: step.color, 
                   marginBottom: "0.5rem" 
                 }}>{step.step}</div>
                 <h3 style={{ 
                   fontFamily: "'Sora', sans-serif", 
-                  fontSize: "1.1rem", 
+                  fontSize: "clamp(0.9rem, 3vw, 1.1rem)", 
                   fontWeight: 600, 
                   marginBottom: "0.5rem", 
                   color: COLORS.primaryText 
                 }}>{step.title}</h3>
                 <p style={{ 
-                  fontSize: "0.85rem", 
+                  fontSize: "clamp(0.75rem, 3vw, 0.85rem)", 
                   color: COLORS.bodyText, 
                   lineHeight: 1.5,
                   fontFamily: "'Inter', sans-serif"
@@ -605,12 +707,12 @@ function Services() {
       </section>
 
       {/* Tech Stack Showcase - With logos */}
-      <section style={{ padding: "80px 2rem", position: "relative", zIndex: 2, background: COLORS.primaryBg }}>
+      <section className="section-padding" style={{ padding: "80px 2rem", position: "relative", zIndex: 2, background: COLORS.primaryBg }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", textAlign: "center" }}>
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
             <div style={{ 
               fontFamily: "'Inter', sans-serif", 
-              fontSize: "0.7rem", 
+              fontSize: "clamp(0.65rem, 3vw, 0.7rem)", 
               letterSpacing: "0.2em", 
               color: COLORS.primaryAccent, 
               marginBottom: "1rem",
@@ -620,15 +722,15 @@ function Services() {
             </div>
             <h2 style={{ 
               fontFamily: "'Sora', sans-serif", 
-              fontSize: "clamp(1.8rem, 3vw, 2.5rem)", 
+              fontSize: "clamp(1.5rem, 5vw, 2.5rem)", 
               fontWeight: 700, 
-              marginBottom: "3rem", 
+              marginBottom: "clamp(2rem, 5vw, 3rem)", 
               color: COLORS.primaryText 
             }}>
               Modern <span style={{ color: COLORS.primaryAccent }}>Tech Stack</span>
             </h2>
           </motion.div>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", justifyContent: "center" }}>
+          <div className="tech-stack-grid" style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", justifyContent: "center" }}>
             {[
               { name: "Java", logo: "☕" },
               { name: "Spring Boot", logo: "🌱" },
@@ -656,22 +758,23 @@ function Services() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.02, duration: 0.2 }}
                 whileHover={{ scale: 1.02 }}
+                className="tech-stack-item"
                 style={{
                   background: COLORS.cardBg,
                   border: `1px solid ${COLORS.borderDefault}`,
                   borderRadius: 40,
-                  padding: "0.6rem 1.2rem",
+                  padding: "clamp(0.4rem, 2vw, 0.6rem) clamp(0.8rem, 3vw, 1.2rem)",
                   display: "inline-flex",
                   alignItems: "center",
                   gap: "0.5rem",
-                  fontSize: "0.85rem",
+                  fontSize: "clamp(0.75rem, 3vw, 0.85rem)",
                   color: COLORS.primaryText,
                   fontFamily: "'Inter', sans-serif",
                   fontWeight: 500,
                   transition: "all 0.2s ease"
                 }}
               >
-                <span style={{ fontSize: "1rem" }}>{tech.logo}</span>
+                <span style={{ fontSize: "clamp(0.8rem, 3vw, 1rem)" }}>{tech.logo}</span>
                 <span>{tech.name}</span>
               </motion.div>
             ))}
@@ -680,23 +783,24 @@ function Services() {
       </section>
 
       {/* CTA Section */}
-      <section style={{ padding: "80px 2rem", position: "relative", zIndex: 2, background: COLORS.cardBg }}>
+      <section className="section-padding" style={{ padding: "80px 2rem", position: "relative", zIndex: 2, background: COLORS.cardBg }}>
         <div style={{ maxWidth: 900, margin: "0 auto", textAlign: "center" }}>
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            className="cta-padding"
             style={{
               background: COLORS.primaryBg,
               border: `1px solid ${COLORS.borderDefault}`,
               borderRadius: 30,
-              padding: "3rem"
+              padding: "clamp(1.5rem, 5vw, 3rem)"
             }}
           >
             <h2 style={{ 
               fontFamily: "'Sora', sans-serif", 
-              fontSize: "clamp(1.5rem, 3vw, 2rem)", 
+              fontSize: "clamp(1.3rem, 5vw, 2rem)", 
               fontWeight: 700, 
               marginBottom: "1rem", 
               color: COLORS.primaryText 
@@ -704,7 +808,7 @@ function Services() {
               Ready to Build <span style={{ color: COLORS.primaryAccent }}>Something Great</span>?
             </h2>
             <p style={{ 
-              fontSize: "1rem", 
+              fontSize: "clamp(0.875rem, 3vw, 1rem)", 
               color: COLORS.bodyText, 
               marginBottom: "2rem", 
               lineHeight: 1.6,
@@ -720,12 +824,12 @@ function Services() {
                 style={{
                   background: COLORS.primaryAccent,
                   border: "none",
-                  padding: "1rem 2rem",
+                  padding: "clamp(0.8rem, 2vw, 1rem) clamp(1.5rem, 5vw, 2rem)",
                   borderRadius: 50,
                   color: "#fff",
                   fontFamily: "'Inter', sans-serif",
                   fontWeight: 600,
-                  fontSize: "0.9rem",
+                  fontSize: "clamp(0.8rem, 3vw, 0.9rem)",
                   cursor: "pointer"
                 }}
               >
@@ -738,12 +842,12 @@ function Services() {
                   style={{
                     background: "transparent",
                     border: `1px solid ${COLORS.borderDefault}`,
-                    padding: "1rem 2rem",
+                    padding: "clamp(0.8rem, 2vw, 1rem) clamp(1.5rem, 5vw, 2rem)",
                     borderRadius: 50,
                     color: COLORS.primaryText,
                     fontFamily: "'Inter', sans-serif",
                     fontWeight: 500,
-                    fontSize: "0.9rem",
+                    fontSize: "clamp(0.8rem, 3vw, 0.9rem)",
                     cursor: "pointer"
                   }}
                 >
@@ -769,13 +873,14 @@ function Services() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          padding: "2rem",
+          padding: "clamp(1rem, 5vw, 2rem)",
           cursor: "pointer"
         }} onClick={() => setSelectedService(null)}>
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            className="modal-content"
             style={{
               maxWidth: 800,
               maxHeight: "90vh",
@@ -783,17 +888,17 @@ function Services() {
               background: COLORS.primaryBg,
               border: `1px solid ${selectedService.accentColor}`,
               borderRadius: 24,
-              padding: "2rem",
+              padding: "clamp(1.5rem, 5vw, 2rem)",
               cursor: "default"
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-                <span style={{ fontSize: "3rem" }}>{selectedService.icon}</span>
+            <div className="modal-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem", flexWrap: "wrap", gap: "1rem" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "1rem", flexWrap: "wrap" }}>
+                <span style={{ fontSize: "clamp(2rem, 6vw, 3rem)" }}>{selectedService.icon}</span>
                 <h2 style={{ 
                   fontFamily: "'Sora', sans-serif", 
-                  fontSize: "1.8rem", 
+                  fontSize: "clamp(1.3rem, 5vw, 1.8rem)", 
                   fontWeight: 700, 
                   color: selectedService.accentColor 
                 }}>{selectedService.name}</h2>
@@ -803,7 +908,7 @@ function Services() {
                 style={{ 
                   background: "none", 
                   border: "none", 
-                  fontSize: "2rem", 
+                  fontSize: "clamp(1.5rem, 5vw, 2rem)", 
                   cursor: "pointer", 
                   color: COLORS.mutedText,
                   transition: "color 0.2s"
@@ -815,7 +920,7 @@ function Services() {
               </button>
             </div>
             <p style={{ 
-              fontSize: "1rem", 
+              fontSize: "clamp(0.85rem, 3vw, 1rem)", 
               color: COLORS.bodyText, 
               marginBottom: "1.5rem", 
               lineHeight: 1.6,
@@ -825,17 +930,17 @@ function Services() {
             <div style={{ marginBottom: "1.5rem" }}>
               <h3 style={{ 
                 fontFamily: "'Sora', sans-serif", 
-                fontSize: "1rem", 
+                fontSize: "clamp(0.9rem, 3vw, 1rem)", 
                 color: COLORS.primaryAccent, 
                 marginBottom: "1rem" 
               }}>What's Included</h3>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "0.5rem" }}>
+              <div className="included-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "0.5rem" }}>
                 {selectedService.included.map((item, i) => (
                   <div key={i} style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                       <path d="M13 4L6 11L3 8" stroke={COLORS.success} strokeWidth="2" strokeLinecap="round" />
                     </svg>
-                    <span style={{ fontSize: "0.85rem", color: COLORS.bodyText, fontFamily: "'Inter', sans-serif" }}>{item}</span>
+                    <span style={{ fontSize: "clamp(0.75rem, 3vw, 0.85rem)", color: COLORS.bodyText, fontFamily: "'Inter', sans-serif" }}>{item}</span>
                   </div>
                 ))}
               </div>
@@ -844,7 +949,7 @@ function Services() {
             <div style={{ marginBottom: "1.5rem" }}>
               <h3 style={{ 
                 fontFamily: "'Sora', sans-serif", 
-                fontSize: "1rem", 
+                fontSize: "clamp(0.9rem, 3vw, 1rem)", 
                 color: COLORS.primaryAccent, 
                 marginBottom: "1rem" 
               }}>Tech Stack</h3>
@@ -854,7 +959,7 @@ function Services() {
                     background: `rgba(37, 99, 235, 0.1)`, 
                     padding: "0.3rem 0.8rem", 
                     borderRadius: 20, 
-                    fontSize: "0.8rem", 
+                    fontSize: "clamp(0.7rem, 3vw, 0.8rem)", 
                     color: COLORS.secondaryAccent,
                     fontFamily: "'Inter', sans-serif",
                     display: "inline-flex",
@@ -874,22 +979,24 @@ function Services() {
               padding: "1rem 0", 
               borderTop: `1px solid ${COLORS.borderDefault}`, 
               borderBottom: `1px solid ${COLORS.borderDefault}`, 
-              marginBottom: "1.5rem" 
+              marginBottom: "1.5rem",
+              flexWrap: "wrap",
+              gap: "1rem"
             }}>
               <div>
-                <div style={{ fontSize: "0.7rem", color: COLORS.mutedText }}>Typical Timeline</div>
+                <div style={{ fontSize: "clamp(0.65rem, 2.5vw, 0.7rem)", color: COLORS.mutedText }}>Typical Timeline</div>
                 <div style={{ 
                   fontFamily: "'Sora', sans-serif", 
-                  fontSize: "1.1rem", 
+                  fontSize: "clamp(0.9rem, 4vw, 1.1rem)", 
                   fontWeight: 600, 
                   color: selectedService.accentColor 
                 }}>{selectedService.timeline}</div>
               </div>
               <div>
-                <div style={{ fontSize: "0.7rem", color: COLORS.mutedText }}>Starting From</div>
+                <div style={{ fontSize: "clamp(0.65rem, 2.5vw, 0.7rem)", color: COLORS.mutedText }}>Starting From</div>
                 <div style={{ 
                   fontFamily: "'Sora', sans-serif", 
-                  fontSize: "1.1rem", 
+                  fontSize: "clamp(0.9rem, 4vw, 1.1rem)", 
                   fontWeight: 600, 
                   color: selectedService.accentColor 
                 }}>{selectedService.startingPrice}</div>
@@ -904,12 +1011,12 @@ function Services() {
                   width: "100%",
                   background: selectedService.accentColor,
                   border: "none",
-                  padding: "1rem",
+                  padding: "clamp(0.8rem, 2vw, 1rem)",
                   borderRadius: 50,
                   color: "#fff",
                   fontFamily: "'Inter', sans-serif",
                   fontWeight: 600,
-                  fontSize: "0.9rem",
+                  fontSize: "clamp(0.8rem, 3vw, 0.9rem)",
                   cursor: "pointer"
                 }}
               >

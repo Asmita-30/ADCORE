@@ -67,215 +67,314 @@ function Footer() {
     letterSpacing: "0.02em",
   };
 
-  return (
-    <footer
-      style={{
-        position: "relative",
-        zIndex: 5,
-        background: C.surface,
-        borderTop: `1px solid ${C.border}`,
-        padding: "3.5rem 2rem 2rem",
-        fontFamily: "'Inter', sans-serif",
-        backgroundImage: `url(${footerBg})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
-      {/* Dark overlay to ensure text readability */}
-      <div
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background: "rgba(17, 24, 39, 0.92)",
-          zIndex: 1,
-        }}
-      />
+  // Responsive styles using CSS-in-JS with media queries
+  const responsiveStyles = `
+    /* Tablet View (641px - 1024px) - Show all 4 columns */
+    @media (min-width: 641px) and (max-width: 1024px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 2rem !important;
+      }
       
-      <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative", zIndex: 2 }}>
+      .footer-padding {
+        padding: 2.5rem 1.5rem 1.8rem !important;
+      }
+    }
+    
+    /* Desktop View (1025px+) - Show all 4 columns */
+    @media (min-width: 1025px) {
+      .footer-grid {
+        grid-template-columns: 1.5fr 1fr 1fr 1.2fr !important;
+        gap: 2.5rem !important;
+      }
+      
+      .footer-padding {
+        padding: 3.5rem 2rem 2rem !important;
+      }
+      
+      .hide-on-mobile {
+        display: block !important;
+      }
+    }
+    
+    /* Mobile View (320px - 640px) - Show only logo + contact */
+    @media (max-width: 640px) {
+      .footer-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.8rem !important;
+      }
+      
+      .hide-on-mobile {
+        display: none !important;
+      }
+      
+      .footer-padding {
+        padding: 2rem 1rem 1.5rem !important;
+      }
+      
+      .footer-bottom {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 1rem !important;
+      }
+      
+      .footer-links-bottom {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 1rem !important;
+      }
+      
+      .footer-logo {
+        text-align: center !important;
+      }
+      
+      .footer-logo img {
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+      
+      .footer-contact-item {
+        justify-content: center !important;
+      }
+      
+      .footer-social {
+        justify-content: center !important;
+      }
+      
+      .footer-quick-links {
+        text-align: center !important;
+      }
+      
+      .footer-services {
+        text-align: center !important;
+      }
+      
+      .footer-contact {
+        text-align: center !important;
+      }
+    }
+  `;
 
-        {/* Main Grid */}
+  return (
+    <>
+      <style>{responsiveStyles}</style>
+      <footer
+        className="footer-padding"
+        style={{
+          position: "relative",
+          zIndex: 5,
+          background: C.surface,
+          borderTop: `1px solid ${C.border}`,
+          padding: "3.5rem 2rem 2rem",
+          fontFamily: "'Inter', sans-serif",
+          backgroundImage: `url(${footerBg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        {/* Dark overlay to ensure text readability */}
         <div
           style={{
-            display: "grid",
-            gridTemplateColumns: "1.5fr 1fr 1fr 1.2fr",
-            gap: "2.5rem",
-            marginBottom: "2.5rem",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: "rgba(17, 24, 39, 0.92)",
+            zIndex: 1,
           }}
-        >
-          {/* Column 1 — Logo - Left aligned */}
-          <div>
-            <Link to="/" style={{ textDecoration: "none", display: "inline-block", marginBottom: "1rem" }}>
-              <img
-                src={logo}
-                alt="Adrix Core Logo"
-                style={{ 
-                  width: "200px", 
-                  height: "auto", 
-                  objectFit: "contain", 
-                  display: "block" 
-                }}
-              />
-            </Link>
-            <p style={{ color: C.textBody, fontSize: "0.875rem", lineHeight: 1.6, marginTop: "0.75rem" }}>
-              From Idea to Impact.
-            </p>
-            <p style={{ color: C.textMuted, fontSize: "0.8rem", lineHeight: 1.6, marginTop: "0.5rem" }}>
-              Engineering-first digital products built for founders and growing businesses.
-            </p>
-          </div>
+        />
+        
+        <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative", zIndex: 2 }}>
 
-          {/* Column 2 — Quick Links */}
-          <div>
-            <h3 style={headingStyle}>Quick Links</h3>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-              {quickLinks.map((link) => (
-                <li key={link.name} style={{ marginBottom: "0.45rem" }}>
-                  <Link
-                    to={link.path}
-                    style={linkStyle}
-                    onMouseEnter={(e) => (e.target.style.color = C.textPrimary)}
-                    onMouseLeave={(e) => (e.target.style.color = C.textBody)}
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 3 — Services */}
-          <div>
-            <h3 style={headingStyle}>Our Services</h3>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-              {servicesLinks.map((service) => (
-                <li key={service.name} style={{ marginBottom: "0.45rem" }}>
-                  <Link
-                    to={service.path}
-                    style={linkStyle}
-                    onMouseEnter={(e) => (e.target.style.color = C.textPrimary)}
-                    onMouseLeave={(e) => (e.target.style.color = C.textBody)}
-                  >
-                    {service.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 4 — Contact + Social */}
-          <div>
-            <h3 style={headingStyle}>Contact</h3>
-
-            <div style={{ display: "flex", flexDirection: "column", gap: "0.7rem", marginBottom: "1.5rem" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-                <FontAwesomeIcon icon={faEnvelope} style={{ fontSize: "0.875rem", color: C.blueHover, flexShrink: 0 }} />
-                <a href="mailto:adrixcoretech@gmail.com" style={linkStyle}
-                  onMouseEnter={(e) => (e.target.style.color = C.textPrimary)}
-                  onMouseLeave={(e) => (e.target.style.color = C.textBody)}>
-                  adrixcoretech@gmail.com
-                </a>
-              </div>
-              <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-                <FontAwesomeIcon icon={faPhone} style={{ fontSize: "0.875rem", color: C.blueHover, flexShrink: 0 }} />
-                <a href="tel:+917447508006" style={linkStyle}
-                  onMouseEnter={(e) => (e.target.style.color = C.textPrimary)}
-                  onMouseLeave={(e) => (e.target.style.color = C.textBody)}>
-                  +91 74475 08006
-                </a>
-              </div>
-              <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-                <FontAwesomeIcon icon={faPhone} style={{ fontSize: "0.875rem", color: C.blueHover, flexShrink: 0 }} />
-                <a href="tel:+918080822156" style={linkStyle}
-                  onMouseEnter={(e) => (e.target.style.color = C.textPrimary)}
-                  onMouseLeave={(e) => (e.target.style.color = C.textBody)}>
-                  +91 80808 22156
-                </a>
-              </div>
-              <div style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem" }}>
-                <FontAwesomeIcon icon={faLocationDot} style={{ fontSize: "0.875rem", color: C.blueHover, flexShrink: 0, marginTop: "3px" }} />
-                <span style={{ ...linkStyle, cursor: "default" }}>Navi Mumbai, Maharashtra, India</span>
-              </div>
+          {/* Main Grid */}
+          <div
+            className="footer-grid"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1.5fr 1fr 1fr 1.2fr",
+              gap: "2.5rem",
+              marginBottom: "2.5rem",
+            }}
+          >
+            {/* Column 1 — Logo + Tagline (Always visible) */}
+            <div className="footer-logo">
+              <Link to="/" style={{ textDecoration: "none", display: "inline-block", marginBottom: "1rem" }}>
+                <img
+                  src={logo}
+                  alt="Adrix Core Logo"
+                  style={{ 
+                    width: "200px", 
+                    height: "auto", 
+                    objectFit: "contain", 
+                    display: "block" 
+                  }}
+                />
+              </Link>
+              <p style={{ color: C.textBody, fontSize: "0.875rem", lineHeight: 1.6, marginTop: "0.75rem" }}>
+                From Idea to Impact.
+              </p>
+              <p style={{ color: C.textMuted, fontSize: "0.8rem", lineHeight: 1.6, marginTop: "0.5rem" }}>
+                Engineering-first digital products built for founders and growing businesses.
+              </p>
             </div>
 
-            {/* Social Icons */}
-            <div>
-              <h4 style={{ ...headingStyle, fontSize: "0.8rem", color: C.textBody, marginBottom: "0.75rem" }}>Follow Us</h4>
-              <div style={{ display: "flex", gap: "0.6rem", flexWrap: "wrap" }}>
-                {socialLinks.map((social) => (
-                  <a
-                    key={social.name}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title={social.name}
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      width: "36px",
-                      height: "36px",
-                      borderRadius: "8px",
-                      background: "rgba(30, 41, 59, 0.9)",
-                      border: `1px solid ${C.border}`,
-                      color: C.textMuted,
-                      textDecoration: "none",
-                      fontSize: "0.875rem",
-                      transition: "all 0.2s ease",
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.background = social.hoverColor;
-                      e.currentTarget.style.borderColor = social.hoverColor;
-                      e.currentTarget.style.color = "#fff";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.background = "rgba(30, 41, 59, 0.9)";
-                      e.currentTarget.style.borderColor = C.border;
-                      e.currentTarget.style.color = C.textMuted;
-                    }}
-                  >
-                    <FontAwesomeIcon icon={social.icon} />
-                  </a>
+            {/* Column 2 — Quick Links (Hidden on mobile) */}
+            <div className="hide-on-mobile footer-quick-links">
+              <h3 style={headingStyle}>Quick Links</h3>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                {quickLinks.map((link) => (
+                  <li key={link.name} style={{ marginBottom: "0.45rem" }}>
+                    <Link
+                      to={link.path}
+                      style={linkStyle}
+                      onMouseEnter={(e) => (e.target.style.color = C.textPrimary)}
+                      onMouseLeave={(e) => (e.target.style.color = C.textBody)}
+                    >
+                      {link.name}
+                    </Link>
+                  </li>
                 ))}
+              </ul>
+            </div>
+
+            {/* Column 3 — Services (Hidden on mobile) */}
+            <div className="hide-on-mobile footer-services">
+              <h3 style={headingStyle}>Our Services</h3>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                {servicesLinks.map((service) => (
+                  <li key={service.name} style={{ marginBottom: "0.45rem" }}>
+                    <Link
+                      to={service.path}
+                      style={linkStyle}
+                      onMouseEnter={(e) => (e.target.style.color = C.textPrimary)}
+                      onMouseLeave={(e) => (e.target.style.color = C.textBody)}
+                    >
+                      {service.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Column 4 — Contact + Social (Always visible) */}
+            <div className="footer-contact">
+              <h3 style={headingStyle}>Contact</h3>
+
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.7rem", marginBottom: "1.5rem" }}>
+                <div className="footer-contact-item" style={{ display: "flex", alignItems: "center", gap: "0.75rem", justifyContent: "flex-start" }}>
+                  <FontAwesomeIcon icon={faEnvelope} style={{ fontSize: "0.875rem", color: C.blueHover, flexShrink: 0 }} />
+                  <a href="mailto:adrixcoretech@gmail.com" style={linkStyle}
+                    onMouseEnter={(e) => (e.target.style.color = C.textPrimary)}
+                    onMouseLeave={(e) => (e.target.style.color = C.textBody)}>
+                    adrixcoretech@gmail.com
+                  </a>
+                </div>
+                <div className="footer-contact-item" style={{ display: "flex", alignItems: "center", gap: "0.75rem", justifyContent: "flex-start" }}>
+                  <FontAwesomeIcon icon={faPhone} style={{ fontSize: "0.875rem", color: C.blueHover, flexShrink: 0 }} />
+                  <a href="tel:+917447508006" style={linkStyle}
+                    onMouseEnter={(e) => (e.target.style.color = C.textPrimary)}
+                    onMouseLeave={(e) => (e.target.style.color = C.textBody)}>
+                    +91 74475 08006
+                  </a>
+                </div>
+                <div className="footer-contact-item" style={{ display: "flex", alignItems: "center", gap: "0.75rem", justifyContent: "flex-start" }}>
+                  <FontAwesomeIcon icon={faPhone} style={{ fontSize: "0.875rem", color: C.blueHover, flexShrink: 0 }} />
+                  <a href="tel:+918080822156" style={linkStyle}
+                    onMouseEnter={(e) => (e.target.style.color = C.textPrimary)}
+                    onMouseLeave={(e) => (e.target.style.color = C.textBody)}>
+                    +91 80808 22156
+                  </a>
+                </div>
+                <div className="footer-contact-item" style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem", justifyContent: "flex-start" }}>
+                  <FontAwesomeIcon icon={faLocationDot} style={{ fontSize: "0.875rem", color: C.blueHover, flexShrink: 0, marginTop: "3px" }} />
+                  <span style={{ ...linkStyle, cursor: "default" }}>Navi Mumbai, Maharashtra, India</span>
+                </div>
+              </div>
+
+              {/* Social Icons */}
+              <div>
+                <h4 style={{ ...headingStyle, fontSize: "0.8rem", color: C.textBody, marginBottom: "0.75rem" }}>Follow Us</h4>
+                <div className="footer-social" style={{ display: "flex", gap: "0.6rem", flexWrap: "wrap", justifyContent: "flex-start" }}>
+                  {socialLinks.map((social) => (
+                    <a
+                      key={social.name}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title={social.name}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        width: "36px",
+                        height: "36px",
+                        borderRadius: "8px",
+                        background: "rgba(30, 41, 59, 0.9)",
+                        border: `1px solid ${C.border}`,
+                        color: C.textMuted,
+                        textDecoration: "none",
+                        fontSize: "0.875rem",
+                        transition: "all 0.2s ease",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = social.hoverColor;
+                        e.currentTarget.style.borderColor = social.hoverColor;
+                        e.currentTarget.style.color = "#fff";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = "rgba(30, 41, 59, 0.9)";
+                        e.currentTarget.style.borderColor = C.border;
+                        e.currentTarget.style.color = C.textMuted;
+                      }}
+                    >
+                      <FontAwesomeIcon icon={social.icon} />
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Bottom Strip */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            flexWrap: "wrap",
-            gap: "0.75rem",
-            paddingTop: "1.5rem",
-            borderTop: `1px solid ${C.border}`,
-          }}
-        >
-          <span style={{ color: C.textMuted, fontSize: "0.8rem" }}>
-            © 2026 Adrix Core Technologies. All rights reserved. Built in ADRIX TEAM.
-          </span>
-          <div style={{ display: "flex", gap: "1.5rem" }}>
-            {[{ label: "Terms & Conditions", path: "/terms" }, { label: "Privacy Policy", path: "/privacy" }].map((item) => (
+          {/* Bottom Strip */}
+          <div
+            className="footer-bottom"
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              flexWrap: "wrap",
+              gap: "0.75rem",
+              paddingTop: "1.5rem",
+              borderTop: `1px solid ${C.border}`,
+            }}
+          >
+            <span style={{ color: C.textMuted, fontSize: "0.8rem" }}>
+              © 2026 Adrix Core Technologies. All rights reserved. Built in ADRIX TEAM.
+            </span>
+            <div className="footer-links-bottom" style={{ display: "flex", gap: "1.5rem" }}>
               <Link
-                key={item.label}
-                to={item.path}
+                to="/terms"
                 style={{ color: C.textMuted, textDecoration: "none", fontSize: "0.8rem", transition: "color 0.2s" }}
                 onMouseEnter={(e) => (e.target.style.color = C.textPrimary)}
                 onMouseLeave={(e) => (e.target.style.color = C.textMuted)}
               >
-                {item.label}
+                Terms & Conditions
               </Link>
-            ))}
+              <Link
+                to="/privacy"
+                style={{ color: C.textMuted, textDecoration: "none", fontSize: "0.8rem", transition: "color 0.2s" }}
+                onMouseEnter={(e) => (e.target.style.color = C.textPrimary)}
+                onMouseLeave={(e) => (e.target.style.color = C.textMuted)}
+              >
+                Privacy Policy
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
-    </footer>
+      </footer>
+    </>
   );
 }
 

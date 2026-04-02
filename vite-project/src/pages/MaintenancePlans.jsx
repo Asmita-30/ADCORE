@@ -6,7 +6,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import maintenanceHeroBg from "../assets/images/maintance-bg.png"; // Add your image to assets/images/
 
-
 gsap.registerPlugin(ScrollTrigger);
 
 // Professional color palette from audit
@@ -148,8 +147,159 @@ function MaintenancePlans() {
     }
   };
 
+  // Responsive styles
+  const responsiveStyles = `
+    @media (max-width: 1024px) {
+      .hero-padding {
+        padding: 100px 1.5rem 50px !important;
+      }
+      .section-padding {
+        padding: 50px 1.5rem !important;
+      }
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1.2rem !important;
+      }
+      .addons-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1rem !important;
+      }
+      .plans-grid {
+        gap: 1.5rem !important;
+      }
+      .hero-title {
+        font-size: clamp(2rem, 4vw, 2.5rem) !important;
+      }
+      .hero-subtitle {
+        font-size: 1rem !important;
+      }
+      .section-title {
+        font-size: 1.6rem !important;
+      }
+      .pricing-card {
+        padding: 1.5rem !important;
+        margin: 0 1rem !important;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero-padding {
+        padding: 80px 1rem 40px !important;
+      }
+      .section-padding {
+        padding: 40px 1rem !important;
+      }
+      .services-grid, .addons-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+      }
+      .plans-grid {
+        flex-direction: column !important;
+        gap: 1.5rem !important;
+      }
+      .plan-card {
+        width: 100% !important;
+        max-width: 400px !important;
+        margin: 0 auto !important;
+      }
+      .hero-title {
+        font-size: clamp(1.5rem, 5vw, 1.8rem) !important;
+      }
+      .hero-subtitle {
+        font-size: 0.9rem !important;
+      }
+      .section-title {
+        font-size: 1.3rem !important;
+      }
+      .hero-buttons {
+        flex-direction: column !important;
+        width: 100% !important;
+      }
+      .hero-buttons button {
+        width: 100% !important;
+      }
+      .service-card, .addon-card {
+        padding: 1rem !important;
+      }
+      .service-icon, .addon-icon {
+        font-size: 1.8rem !important;
+      }
+      .service-title, .addon-title {
+        font-size: 0.9rem !important;
+      }
+      .pricing-features {
+        flex-wrap: wrap !important;
+        gap: 0.5rem !important;
+      }
+      .pricing-features > div {
+        font-size: 0.7rem !important;
+        padding: 0.2rem 0.6rem !important;
+      }
+      .faq-item {
+        padding: 1rem !important;
+      }
+      .faq-question {
+        font-size: 0.9rem !important;
+      }
+      .faq-answer {
+        font-size: 0.85rem !important;
+      }
+      .cta-title {
+        font-size: 1.5rem !important;
+      }
+      .cta-buttons {
+        flex-direction: column !important;
+        gap: 0.8rem !important;
+      }
+      .cta-buttons button {
+        width: 100% !important;
+        padding: 0.8rem 1.5rem !important;
+      }
+      .hero-badge {
+        font-size: 0.7rem !important;
+      }
+      .plan-price {
+        font-size: 1.8rem !important;
+      }
+      .plan-features li {
+        font-size: 0.8rem !important;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .hero-padding {
+        padding: 70px 0.8rem 35px !important;
+      }
+      .section-padding {
+        padding: 30px 0.8rem !important;
+      }
+      .hero-title {
+        font-size: 1.4rem !important;
+      }
+      .hero-subtitle {
+        font-size: 0.85rem !important;
+      }
+      .section-title {
+        font-size: 1.2rem !important;
+      }
+      .service-card, .addon-card {
+        padding: 0.8rem !important;
+      }
+      .pricing-card {
+        padding: 1.2rem !important;
+      }
+      .plan-card {
+        padding: 1.2rem !important;
+      }
+      .addon-price {
+        font-size: 0.8rem !important;
+      }
+    }
+  `;
+
   return (
     <>
+      <style>{responsiveStyles}</style>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap');
         
@@ -189,161 +339,166 @@ function MaintenancePlans() {
       `}</style>
 
       {/* Hero Section - Service-specific styling */}
-     <section ref={heroRef} style={{ 
-  minHeight: "60vh", 
-  display: "flex", 
-  alignItems: "center", 
-  justifyContent: "center",
-  position: "relative",
-  padding: "120px 2rem 60px",
-  background: `linear-gradient(rgba(10, 15, 30, 0.78), rgba(10, 15, 30, 0.85)), url(${maintenanceHeroBg})`,
-  backgroundSize: "cover",
-  backgroundPosition: "center",
-  backgroundAttachment: "fixed",
-  overflow: "hidden"
-}}>
-  {/* Service-specific gradient background */}
-  <div style={{
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundImage: serviceGradient.maintenance,
-    pointerEvents: "none",
-    opacity: 0.6
-  }} />
-  
-  {/* Optional: Add a radial gradient for better text readability */}
-  <div style={{
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    background: "radial-gradient(ellipse 70% 40% at 50% 30%, rgba(6,182,212,0.08) 0%, transparent 70%)",
-    pointerEvents: "none"
-  }} />
-  
-  <motion.div style={{ opacity, scale }} className="hero-animate">
-    <div style={{ textAlign: "center", maxWidth: 900, margin: "0 auto", position: "relative", zIndex: 2 }}>
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }}
-        style={{ 
-          fontFamily: "'Inter', sans-serif", 
-          fontSize: "0.75rem", 
-          letterSpacing: "0.2em", 
-          color: COLORS.primaryAccent, 
-          marginBottom: "1rem",
-          textTransform: "uppercase",
-          display: "inline-block",
-          background: "rgba(30, 58, 95, 0.7)",
-          backdropFilter: "blur(8px)",
-          padding: "0.3rem 1rem",
-          borderRadius: "20px"
-        }}
-      >
-        Website Care
-      </motion.div>
-      <motion.h1 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4 }}
-        style={{ 
-          fontFamily: "'Sora', sans-serif", 
-          fontSize: "clamp(2.5rem, 5vw, 4rem)", 
-          fontWeight: 700, 
-          marginBottom: "1.5rem", 
-          color: COLORS.primaryText,
-          lineHeight: "1.2"
-        }}
-      >
-        Maintenance <span style={{ color: COLORS.primaryAccent }}>Plans</span>
-      </motion.h1>
-      <motion.p 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6 }}
-        style={{ 
-          fontSize: "1.125rem", 
-          color: COLORS.bodyText, 
-          lineHeight: 1.6, 
-          maxWidth: 700, 
-          margin: "0 auto",
-          fontFamily: "'Inter', sans-serif"
-        }}
-      >
-        Keep your website secure, fast, and up-to-date with our comprehensive maintenance plans. 
-        Focus on your business while we handle the technical side.
-      </motion.p>
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.8 }}
-        style={{ marginTop: "2rem", display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}
-      >
-        {/* Service-specific CTA button */}
-        <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          onClick={scrollToContact}
-          style={{
-            background: COLORS.primaryAccent,
-            border: "none",
-            padding: "0.9rem 2rem",
-            borderRadius: 50,
-            color: "#fff",
-            fontFamily: "'Inter', sans-serif",
-            fontWeight: 600,
-            fontSize: "0.9rem",
-            cursor: "pointer"
-          }}
-          onMouseEnter={(e) => e.target.style.background = COLORS.accentHover}
-          onMouseLeave={(e) => e.target.style.background = COLORS.primaryAccent}
-        >
-          Start a Maintenance Plan →
-        </motion.button>
-        <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          onClick={handleWhatsApp}
-          style={{
-            background: "transparent",
-            border: `1px solid ${COLORS.borderDefault}`,
-            padding: "0.9rem 2rem",
-            borderRadius: 50,
-            color: COLORS.primaryText,
-            fontFamily: "'Inter', sans-serif",
-            fontWeight: 500,
-            fontSize: "0.9rem",
-            cursor: "pointer"
-          }}
-          onMouseEnter={(e) => {
-            e.target.style.borderColor = COLORS.primaryAccent;
-            e.target.style.color = COLORS.primaryAccent;
-          }}
-          onMouseLeave={(e) => {
-            e.target.style.borderColor = COLORS.borderDefault;
-            e.target.style.color = COLORS.primaryText;
-          }}
-        >
-          Chat on WhatsApp 💬
-        </motion.button>
-      </motion.div>
-    </div>
-  </motion.div>
-</section>
+      <section ref={heroRef} className="hero-padding" style={{ 
+        minHeight: "60vh", 
+        display: "flex", 
+        alignItems: "center", 
+        justifyContent: "center",
+        position: "relative",
+        padding: "120px 2rem 60px",
+        background: `linear-gradient(rgba(10, 15, 30, 0.78), rgba(10, 15, 30, 0.85)), url(${maintenanceHeroBg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+        overflow: "hidden"
+      }}>
+        {/* Service-specific gradient background */}
+        <div style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundImage: serviceGradient.maintenance,
+          pointerEvents: "none",
+          opacity: 0.6
+        }} />
+        
+        {/* Optional: Add a radial gradient for better text readability */}
+        <div style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: "radial-gradient(ellipse 70% 40% at 50% 30%, rgba(6,182,212,0.08) 0%, transparent 70%)",
+          pointerEvents: "none"
+        }} />
+        
+        <motion.div style={{ opacity, scale }} className="hero-animate">
+          <div style={{ textAlign: "center", maxWidth: 900, margin: "0 auto", position: "relative", zIndex: 2 }}>
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="hero-badge"
+              style={{ 
+                fontFamily: "'Inter', sans-serif", 
+                fontSize: "0.75rem", 
+                letterSpacing: "0.2em", 
+                color: COLORS.primaryAccent, 
+                marginBottom: "1rem",
+                textTransform: "uppercase",
+                display: "inline-block",
+                background: "rgba(30, 58, 95, 0.7)",
+                backdropFilter: "blur(8px)",
+                padding: "0.3rem 1rem",
+                borderRadius: "20px"
+              }}
+            >
+              Website Care
+            </motion.div>
+            <motion.h1 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="hero-title"
+              style={{ 
+                fontFamily: "'Sora', sans-serif", 
+                fontSize: "clamp(2.5rem, 5vw, 4rem)", 
+                fontWeight: 700, 
+                marginBottom: "1.5rem", 
+                color: COLORS.primaryText,
+                lineHeight: "1.2"
+              }}
+            >
+              Maintenance <span style={{ color: COLORS.primaryAccent }}>Plans</span>
+            </motion.h1>
+            <motion.p 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              className="hero-subtitle"
+              style={{ 
+                fontSize: "1.125rem", 
+                color: COLORS.bodyText, 
+                lineHeight: 1.6, 
+                maxWidth: 700, 
+                margin: "0 auto",
+                fontFamily: "'Inter', sans-serif"
+              }}
+            >
+              Keep your website secure, fast, and up-to-date with our comprehensive maintenance plans. 
+              Focus on your business while we handle the technical side.
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8 }}
+              className="hero-buttons"
+              style={{ marginTop: "2rem", display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}
+            >
+              {/* Service-specific CTA button */}
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={scrollToContact}
+                style={{
+                  background: COLORS.primaryAccent,
+                  border: "none",
+                  padding: "0.9rem 2rem",
+                  borderRadius: 50,
+                  color: "#fff",
+                  fontFamily: "'Inter', sans-serif",
+                  fontWeight: 600,
+                  fontSize: "0.9rem",
+                  cursor: "pointer"
+                }}
+                onMouseEnter={(e) => e.target.style.background = COLORS.accentHover}
+                onMouseLeave={(e) => e.target.style.background = COLORS.primaryAccent}
+              >
+                Start a Maintenance Plan →
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={handleWhatsApp}
+                style={{
+                  background: "transparent",
+                  border: `1px solid ${COLORS.borderDefault}`,
+                  padding: "0.9rem 2rem",
+                  borderRadius: 50,
+                  color: COLORS.primaryText,
+                  fontFamily: "'Inter', sans-serif",
+                  fontWeight: 500,
+                  fontSize: "0.9rem",
+                  cursor: "pointer"
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.borderColor = COLORS.primaryAccent;
+                  e.target.style.color = COLORS.primaryAccent;
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.borderColor = COLORS.borderDefault;
+                  e.target.style.color = COLORS.primaryText;
+                }}
+              >
+                Chat on WhatsApp 💬
+              </motion.button>
+            </motion.div>
+          </div>
+        </motion.div>
+      </section>
 
       {/* Pricing Preview - Added to service page */}
-      <section style={{ padding: "60px 2rem", position: "relative", zIndex: 2, background: COLORS.cardBg }}>
+      <section className="section-padding" style={{ padding: "60px 2rem", position: "relative", zIndex: 2, background: COLORS.cardBg }}>
         <div style={{ maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            className="pricing-card"
             style={{
               background: COLORS.primaryBg,
               border: `1px solid ${COLORS.borderDefault}`,
@@ -374,7 +529,7 @@ function MaintenancePlans() {
             <p style={{ color: COLORS.bodyText, marginBottom: "1rem", fontFamily: "'Inter', sans-serif" }}>
               {pricingPreview.priceRange} • {pricingPreview.description}
             </p>
-            <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
+            <div className="cta-buttons" style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -418,7 +573,7 @@ function MaintenancePlans() {
       </section>
 
       {/* Services Section */}
-      <section style={{ padding: "60px 2rem", position: "relative", zIndex: 2, background: COLORS.primaryBg }}>
+      <section className="section-padding" style={{ padding: "60px 2rem", position: "relative", zIndex: 2, background: COLORS.primaryBg }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -437,7 +592,7 @@ function MaintenancePlans() {
             }}>
               What's Included
             </div>
-            <h2 style={{ 
+            <h2 className="section-title" style={{ 
               fontFamily: "'Sora', sans-serif", 
               fontSize: "1.8rem", 
               fontWeight: 700, 
@@ -448,7 +603,7 @@ function MaintenancePlans() {
             </h2>
           </motion.div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "1.5rem" }}>
+          <div className="services-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "1.5rem" }}>
             {services.map((service, index) => (
               <motion.div
                 key={service.title}
@@ -467,8 +622,8 @@ function MaintenancePlans() {
                 }}
                 whileHover={{ borderColor: COLORS.primaryAccent, y: -2 }}
               >
-                <div style={{ fontSize: "1.8rem", marginBottom: "0.5rem" }}>{service.icon}</div>
-                <h3 style={{ 
+                <div className="service-icon" style={{ fontSize: "1.8rem", marginBottom: "0.5rem" }}>{service.icon}</div>
+                <h3 className="service-title" style={{ 
                   fontFamily: "'Sora', sans-serif", 
                   fontSize: "1rem", 
                   fontWeight: 600, 
@@ -483,7 +638,7 @@ function MaintenancePlans() {
       </section>
 
       {/* Add-Ons Section */}
-      <section style={{ padding: "60px 2rem", background: COLORS.cardBg, position: "relative", zIndex: 2 }}>
+      <section className="section-padding" style={{ padding: "60px 2rem", background: COLORS.cardBg, position: "relative", zIndex: 2 }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -502,7 +657,7 @@ function MaintenancePlans() {
             }}>
               Add-Ons
             </div>
-            <h2 style={{ 
+            <h2 className="section-title" style={{ 
               fontFamily: "'Sora', sans-serif", 
               fontSize: "1.8rem", 
               fontWeight: 700, 
@@ -513,7 +668,7 @@ function MaintenancePlans() {
             </h2>
           </motion.div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1rem" }}>
+          <div className="addons-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1rem" }}>
             {addOns.map((addon, index) => (
               <motion.div
                 key={addon.name}
@@ -534,9 +689,9 @@ function MaintenancePlans() {
                 }}
                 whileHover={{ borderColor: COLORS.primaryAccent, y: -2 }}
               >
-                <div style={{ fontSize: "1.5rem" }}>{addon.icon}</div>
+                <div className="addon-icon" style={{ fontSize: "1.5rem" }}>{addon.icon}</div>
                 <div style={{ flex: 1 }}>
-                  <h4 style={{ 
+                  <h4 className="addon-title" style={{ 
                     fontFamily: "'Sora', sans-serif", 
                     fontSize: "0.9rem", 
                     fontWeight: 600, 
@@ -544,7 +699,7 @@ function MaintenancePlans() {
                   }}>{addon.name}</h4>
                   <p style={{ color: COLORS.mutedText, fontSize: "0.7rem", fontFamily: "'Inter', sans-serif" }}>{addon.desc}</p>
                 </div>
-                <div style={{ color: COLORS.primaryAccent, fontWeight: 600, fontSize: "0.9rem", fontFamily: "'Inter', sans-serif" }}>{addon.price}</div>
+                <div className="addon-price" style={{ color: COLORS.primaryAccent, fontWeight: 600, fontSize: "0.9rem", fontFamily: "'Inter', sans-serif" }}>{addon.price}</div>
               </motion.div>
             ))}
           </div>
@@ -552,7 +707,7 @@ function MaintenancePlans() {
       </section>
 
       {/* FAQ Section */}
-      <section style={{ padding: "80px 2rem", position: "relative", zIndex: 2, background: COLORS.primaryBg }}>
+      <section className="section-padding" style={{ padding: "80px 2rem", position: "relative", zIndex: 2, background: COLORS.primaryBg }}>
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -571,7 +726,7 @@ function MaintenancePlans() {
             }}>
               FAQ
             </div>
-            <h2 style={{ 
+            <h2 className="section-title" style={{ 
               fontFamily: "'Sora', sans-serif", 
               fontSize: "1.8rem", 
               fontWeight: 700, 
@@ -605,14 +760,14 @@ function MaintenancePlans() {
                   transition: "all 0.3s ease"
                 }}
               >
-                <h3 style={{ 
+                <h3 className="faq-question" style={{ 
                   fontFamily: "'Sora', sans-serif", 
                   fontSize: "1rem", 
                   fontWeight: 600, 
                   color: COLORS.primaryAccent, 
                   marginBottom: "0.5rem" 
                 }}>{faq.q}</h3>
-                <p style={{ 
+                <p className="faq-answer" style={{ 
                   fontSize: "0.9rem", 
                   color: COLORS.bodyText, 
                   lineHeight: 1.6,
@@ -625,7 +780,7 @@ function MaintenancePlans() {
       </section>
 
       {/* CTA Section */}
-      <section style={{ padding: "80px 2rem", position: "relative", zIndex: 2, background: COLORS.cardBg }}>
+      <section className="section-padding" style={{ padding: "80px 2rem", position: "relative", zIndex: 2, background: COLORS.cardBg }}>
         <div style={{ maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -634,7 +789,7 @@ function MaintenancePlans() {
             transition={{ duration: 0.6 }}
           >
             <div style={{ fontSize: "3rem", marginBottom: "1rem" }}>🛡️</div>
-            <h2 style={{ 
+            <h2 className="cta-title" style={{ 
               fontFamily: "'Sora', sans-serif", 
               fontSize: "2rem", 
               fontWeight: 700, 
@@ -646,7 +801,7 @@ function MaintenancePlans() {
             <p style={{ color: COLORS.bodyText, marginBottom: "2rem", fontSize: "1rem", fontFamily: "'Inter', sans-serif" }}>
               Choose a maintenance plan today and enjoy peace of mind knowing your website is in safe hands.
             </p>
-            <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
+            <div className="cta-buttons" style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}

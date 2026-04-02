@@ -7,7 +7,6 @@ import emailjs from '@emailjs/browser';
 
 import contactHeroBg from "../assets/images/contact-bg.png"; // Add your image to assets/images/
 
-
 gsap.registerPlugin(ScrollTrigger);
 
 // Professional color palette from audit
@@ -257,8 +256,157 @@ function Contact() {
     }
   ];
 
+  // Responsive styles
+  const responsiveStyles = `
+    @media (max-width: 1024px) {
+      .contact-grid {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+      }
+      .hero-padding {
+        padding: 100px 1.5rem 50px !important;
+      }
+      .section-padding {
+        padding: 40px 1.5rem !important;
+      }
+      .contact-cards {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1rem !important;
+      }
+      .whatsapp-cta {
+        flex-direction: column !important;
+        text-align: center !important;
+        padding: 1.2rem 1.5rem !important;
+      }
+      .whatsapp-cta-content {
+        flex-direction: column !important;
+        text-align: center !important;
+      }
+      .form-container {
+        padding: 1.5rem !important;
+      }
+      .form-title {
+        font-size: 1rem !important;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero-padding {
+        padding: 80px 1rem 40px !important;
+      }
+      .section-padding {
+        padding: 30px 1rem !important;
+      }
+      .contact-cards {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+      }
+      .hero-title {
+        font-size: clamp(1.5rem, 5vw, 2rem) !important;
+      }
+      .hero-subtitle {
+        font-size: 0.9rem !important;
+      }
+      .hero-badge {
+        font-size: 0.7rem !important;
+      }
+      .info-title {
+        font-size: 1.3rem !important;
+      }
+      .info-text {
+        font-size: 0.9rem !important;
+      }
+      .form-step-title {
+        font-size: 0.9rem !important;
+      }
+      .form-input, .form-select, .form-textarea {
+        padding: 0.7rem 1rem !important;
+        font-size: 0.9rem !important;
+      }
+      .form-buttons {
+        flex-direction: column !important;
+        gap: 0.8rem !important;
+      }
+      .form-buttons button {
+        width: 100% !important;
+      }
+      .calendly-card {
+        padding: 1rem !important;
+      }
+      .calendly-title {
+        font-size: 0.9rem !important;
+      }
+      .contact-card {
+        padding: 1rem !important;
+      }
+      .contact-card-icon {
+        font-size: 2rem !important;
+      }
+      .contact-card-label {
+        font-size: 0.75rem !important;
+      }
+      .contact-card-value {
+        font-size: 0.8rem !important;
+      }
+      .progress-steps {
+        gap: 0.3rem !important;
+      }
+      .step-number {
+        font-size: 0.7rem !important;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .hero-padding {
+        padding: 70px 0.8rem 35px !important;
+      }
+      .section-padding {
+        padding: 25px 0.8rem !important;
+      }
+      .hero-title {
+        font-size: 1.4rem !important;
+      }
+      .hero-subtitle {
+        font-size: 0.85rem !important;
+      }
+      .info-title {
+        font-size: 1.1rem !important;
+      }
+      .info-text {
+        font-size: 0.85rem !important;
+      }
+      .form-container {
+        padding: 1.2rem !important;
+      }
+      .form-input, .form-select, .form-textarea {
+        padding: 0.6rem 0.8rem !important;
+        font-size: 0.85rem !important;
+      }
+      .calendly-card {
+        padding: 0.8rem !important;
+      }
+      .calendly-button {
+        padding: 0.6rem 1rem !important;
+        font-size: 0.8rem !important;
+      }
+      .whatsapp-cta {
+        padding: 1rem !important;
+      }
+      .whatsapp-cta-icon {
+        font-size: 1.8rem !important;
+      }
+      .whatsapp-cta-title {
+        font-size: 1rem !important;
+      }
+      .whatsapp-cta-text {
+        font-size: 0.75rem !important;
+      }
+    }
+  `;
+
   return (
     <>
+      <style>{responsiveStyles}</style>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap');
         
@@ -298,156 +446,160 @@ function Contact() {
         }
       `}</style>
 
-      <section ref={heroRef} style={{ 
-  minHeight: "50vh", 
-  display: "flex", 
-  alignItems: "center", 
-  justifyContent: "center",
-  position: "relative",
-  padding: "120px 2rem 60px",
-  background: `linear-gradient(rgba(10, 15, 30, 0.82), rgba(10, 15, 30, 0.88)), url(${contactHeroBg})`,
-  backgroundSize: "cover",
-  backgroundPosition: "center",
-  backgroundAttachment: "fixed",
-  overflow: "hidden"
-}}>
-  {/* Optional: Add a subtle gradient overlay for depth */}
-  <div style={{
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    background: "radial-gradient(ellipse 70% 40% at 50% 30%, rgba(37,99,235,0.08) 0%, transparent 70%)",
-    pointerEvents: "none"
-  }} />
-  
-  <motion.div style={{ opacity, scale }} className="hero-animate" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
-    <div style={{ textAlign: "center", maxWidth: 900, margin: "0 auto", position: "relative", zIndex: 2 }}>
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }}
-        style={{ 
-          fontFamily: "'Inter', sans-serif", 
-          fontSize: "0.75rem", 
-          letterSpacing: "0.2em", 
-          color: COLORS.primaryAccent, 
-          marginBottom: "1rem",
-          textTransform: "uppercase",
-          display: "inline-block",
-          background: "rgba(30, 58, 95, 0.7)",
-          backdropFilter: "blur(8px)",
-          padding: "0.3rem 1rem",
-          borderRadius: "20px"
-        }}
-      >
-        Start Your Project
-      </motion.div>
-      <motion.h1 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4 }}
-        style={{ 
-          fontFamily: "'Sora', sans-serif", 
-          fontSize: "clamp(2rem, 5vw, 3.5rem)", 
-          fontWeight: 700, 
-          marginBottom: "1.5rem", 
-          color: COLORS.primaryText,
-          lineHeight: "1.2"
-        }}
-      >
-        Tell Us About Your Project —<br />
-        <span style={{ color: COLORS.primaryAccent }}>We Respond Within 4 Hours</span>
-      </motion.h1>
-      <motion.p 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6 }}
-        style={{ 
-          fontSize: "1.125rem", 
-          color: COLORS.bodyText, 
-          lineHeight: 1.6, 
-          maxWidth: 700, 
-          margin: "0 auto",
-          fontFamily: "'Inter', sans-serif"
-        }}
-      >
-        Ready to transform your digital presence? Fill out the form below or book a free 30-minute strategy call directly.
-      </motion.p>
-    </div>
-  </motion.div>
-</section>
+      <section ref={heroRef} className="hero-padding" style={{ 
+        minHeight: "50vh", 
+        display: "flex", 
+        alignItems: "center", 
+        justifyContent: "center",
+        position: "relative",
+        padding: "120px 2rem 60px",
+        background: `linear-gradient(rgba(10, 15, 30, 0.82), rgba(10, 15, 30, 0.88)), url(${contactHeroBg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+        overflow: "hidden"
+      }}>
+        {/* Optional: Add a subtle gradient overlay for depth */}
+        <div style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: "radial-gradient(ellipse 70% 40% at 50% 30%, rgba(37,99,235,0.08) 0%, transparent 70%)",
+          pointerEvents: "none"
+        }} />
+        
+        <motion.div style={{ opacity, scale }} className="hero-animate" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
+          <div style={{ textAlign: "center", maxWidth: 900, margin: "0 auto", position: "relative", zIndex: 2 }}>
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="hero-badge"
+              style={{ 
+                fontFamily: "'Inter', sans-serif", 
+                fontSize: "0.75rem", 
+                letterSpacing: "0.2em", 
+                color: COLORS.primaryAccent, 
+                marginBottom: "1rem",
+                textTransform: "uppercase",
+                display: "inline-block",
+                background: "rgba(30, 58, 95, 0.7)",
+                backdropFilter: "blur(8px)",
+                padding: "0.3rem 1rem",
+                borderRadius: "20px"
+              }}
+            >
+              Start Your Project
+            </motion.div>
+            <motion.h1 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="hero-title"
+              style={{ 
+                fontFamily: "'Sora', sans-serif", 
+                fontSize: "clamp(2rem, 5vw, 3.5rem)", 
+                fontWeight: 700, 
+                marginBottom: "1.5rem", 
+                color: COLORS.primaryText,
+                lineHeight: "1.2"
+              }}
+            >
+              Tell Us About Your Project —<br />
+              <span style={{ color: COLORS.primaryAccent }}>We Respond Within 4 Hours</span>
+            </motion.h1>
+            <motion.p 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              className="hero-subtitle"
+              style={{ 
+                fontSize: "1.125rem", 
+                color: COLORS.bodyText, 
+                lineHeight: 1.6, 
+                maxWidth: 700, 
+                margin: "0 auto",
+                fontFamily: "'Inter', sans-serif"
+              }}
+            >
+              Ready to transform your digital presence? Fill out the form below or book a free 30-minute strategy call directly.
+            </motion.p>
+          </div>
+        </motion.div>
+      </section>
 
-{/* WhatsApp CTA - Moved above contact form */}
-<section style={{ padding: "40px 2rem 20px", position: "relative", zIndex: 2, background: COLORS.primaryBg }}>
-  <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
-      style={{
-        background: `linear-gradient(135deg, rgba(37, 211, 102, 0.1), rgba(37, 211, 102, 0.05))`,
-        border: `1px solid ${COLORS.whatsapp}`,
-        borderRadius: 20,
-        padding: "1.5rem 2rem",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        flexWrap: "wrap",
-        gap: "1rem"
-      }}
-    >
-      <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-        <div style={{ fontSize: "2rem" }}>💬</div>
-        <div>
-          <h3 style={{ 
-            fontFamily: "'Sora', sans-serif", 
-            fontSize: "1.1rem", 
-            fontWeight: 600, 
-            color: COLORS.primaryText,
-            marginBottom: "0.25rem"
-          }}>
-            Prefer instant communication?
-          </h3>
-          <p style={{ fontSize: "0.85rem", color: COLORS.bodyText }}>
-            Chat with us on WhatsApp — we respond in under 1 hour
-          </p>
+      {/* WhatsApp CTA - Moved above contact form */}
+      <section className="section-padding" style={{ padding: "40px 2rem 20px", position: "relative", zIndex: 2, background: COLORS.primaryBg }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="whatsapp-cta"
+            style={{
+              background: `linear-gradient(135deg, rgba(37, 211, 102, 0.1), rgba(37, 211, 102, 0.05))`,
+              border: `1px solid ${COLORS.whatsapp}`,
+              borderRadius: 20,
+              padding: "1.5rem 2rem",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              flexWrap: "wrap",
+              gap: "1rem"
+            }}
+          >
+            <div className="whatsapp-cta-content" style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+              <div className="whatsapp-cta-icon" style={{ fontSize: "2rem" }}>💬</div>
+              <div>
+                <h3 className="whatsapp-cta-title" style={{ 
+                  fontFamily: "'Sora', sans-serif", 
+                  fontSize: "1.1rem", 
+                  fontWeight: 600, 
+                  color: COLORS.primaryText,
+                  marginBottom: "0.25rem"
+                }}>
+                  Prefer instant communication?
+                </h3>
+                <p className="whatsapp-cta-text" style={{ fontSize: "0.85rem", color: COLORS.bodyText }}>
+                  Chat with us on WhatsApp — we respond in under 1 hour
+                </p>
+              </div>
+            </div>
+            <motion.a
+              href="https://wa.me/917447508006?text=Hi!%20I'm%20interested%20in%20starting%20a%20project%20with%20ADRIX%20CORE.%20Can%20we%20discuss%20my%20requirements%3F"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              style={{
+                background: COLORS.whatsapp,
+                border: "none",
+                padding: "0.75rem 1.5rem",
+                borderRadius: 50,
+                color: "#fff",
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: 600,
+                fontSize: "0.875rem",
+                cursor: "pointer",
+                textDecoration: "none",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.5rem"
+              }}
+            >
+              <span>📱</span> Chat on WhatsApp →
+            </motion.a>
+          </motion.div>
         </div>
-      </div>
-      <motion.a
-        href="https://wa.me/917447508006?text=Hi!%20I'm%20interested%20in%20starting%20a%20project%20with%20ADRIX%20CORE.%20Can%20we%20discuss%20my%20requirements%3F"
-        target="_blank"
-        rel="noopener noreferrer"
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        style={{
-          background: COLORS.whatsapp,
-          border: "none",
-          padding: "0.75rem 1.5rem",
-          borderRadius: 50,
-          color: "#fff",
-          fontFamily: "'Inter', sans-serif",
-          fontWeight: 600,
-          fontSize: "0.875rem",
-          cursor: "pointer",
-          textDecoration: "none",
-          display: "inline-flex",
-          alignItems: "center",
-          gap: "0.5rem"
-        }}
-      >
-        <span>📱</span> Chat on WhatsApp →
-      </motion.a>
-    </motion.div>
-  </div>
-</section>
+      </section>
 
       {/* Contact Info Cards */}
-      <section style={{ padding: "20px 2rem", position: "relative", zIndex: 2, background: COLORS.primaryBg }}>
+      <section className="section-padding" style={{ padding: "20px 2rem", position: "relative", zIndex: 2, background: COLORS.primaryBg }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "1.5rem" }}>
+          <div className="contact-cards" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "1.5rem" }}>
             {contactInfo.map((info, index) => (
               <motion.div
                 key={info.label}
@@ -466,8 +618,8 @@ function Contact() {
                   transition: "all 0.3s ease"
                 }}
               >
-                <div style={{ fontSize: "2.5rem", marginBottom: "0.5rem" }}>{info.icon}</div>
-                <h3 style={{ 
+                <div className="contact-card-icon" style={{ fontSize: "2.5rem", marginBottom: "0.5rem" }}>{info.icon}</div>
+                <h3 className="contact-card-label" style={{ 
                   fontFamily: "'Sora', sans-serif", 
                   fontSize: "0.85rem", 
                   fontWeight: 600, 
@@ -481,6 +633,7 @@ function Contact() {
                     href={info.link} 
                     target={info.label === "WhatsApp" ? "_blank" : undefined}
                     rel={info.label === "WhatsApp" ? "noopener noreferrer" : undefined}
+                    className="contact-card-value"
                     style={{ 
                       color: COLORS.bodyText, 
                       textDecoration: "none",
@@ -493,7 +646,7 @@ function Contact() {
                     {info.value}
                   </a>
                 ) : (
-                  <p style={{ color: COLORS.bodyText, fontSize: "0.875rem" }}>{info.value}</p>
+                  <p className="contact-card-value" style={{ color: COLORS.bodyText, fontSize: "0.875rem" }}>{info.value}</p>
                 )}
               </motion.div>
             ))}
@@ -502,9 +655,9 @@ function Contact() {
       </section>
 
       {/* Main Contact Section with Calendly */}
-      <section ref={formRef} style={{ padding: "40px 2rem 80px", position: "relative", zIndex: 2, background: COLORS.primaryBg }}>
+      <section ref={formRef} className="section-padding" style={{ padding: "40px 2rem 80px", position: "relative", zIndex: 2, background: COLORS.primaryBg }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem", alignItems: "start" }}>
+          <div className="contact-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem", alignItems: "start" }}>
             {/* Left Side - Info */}
             <motion.div 
               className="form-animate"
@@ -523,7 +676,7 @@ function Contact() {
               }}>
                 How We Work
               </div>
-              <h2 style={{ 
+              <h2 className="info-title" style={{ 
                 fontFamily: "'Sora', sans-serif", 
                 fontSize: "1.8rem", 
                 fontWeight: 700, 
@@ -532,7 +685,7 @@ function Contact() {
               }}>
                 Tell Us About <span style={{ color: COLORS.primaryAccent }}>Your Idea</span>
               </h2>
-              <p style={{ 
+              <p className="info-text" style={{ 
                 fontSize: "1rem", 
                 color: COLORS.bodyText, 
                 lineHeight: 1.6, 
@@ -610,7 +763,7 @@ function Contact() {
               </div>
 
               {/* Calendly Embed - Added as alternative to form */}
-              <div style={{
+              <div className="calendly-card" style={{
                 background: COLORS.cardBg,
                 borderRadius: 16,
                 padding: "1.5rem",
@@ -618,7 +771,7 @@ function Contact() {
               }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
                   <span style={{ fontSize: "1.5rem" }}>📅</span>
-                  <h3 style={{ 
+                  <h3 className="calendly-title" style={{ 
                     fontFamily: "'Sora', sans-serif", 
                     fontSize: "1rem", 
                     fontWeight: 600, 
@@ -636,6 +789,7 @@ function Contact() {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
+                  className="calendly-button"
                   style={{
                     display: "inline-flex",
                     alignItems: "center",
@@ -660,19 +814,19 @@ function Contact() {
             </motion.div>
 
             {/* Right Side - Multi-Step Form */}
-            <motion.div 
-              className="form-animate"
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              style={{
-                background: COLORS.cardBg,
-                border: `1px solid ${COLORS.borderDefault}`,
-                borderRadius: 24,
-                padding: "2rem"
-              }}
-            >
+           <motion.div 
+  className="form-animate form-container"
+  initial={{ opacity: 0, x: 50 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.6, delay: 0.2 }}
+  style={{
+    background: COLORS.cardBg,
+    border: `1px solid ${COLORS.borderDefault}`,
+    borderRadius: 24,
+    padding: "2rem"
+  }}
+>
               {submitSuccess ? (
                 <div style={{ textAlign: "center", padding: "2rem" }}>
                   <div style={{ fontSize: "4rem", marginBottom: "1rem" }}>🎉</div>
@@ -725,7 +879,7 @@ function Contact() {
                 <form onSubmit={handleSubmit}>
                   {/* Progress Bar */}
                   <div style={{ marginBottom: "2rem" }}>
-                    <div style={{ display: "flex", gap: "0.5rem", marginBottom: "1rem" }}>
+                    <div className="progress-steps" style={{ display: "flex", gap: "0.5rem", marginBottom: "1rem" }}>
                       {[1, 2, 3].map(step => (
                         <div key={step} style={{
                           flex: 1,
@@ -736,7 +890,7 @@ function Contact() {
                         }} />
                       ))}
                     </div>
-                    <div style={{ fontSize: "0.75rem", color: COLORS.mutedText, textAlign: "center" }}>
+                    <div className="step-number" style={{ fontSize: "0.75rem", color: COLORS.mutedText, textAlign: "center" }}>
                       Step {formStep} of 3
                     </div>
                   </div>
@@ -744,7 +898,7 @@ function Contact() {
                   {/* Step 1: Basic Info - Name & Email only (Phone optional) */}
                   {formStep === 1 && (
                     <div className="form-step">
-                      <h3 style={{ 
+                      <h3 className="form-step-title" style={{ 
                         fontFamily: "'Sora', sans-serif", 
                         fontSize: "1rem", 
                         color: COLORS.primaryAccent, 
@@ -758,6 +912,7 @@ function Contact() {
                         placeholder="Your Name *"
                         value={formData.name}
                         onChange={handleChange}
+                        className="form-input"
                         style={{
                           width: "100%",
                           background: COLORS.primaryBg,
@@ -779,6 +934,7 @@ function Contact() {
                         placeholder="Email Address *"
                         value={formData.email}
                         onChange={handleChange}
+                        className="form-input"
                         style={{
                           width: "100%",
                           background: COLORS.primaryBg,
@@ -800,6 +956,7 @@ function Contact() {
                         placeholder="Phone Number (Optional)"
                         value={formData.phone}
                         onChange={handleChange}
+                        className="form-input"
                         style={{
                           width: "100%",
                           background: COLORS.primaryBg,
@@ -844,7 +1001,7 @@ function Contact() {
                   {/* Step 2: Project Details - Includes budget (optional) */}
                   {formStep === 2 && (
                     <div className="form-step">
-                      <h3 style={{ 
+                      <h3 className="form-step-title" style={{ 
                         fontFamily: "'Sora', sans-serif", 
                         fontSize: "1rem", 
                         color: COLORS.primaryAccent, 
@@ -856,6 +1013,7 @@ function Contact() {
                         name="projectType"
                         value={formData.projectType}
                         onChange={handleChange}
+                        className="form-select"
                         style={{
                           width: "100%",
                           background: COLORS.primaryBg,
@@ -888,6 +1046,7 @@ function Contact() {
                         name="budget"
                         value={formData.budget}
                         onChange={handleChange}
+                        className="form-select"
                         style={{
                           width: "100%",
                           background: COLORS.primaryBg,
@@ -916,7 +1075,7 @@ function Contact() {
                         Helps us prepare better. You can skip if not sure.
                       </div>
                       
-                      <div style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
+                      <div className="form-buttons" style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
                         <button
                           type="button"
                           onClick={handlePrev}
@@ -968,7 +1127,7 @@ function Contact() {
                   {/* Step 3: Message */}
                   {formStep === 3 && (
                     <div className="form-step">
-                      <h3 style={{ 
+                      <h3 className="form-step-title" style={{ 
                         fontFamily: "'Sora', sans-serif", 
                         fontSize: "1rem", 
                         color: COLORS.primaryAccent, 
@@ -982,6 +1141,7 @@ function Contact() {
                         placeholder="Describe your project, goals, and any specific requirements... *"
                         value={formData.message}
                         onChange={handleChange}
+                        className="form-textarea"
                         style={{
                           width: "100%",
                           background: COLORS.primaryBg,
@@ -998,7 +1158,7 @@ function Contact() {
                         onFocus={e => { e.target.style.borderColor = COLORS.primaryAccent; }}
                         onBlur={e => { e.target.style.borderColor = COLORS.borderDefault; }}
                       />
-                      <div style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
+                      <div className="form-buttons" style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
                         <button
                           type="button"
                           onClick={handlePrev}

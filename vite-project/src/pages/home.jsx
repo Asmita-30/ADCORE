@@ -1,4 +1,4 @@
-// src/pages/home.jsx
+// src/pages/Home.jsx
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -12,15 +12,12 @@ import codingImage from "../assets/images/coding.jpeg";
 import blogImg1 from "../assets/images/webblog.jpg";
 import blogImg2 from "../assets/images/blog2.jpg";
 import blogImg3 from "../assets/images/blog3alt.webp";
-// Add these imports at the top of your Homepage component
 import ecomReactImg from "../assets/images/E-commerce.png";
 import transportImg from "../assets/images/Transport.jpeg";
 import bizcartImg from "../assets/images/CAB.jpeg";
-
-// Only Hero background image
 import heroBg from "../assets/images/hero-bg.jpg.jpeg";
 
-// ─── DESIGN SYSTEM (Audit Doc3 — professional dark) ──────────────────────────
+// ─── DESIGN SYSTEM ──────────────────────────────────────────
 const C = {
   blue: "#2563EB",
   blueHover: "#3B82F6",
@@ -37,7 +34,7 @@ const C = {
   codeBg: "#0F172A",
 };
 
-// ─── HERO (Fixes #01, #02, #04) ──────────────────────────────────────────────
+// ─── HERO SECTION ──────────────────────────────────────────
 function Hero() {
   const { scrollY } = useScroll();
   const heroOpacity = useTransform(scrollY, [0, 400], [1, 0]);
@@ -61,7 +58,7 @@ function Hero() {
         justifyContent: "center",
         position: "relative",
         zIndex: 2,
-        padding: "7rem 2rem 3rem",
+        padding: "clamp(5rem, 10vw, 7rem) clamp(1rem, 5vw, 2rem) clamp(2rem, 5vw, 3rem)",
         background: `linear-gradient(rgba(10, 15, 30, 0.85), rgba(10, 15, 30, 0.8)), url(${heroBg})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
@@ -69,19 +66,17 @@ function Hero() {
         overflow: "hidden",
       }}
     >
-      {/* Subtle background gradient */}
       <div style={{
         position: "absolute", inset: 0, pointerEvents: "none",
         background: "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(37,99,235,0.12) 0%, transparent 70%)",
       }} />
 
       <motion.div
-        style={{ opacity: heroOpacity, y: heroY, position: "relative", zIndex: 5, textAlign: "center", maxWidth: 820 }}
+        style={{ opacity: heroOpacity, y: heroY, position: "relative", zIndex: 5, textAlign: "center", maxWidth: 820, padding: "0 1rem" }}
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
       >
-        {/* Label pill */}
         <div style={{
           display: "inline-block",
           background: "rgba(30, 58, 95, 0.9)",
@@ -89,7 +84,7 @@ function Hero() {
           border: `1px solid ${C.border}`,
           borderRadius: 20,
           padding: "0.3rem 1rem",
-          fontSize: "0.75rem",
+          fontSize: "clamp(0.7rem, 3vw, 0.75rem)",
           fontFamily: "'Inter', sans-serif",
           fontWeight: 500,
           color: C.blueHover,
@@ -100,13 +95,12 @@ function Hero() {
           ✦ Web, Mobile & AI Development Agency
         </div>
 
-        {/* FIX #01: Headline-led hero — clear value proposition */}
         <h1 style={{
           fontFamily: "'Sora', sans-serif",
-          fontSize: "clamp(2.4rem, 6vw, 4rem)",
-          fontWeight: 800,
+          fontSize: "clamp(1.8rem, 6vw, 4rem)",
+          fontWeight: 700,
           color: C.textPrimary,
-          lineHeight: 1.1,
+          lineHeight: 1.2,
           marginBottom: "1.25rem",
           letterSpacing: "-0.01em",
         }}>
@@ -120,20 +114,19 @@ function Hero() {
           </span>
         </h1>
 
-        {/* Subheadline */}
         <p style={{
           fontFamily: "'Inter', sans-serif",
-          fontSize: "clamp(1rem, 2.5vw, 1.2rem)",
+          fontSize: "clamp(0.9rem, 2.5vw, 1.2rem)",
           color: C.textLead,
           lineHeight: 1.7,
           marginBottom: "2.25rem",
           maxWidth: 620,
           margin: "0 auto 2.25rem",
+          padding: "0 1rem",
         }}>
           From idea to launch — we design, develop, and deploy web apps, mobile apps, and AI solutions for startups and growing businesses.
         </p>
 
-        {/* FIX #01: Two clear CTA buttons */}
         <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap", marginBottom: "1.5rem" }}>
           <Link to="/contact" style={{ textDecoration: "none" }}>
             <motion.button
@@ -142,12 +135,12 @@ function Hero() {
               style={{
                 background: C.blue,
                 border: "none",
-                padding: "0.85rem 2rem",
+                padding: "clamp(0.7rem, 2vw, 0.85rem) clamp(1.5rem, 4vw, 2rem)",
                 borderRadius: "8px",
                 color: "#fff",
                 fontFamily: "'Inter', sans-serif",
                 fontWeight: 600,
-                fontSize: "1rem",
+                fontSize: "clamp(0.875rem, 3vw, 1rem)",
                 cursor: "pointer",
                 transition: "background 0.2s",
               }}
@@ -163,12 +156,12 @@ function Hero() {
                 background: "rgba(30, 41, 59, 0.8)",
                 backdropFilter: "blur(8px)",
                 border: `1px solid ${C.border}`,
-                padding: "0.85rem 2rem",
+                padding: "clamp(0.7rem, 2vw, 0.85rem) clamp(1.5rem, 4vw, 2rem)",
                 borderRadius: "8px",
                 color: C.textPrimary,
                 fontFamily: "'Inter', sans-serif",
                 fontWeight: 600,
-                fontSize: "1rem",
+                fontSize: "clamp(0.875rem, 3vw, 1rem)",
                 cursor: "pointer",
                 transition: "background 0.2s",
               }}
@@ -178,8 +171,7 @@ function Hero() {
           </Link>
         </div>
 
-        {/* WhatsApp inline CTA (Audit CV-02) */}
-        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.85rem", color: C.textMuted, marginBottom: "2rem" }}>
+        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "clamp(0.75rem, 3vw, 0.85rem)", color: C.textMuted, marginBottom: "2rem" }}>
           or{" "}
           <a
             href="https://wa.me/917447508006"
@@ -192,7 +184,6 @@ function Hero() {
           {" "}— we respond within 1 hour
         </p>
 
-        {/* FIX #01: Trust badge pills below CTAs */}
         <div style={{ display: "flex", gap: "0.75rem", justifyContent: "center", flexWrap: "wrap", marginBottom: "2.5rem" }}>
           {[
             { icon: "⚡", text: "4hr Response" },
@@ -208,7 +199,7 @@ function Hero() {
               border: `1px solid ${C.border}`,
               borderRadius: "20px",
               padding: "0.35rem 0.9rem",
-              fontSize: "0.8rem",
+              fontSize: "clamp(0.7rem, 3vw, 0.8rem)",
               fontFamily: "'Inter', sans-serif",
               color: C.textBody,
             }}>
@@ -218,7 +209,6 @@ function Hero() {
           ))}
         </div>
 
-        {/* FIX #02: Service quick-link pills (replaces search bar) */}
         <div style={{ display: "flex", gap: "0.6rem", justifyContent: "center", flexWrap: "wrap" }}>
           {serviceQuickLinks.map((s) => (
             <Link key={s.label} to={s.path} style={{ textDecoration: "none" }}>
@@ -230,7 +220,7 @@ function Hero() {
                   border: `1px solid ${C.border}`,
                   borderRadius: "20px",
                   padding: "0.35rem 1rem",
-                  fontSize: "0.8rem",
+                  fontSize: "clamp(0.7rem, 3vw, 0.8rem)",
                   fontFamily: "'Inter', sans-serif",
                   color: C.textBody,
                   cursor: "pointer",
@@ -244,7 +234,6 @@ function Hero() {
         </div>
       </motion.div>
 
-      {/* Scroll hint */}
       <motion.div
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
@@ -264,7 +253,7 @@ function Hero() {
   );
 }
 
-// ─── PROCESS SECTION (Audit C-04: "How We Work" added to homepage) ────────────
+// ─── PROCESS SECTION ──────────────────────────────────────────
 function Process() {
   const steps = [
     { num: "01", title: "Discovery", desc: "We learn your goals, users, and constraints in a free 30-min call." },
@@ -277,17 +266,17 @@ function Process() {
     <section style={{ 
       position: "relative", 
       zIndex: 5, 
-      padding: "80px 2rem", 
+      padding: "clamp(3rem, 8vw, 5rem) clamp(1rem, 5vw, 2rem)", 
       background: C.surface 
     }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-        <div style={{ textAlign: "center", marginBottom: "3rem" }}>
+        <div style={{ textAlign: "center", marginBottom: "clamp(2rem, 5vw, 3rem)" }}>
           <div style={{
             display: "inline-block", 
             background: "#1E3A5F", 
             borderRadius: 20,
             padding: "0.3rem 1rem", 
-            fontSize: "0.75rem", 
+            fontSize: "clamp(0.7rem, 3vw, 0.75rem)", 
             fontFamily: "'Inter', sans-serif",
             fontWeight: 500, 
             color: C.blueHover, 
@@ -299,7 +288,7 @@ function Process() {
           </div>
           <h2 style={{
             fontFamily: "'Sora', sans-serif",
-            fontSize: "clamp(1.6rem, 4vw, 2.4rem)",
+            fontSize: "clamp(1.5rem, 5vw, 2.4rem)",
             fontWeight: 700,
             color: C.textPrimary,
             lineHeight: 1.2,
@@ -326,8 +315,8 @@ function Process() {
             >
               <div style={{
                 fontFamily: "'Sora', sans-serif",
-                fontSize: "2rem",
-                fontWeight: 800,
+                fontSize: "clamp(1.5rem, 4vw, 2rem)",
+                fontWeight: 700,
                 color: "#ffffff",
                 opacity: 1.5,
                 lineHeight: 1,
@@ -337,7 +326,7 @@ function Process() {
               </div>
               <h3 style={{
                 fontFamily: "'Sora', sans-serif",
-                fontSize: "1.1rem",
+                fontSize: "clamp(0.9rem, 3vw, 1.1rem)",
                 fontWeight: 600,
                 color: C.textPrimary,
                 marginBottom: "0.5rem",
@@ -346,7 +335,7 @@ function Process() {
               </h3>
               <p style={{
                 fontFamily: "'Inter', sans-serif",
-                fontSize: "0.875rem",
+                fontSize: "clamp(0.75rem, 3vw, 0.875rem)",
                 color: C.textBody,
                 lineHeight: 1.6,
               }}>
@@ -360,7 +349,7 @@ function Process() {
   );
 }
 
-// ─── ABOUT SECTION ─────────────────────────────────────────────────────────
+// ─── ABOUT SECTION ──────────────────────────────────────────
 function About() {
   const sectionRef = useRef();
 
@@ -376,17 +365,17 @@ function About() {
     <section id="about" ref={sectionRef} style={{ 
       position: "relative", 
       zIndex: 5, 
-      padding: "100px 2rem", 
+      padding: "clamp(3rem, 8vw, 6.25rem) clamp(1rem, 5vw, 2rem)", 
       background: C.bg 
     }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-        <div className="about-animate" style={{ textAlign: "center", marginBottom: "3rem" }}>
+        <div className="about-animate" style={{ textAlign: "center", marginBottom: "clamp(2rem, 5vw, 3rem)" }}>
           <div style={{
             display: "inline-block", 
             background: "#1E3A5F", 
             borderRadius: 20,
             padding: "0.3rem 1rem", 
-            fontSize: "0.75rem", 
+            fontSize: "clamp(0.7rem, 3vw, 0.75rem)", 
             fontFamily: "'Inter', sans-serif",
             fontWeight: 500, 
             color: C.blueHover, 
@@ -396,10 +385,9 @@ function About() {
           }}>
             ✦ ABOUT US
           </div>
-          {/* FIX C-06: More specific, mission-driven headline */}
           <h2 style={{
             fontFamily: "'Sora', sans-serif",
-            fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
+            fontSize: "clamp(1.5rem, 5vw, 2.8rem)",
             fontWeight: 700,
             color: C.textPrimary,
             lineHeight: 1.2,
@@ -415,17 +403,15 @@ function About() {
           </h2>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "center" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "clamp(2rem, 5vw, 4rem)", alignItems: "center" }}>
           <motion.div className="about-animate" initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-            {/* FIX C-07: Lead with SIH win as primary credibility anchor */}
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.05rem", lineHeight: 1.75, color: C.textLead, marginBottom: "1.25rem" }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "clamp(0.9rem, 4vw, 1.05rem)", lineHeight: 1.75, color: C.textLead, marginBottom: "1.25rem" }}>
               Adrix Core was founded by a two-time Smart India Hackathon champion. We build web, mobile, and AI solutions that are production-ready — not just good-looking demos.
             </p>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.95rem", lineHeight: 1.7, color: C.textBody, marginBottom: "2rem" }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "clamp(0.85rem, 3vw, 0.95rem)", lineHeight: 1.7, color: C.textBody, marginBottom: "2rem" }}>
               We've delivered real products — from port management systems to civic tech platforms. Our engineering-first approach means we build for performance, maintainability, and scale from day one.
             </p>
 
-            {/* FIX #04: Process guarantees instead of inflated stats */}
             <div style={{ display: "flex", gap: "1.5rem", flexWrap: "wrap" }}>
               {[
                 { val: "4hr", label: "Response SLA" },
@@ -435,13 +421,13 @@ function About() {
                 <div key={label}>
                   <div style={{
                     fontFamily: "'Sora', sans-serif",
-                    fontSize: "1.5rem",
+                    fontSize: "clamp(1.2rem, 4vw, 1.5rem)",
                     fontWeight: 700,
                     color: C.blueHover,
                   }}>
                     {val}
                   </div>
-                  <div style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.78rem", color: C.textMuted, marginTop: 3, letterSpacing: "0.04em" }}>
+                  <div style={{ fontFamily: "'Inter', sans-serif", fontSize: "clamp(0.7rem, 3vw, 0.78rem)", color: C.textMuted, marginTop: 3, letterSpacing: "0.04em" }}>
                     {label}
                   </div>
                 </div>
@@ -450,13 +436,12 @@ function About() {
           </motion.div>
 
           <motion.div className="about-animate" initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}>
-            {/* FIX #09 / C-03: Using actual team/coding images, not AI renders */}
             <div style={{
               position: "relative",
               borderRadius: 16,
               overflow: "hidden",
               border: `1px solid ${C.border}`,
-              height: "380px",
+              height: "clamp(280px, 50vw, 380px)",
             }}>
               <img
                 src={teamImage}
@@ -469,7 +454,7 @@ function About() {
               }} />
               <div style={{
                 position: "absolute", bottom: "16px", right: "16px",
-                width: "72px", height: "72px",
+                width: "clamp(50px, 10vw, 72px)", height: "clamp(50px, 10vw, 72px)",
                 borderRadius: "10px", overflow: "hidden",
                 border: `2px solid ${C.blue}`,
               }}>
@@ -483,7 +468,7 @@ function About() {
   );
 }
 
-// ─── SERVICES SECTION (Audit C-01: 3-column grid replaces orbital diagram) ───
+// ─── SERVICES SECTION ──────────────────────────────────────────
 const SERVICES = [
   { icon: "🌐", name: "Web App Development", desc: "Full-stack web applications with React, Spring Boot, and modern architectures.", path: "/web-app-development", tags: ["React.js", "Spring Boot", "TypeScript"] },
   { icon: "📱", name: "Mobile App Development", desc: "Cross-platform apps with React Native and Flutter — iOS and Android.", path: "/mobile-app-development", tags: ["React Native", "Flutter", "iOS/Android"] },
@@ -498,17 +483,17 @@ function ServicesSection() {
     <section id="services" style={{ 
       position: "relative", 
       zIndex: 5, 
-      padding: "80px 2rem 100px", 
+      padding: "clamp(3rem, 8vw, 5rem) clamp(1rem, 5vw, 2rem) clamp(4rem, 10vw, 6.25rem)", 
       background: C.surface 
     }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-        <div style={{ textAlign: "center", marginBottom: "3rem" }}>
+        <div style={{ textAlign: "center", marginBottom: "clamp(2rem, 5vw, 3rem)" }}>
           <div style={{
             display: "inline-block", 
             background: "#1E3A5F", 
             borderRadius: 20,
             padding: "0.3rem 1rem", 
-            fontSize: "0.75rem", 
+            fontSize: "clamp(0.7rem, 3vw, 0.75rem)", 
             fontFamily: "'Inter', sans-serif",
             fontWeight: 500, 
             color: C.blueHover, 
@@ -520,7 +505,7 @@ function ServicesSection() {
           </div>
           <h2 style={{
             fontFamily: "'Sora', sans-serif",
-            fontSize: "clamp(1.8rem, 4vw, 2.5rem)",
+            fontSize: "clamp(1.5rem, 5vw, 2.5rem)",
             fontWeight: 700,
             color: C.textPrimary,
             lineHeight: 1.2,
@@ -528,13 +513,12 @@ function ServicesSection() {
           }}>
             What We Build
           </h2>
-          <p style={{ fontFamily: "'Inter', sans-serif", color: C.textBody, fontSize: "1rem", maxWidth: 520, margin: "0 auto" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", color: C.textBody, fontSize: "clamp(0.875rem, 3vw, 1rem)", maxWidth: 520, margin: "0 auto", padding: "0 1rem" }}>
             End-to-end digital services — from strategy to deployment.
           </p>
         </div>
 
-        {/* FIX C-01: Clean 3-column grid — replaces orbital diagram */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "1.25rem" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.25rem" }}>
           {SERVICES.map((svc, i) => (
             <motion.div
               key={svc.name}
@@ -570,14 +554,14 @@ function ServicesSection() {
               </div>
 
               <h3 style={{
-                fontFamily: "'Sora', sans-serif", fontSize: "1.05rem",
+                fontFamily: "'Sora', sans-serif", fontSize: "clamp(0.9rem, 3vw, 1.05rem)",
                 fontWeight: 600, color: C.textPrimary, marginBottom: "0.5rem",
               }}>
                 {svc.name}
               </h3>
 
               <p style={{
-                fontFamily: "'Inter', sans-serif", fontSize: "0.875rem",
+                fontFamily: "'Inter', sans-serif", fontSize: "clamp(0.8rem, 3vw, 0.875rem)",
                 color: C.textBody, lineHeight: 1.6, marginBottom: "1rem",
               }}>
                 {svc.desc}
@@ -613,38 +597,34 @@ function ServicesSection() {
   );
 }
 
-// ─── PORTFOLIO ────────────────────────────────────────────────────────────────
-// Projects data for homepage - Updated with 3 specific projects
+// ─── PORTFOLIO SECTION ──────────────────────────────────────────
 const PROJECTS = [
   {
     id: 1,
     title: "E-Commerce React Platform",
     label: "Web Development",
-    desc: "Modern e-commerce platform with product catalog, shopping cart, secure payment integration, and comprehensive admin dashboard for inventory management.",
+    desc: "Modern e-commerce platform with product catalog, shopping cart, secure payment integration, and comprehensive admin dashboard.",
     image: ecomReactImg,
-    liveUrl: "https://www.wix.com/website-template/view/html/wh-1064?originUrl=https%3A%2F%2Fwww.wix.com%2Fwebsite%2Ftemplates%3Fcriteria%3DEcommerce%2BShop&tpClick=view_button&esi=d86b1cb8-4b3e-42c5-ad3d-c568ff02e51a",
-    techStack: ["React", "Node.js", "MongoDB", "Razorpay", "Redux"],
-    features: ["Product Catalog", "Shopping Cart", "Payment Gateway", "Admin Dashboard"]
+    liveUrl: "https://www.wix.com/website-template/view/html/wh-1064",
+    techStack: ["React", "Node.js", "MongoDB", "Razorpay"],
   },
   {
     id: 2,
     title: "Transport Management System",
     label: "Web Development",
-    desc: "Complete transport management system with real-time fleet tracking, route optimization algorithms, driver assignment, and fuel consumption monitoring.",
+    desc: "Complete transport management system with real-time fleet tracking, route optimization, and driver assignment.",
     image: transportImg,
     liveUrl: "https://transport-ashy.vercel.app/",
-    techStack: ["React", "Spring Boot", "PostgreSQL", "Google Maps API", "WebSocket"],
-    features: ["Fleet Tracking", "Route Optimization", "Driver Assignment", "Analytics Dashboard"]
+    techStack: ["React", "Spring Boot", "PostgreSQL", "Google Maps API"],
   },
   {
     id: 3,
     title: "BizCart Cabs",
     label: "Transport & Logistics",
-    desc: "Complete cab booking and fleet management platform with real-time driver tracking, fare calculation, ride history, and admin analytics dashboard.",
+    desc: "Complete cab booking and fleet management platform with real-time driver tracking and ride history.",
     image: bizcartImg,
     liveUrl: "https://bizcartcabs.com/index.html",
-    techStack: ["HTML/CSS", "JavaScript", "PHP", "MySQL", "Google Maps API"],
-    features: ["Ride Booking", "Driver Tracking", "Payment Integration", "Admin Dashboard"]
+    techStack: ["HTML/CSS", "JavaScript", "PHP", "MySQL"],
   }
 ];
 
@@ -659,216 +639,219 @@ function Portfolio() {
   }, []);
 
   return (
-    // Homepage Featured Work Section - Updated with 3 projects
-<section id="portfolio" ref={ref} style={{ 
-  position: "relative", 
-  zIndex: 5, 
-  padding: "80px 2rem 100px", 
-  background: C.bg 
-}}>
-  <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-    <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-      <div style={{
-        display: "inline-block", 
-        background: "#1E3A5F", 
-        borderRadius: 20,
-        padding: "0.3rem 1rem", 
-        fontSize: "0.75rem", 
-        fontFamily: "'Inter', sans-serif",
-        fontWeight: 500, 
-        color: C.blueHover, 
-        letterSpacing: "0.08em",
-        textTransform: "uppercase", 
-        marginBottom: "1rem",
-      }}>
-        ✦ PORTFOLIO
-      </div>
-      <h2 style={{
-        fontFamily: "'Sora', sans-serif", fontSize: "clamp(1.8rem, 4vw, 2.5rem)",
-        fontWeight: 700, color: C.textPrimary, lineHeight: 1.2, marginBottom: "0.75rem",
-      }}>
-        Featured Work
-      </h2>
-      <p style={{ fontFamily: "'Inter', sans-serif", color: C.textBody, fontSize: "1rem" }}>
-        Real projects. Real outcomes.
-      </p>
-    </div>
-
-    <div style={{ 
-      display: "grid", 
-      gridTemplateColumns: "repeat(3, 1fr)", 
-      gap: "1.5rem",
-      justifyContent: "center"
+    <section id="portfolio" ref={ref} style={{ 
+      position: "relative", 
+      zIndex: 5, 
+      padding: "clamp(3rem, 8vw, 5rem) clamp(1rem, 5vw, 2rem) clamp(4rem, 10vw, 6.25rem)", 
+      background: C.bg 
     }}>
-      {PROJECTS.map((p, index) => (
-        <motion.div
-          key={p.title}
-          className="port-item"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: index * 0.1, duration: 0.5 }}
-          whileHover={{ y: -6, boxShadow: `0 20px 50px rgba(37,99,235,0.12)` }}
-          style={{
-            borderRadius: 14, 
-            overflow: "hidden",
-            border: `1px solid ${C.border}`, 
-            cursor: "pointer",
-            background: C.surface,
-          }}
-        >
-          <div style={{ height: 220, overflow: "hidden", position: "relative" }}>
-            <img 
-              src={p.image} 
-              alt={p.title} 
-              style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.4s" }}
-              onMouseEnter={(e) => (e.target.style.transform = "scale(1.04)")}
-              onMouseLeave={(e) => (e.target.style.transform = "scale(1)")}
-            />
+      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+        <div style={{ textAlign: "center", marginBottom: "clamp(2rem, 5vw, 3rem)" }}>
+          <div style={{
+            display: "inline-block", 
+            background: "#1E3A5F", 
+            borderRadius: 20,
+            padding: "0.3rem 1rem", 
+            fontSize: "clamp(0.7rem, 3vw, 0.75rem)", 
+            fontFamily: "'Inter', sans-serif",
+            fontWeight: 500, 
+            color: C.blueHover, 
+            letterSpacing: "0.08em",
+            textTransform: "uppercase", 
+            marginBottom: "1rem",
+          }}>
+            ✦ PORTFOLIO
+          </div>
+          <h2 style={{
+            fontFamily: "'Sora', sans-serif", 
+            fontSize: "clamp(1.5rem, 5vw, 2.5rem)",
+            fontWeight: 700, 
+            color: C.textPrimary, 
+            lineHeight: 1.2, 
+            marginBottom: "0.75rem",
+          }}>
+            Featured Work
+          </h2>
+          <p style={{ fontFamily: "'Inter', sans-serif", color: C.textBody, fontSize: "clamp(0.875rem, 3vw, 1rem)" }}>
+            Real projects. Real outcomes.
+          </p>
+        </div>
+
+        <div style={{ 
+          display: "grid", 
+          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", 
+          gap: "1.5rem",
+          justifyContent: "center"
+        }}>
+          {PROJECTS.map((p, index) => (
             <motion.div
-              initial={{ opacity: 0 }}
-              whileHover={{ opacity: 1 }}
+              key={p.title}
+              className="port-item"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
+              whileHover={{ y: -6, boxShadow: `0 20px 50px rgba(37,99,235,0.12)` }}
               style={{
-                position: "absolute", 
-                inset: 0, 
-                background: "rgba(0,0,0,0.85)",
-                display: "flex", 
-                alignItems: "center", 
-                justifyContent: "center", 
-                gap: "1rem", 
-                flexDirection: "column",
+                borderRadius: 14, 
+                overflow: "hidden",
+                border: `1px solid ${C.border}`, 
+                cursor: "pointer",
+                background: C.surface,
               }}
             >
-              {/* Live Preview Button */}
-              <motion.a
-                href={p.liveUrl} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.05, background: C.blueHover }}
-                whileTap={{ scale: 0.98 }}
-                style={{
-                  background: C.blue, 
-                  border: "none", 
-                  padding: "0.7rem 1.75rem",
-                  borderRadius: "8px", 
-                  color: "#fff", 
-                  fontFamily: "'Inter', sans-serif",
-                  fontWeight: 600, 
-                  fontSize: "0.875rem", 
-                  cursor: "pointer",
-                  textDecoration: "none", 
-                  display: "inline-block",
-                }}
-                onClick={(e) => e.stopPropagation()}
-              >
-                Live Preview →
-              </motion.a>
-              
-              {/* Build Something Similar Button */}
-              <Link
-                to={`/contact?service=${encodeURIComponent(p.label)}`}
-                onClick={(e) => e.stopPropagation()}
-                style={{
-                  background: "transparent", 
-                  border: `1px solid ${C.blueHover}`,
-                  padding: "0.7rem 1.75rem", 
-                  borderRadius: "8px",
-                  color: "#fff", 
-                  fontFamily: "'Inter', sans-serif",
-                  fontWeight: 600, 
-                  fontSize: "0.875rem", 
-                  cursor: "pointer",
-                  textDecoration: "none", 
-                  display: "inline-block",
-                  transition: "all 0.2s ease",
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.background = C.blueHover;
-                  e.target.style.borderColor = C.blueHover;
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.background = "transparent";
-                  e.target.style.borderColor = C.blueHover;
-                }}
-              >
-                Build Something Similar
-              </Link>
-            </motion.div>
-          </div>
-          <div style={{ padding: "1.25rem 1.5rem" }}>
-            <div style={{
-              fontFamily: "'Inter', sans-serif", 
-              color: C.blueHover, 
-              fontSize: "0.75rem",
-              letterSpacing: "0.08em", 
-              textTransform: "uppercase", 
-              marginBottom: "0.3rem",
-            }}>
-              {p.label}
-            </div>
-            <div style={{ 
-              fontFamily: "'Sora', sans-serif", 
-              fontSize: "1.05rem", 
-              fontWeight: 600, 
-              color: C.textPrimary, 
-              marginBottom: "0.4rem" 
-            }}>
-              {p.title}
-            </div>
-            <div style={{ 
-              fontFamily: "'Inter', sans-serif", 
-              fontSize: "0.85rem", 
-              color: C.textBody, 
-              lineHeight: 1.5 
-            }}>
-              {p.desc}
-            </div>
-            {/* Tech Stack Tags */}
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem", marginTop: "0.75rem" }}>
-              {p.techStack.slice(0, 3).map((tech, i) => (
-                <span key={i} style={{
-                  background: C.codeBg,
-                  padding: "0.15rem 0.5rem",
-                  borderRadius: 10,
-                  fontSize: "0.6rem",
-                  color: C.cyan,
-                  fontFamily: "'Inter', sans-serif"
+              <div style={{ height: 220, overflow: "hidden", position: "relative" }}>
+                <img 
+                  src={p.image} 
+                  alt={p.title} 
+                  style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.4s" }}
+                  onMouseEnter={(e) => (e.target.style.transform = "scale(1.04)")}
+                  onMouseLeave={(e) => (e.target.style.transform = "scale(1)")}
+                />
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileHover={{ opacity: 1 }}
+                  style={{
+                    position: "absolute", 
+                    inset: 0, 
+                    background: "rgba(0,0,0,0.85)",
+                    display: "flex", 
+                    alignItems: "center", 
+                    justifyContent: "center", 
+                    gap: "1rem", 
+                    flexDirection: "column",
+                    padding: "1rem",
+                  }}
+                >
+                  <motion.a
+                    href={p.liveUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.05, background: C.blueHover }}
+                    whileTap={{ scale: 0.98 }}
+                    style={{
+                      background: C.blue, 
+                      border: "none", 
+                      padding: "0.7rem 1.75rem",
+                      borderRadius: "8px", 
+                      color: "#fff", 
+                      fontFamily: "'Inter', sans-serif",
+                      fontWeight: 600, 
+                      fontSize: "clamp(0.75rem, 3vw, 0.875rem)", 
+                      cursor: "pointer",
+                      textDecoration: "none", 
+                      display: "inline-block",
+                    }}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    Live Preview →
+                  </motion.a>
+                  
+                  <Link
+                    to={`/contact?service=${encodeURIComponent(p.label)}`}
+                    onClick={(e) => e.stopPropagation()}
+                    style={{
+                      background: "transparent", 
+                      border: `1px solid ${C.blueHover}`,
+                      padding: "0.7rem 1.75rem", 
+                      borderRadius: "8px",
+                      color: "#fff", 
+                      fontFamily: "'Inter', sans-serif",
+                      fontWeight: 600, 
+                      fontSize: "clamp(0.75rem, 3vw, 0.875rem)", 
+                      cursor: "pointer",
+                      textDecoration: "none", 
+                      display: "inline-block",
+                      transition: "all 0.2s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.background = C.blueHover;
+                      e.target.style.borderColor = C.blueHover;
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.background = "transparent";
+                      e.target.style.borderColor = C.blueHover;
+                    }}
+                  >
+                    Build Something Similar
+                  </Link>
+                </motion.div>
+              </div>
+              <div style={{ padding: "1.25rem 1.5rem" }}>
+                <div style={{
+                  fontFamily: "'Inter', sans-serif", 
+                  color: C.blueHover, 
+                  fontSize: "clamp(0.7rem, 3vw, 0.75rem)",
+                  letterSpacing: "0.08em", 
+                  textTransform: "uppercase", 
+                  marginBottom: "0.3rem",
                 }}>
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-      ))}
-    </div>
+                  {p.label}
+                </div>
+                <div style={{ 
+                  fontFamily: "'Sora', sans-serif", 
+                  fontSize: "clamp(0.9rem, 3vw, 1.05rem)", 
+                  fontWeight: 600, 
+                  color: C.textPrimary, 
+                  marginBottom: "0.4rem" 
+                }}>
+                  {p.title}
+                </div>
+                <div style={{ 
+                  fontFamily: "'Inter', sans-serif", 
+                  fontSize: "clamp(0.75rem, 3vw, 0.85rem)", 
+                  color: C.textBody, 
+                  lineHeight: 1.5 
+                }}>
+                  {p.desc}
+                </div>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem", marginTop: "0.75rem" }}>
+                  {p.techStack.slice(0, 3).map((tech, i) => (
+                    <span key={i} style={{
+                      background: C.codeBg,
+                      padding: "0.15rem 0.5rem",
+                      borderRadius: 10,
+                      fontSize: "0.6rem",
+                      color: C.cyan,
+                      fontFamily: "'Inter', sans-serif"
+                    }}>
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
 
-    <div style={{ textAlign: "center", marginTop: "3rem" }}>
-      <Link to="/portfolio" style={{ textDecoration: "none" }}>
-        <motion.button
-          whileHover={{ scale: 1.04, background: C.surfaceHover, borderColor: C.blueHover }}
-          whileTap={{ scale: 0.98 }}
-          style={{
-            background: "transparent", 
-            border: `1px solid ${C.border}`, 
-            padding: "0.8rem 2rem",
-            borderRadius: "8px", 
-            color: C.textPrimary, 
-            fontFamily: "'Inter', sans-serif",
-            fontWeight: 600, 
-            fontSize: "0.9rem", 
-            cursor: "pointer", 
-            transition: "all 0.2s",
-          }}
-        >
-          View All Projects →
-        </motion.button>
-      </Link>
-    </div>
-  </div>
-</section>
-  )}
-// ─── PRICING SECTION ─────────────────────────────────────────────────────────
+        <div style={{ textAlign: "center", marginTop: "3rem" }}>
+          <Link to="/portfolio" style={{ textDecoration: "none" }}>
+            <motion.button
+              whileHover={{ scale: 1.04, background: C.surfaceHover, borderColor: C.blueHover }}
+              whileTap={{ scale: 0.98 }}
+              style={{
+                background: "transparent", 
+                border: `1px solid ${C.border}`, 
+                padding: "0.8rem 2rem",
+                borderRadius: "8px", 
+                color: C.textPrimary, 
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: 600, 
+                fontSize: "clamp(0.8rem, 3vw, 0.9rem)", 
+                cursor: "pointer", 
+                transition: "all 0.2s",
+              }}
+            >
+              View All Projects →
+            </motion.button>
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── PRICING SECTION ──────────────────────────────────────────
 const PRICING_PLANS = [
   {
     name: "Static Website",
@@ -907,17 +890,17 @@ function Pricing() {
     <section id="pricing" style={{ 
       position: "relative", 
       zIndex: 5, 
-      padding: "80px 2rem 100px", 
+      padding: "clamp(3rem, 8vw, 5rem) clamp(1rem, 5vw, 2rem) clamp(4rem, 10vw, 6.25rem)", 
       background: C.surface 
     }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-        <div style={{ textAlign: "center", marginBottom: "3rem" }}>
+        <div style={{ textAlign: "center", marginBottom: "clamp(2rem, 5vw, 3rem)" }}>
           <div style={{
             display: "inline-block", 
             background: "#1E3A5F", 
             borderRadius: 20,
             padding: "0.3rem 1rem", 
-            fontSize: "0.75rem", 
+            fontSize: "clamp(0.7rem, 3vw, 0.75rem)", 
             fontFamily: "'Inter', sans-serif",
             fontWeight: 500, 
             color: C.blueHover, 
@@ -928,17 +911,21 @@ function Pricing() {
             ✦ PRICING
           </div>
           <h2 style={{
-            fontFamily: "'Sora', sans-serif", fontSize: "clamp(1.8rem, 4vw, 2.5rem)",
-            fontWeight: 700, color: C.textPrimary, lineHeight: 1.2, marginBottom: "0.75rem",
+            fontFamily: "'Sora', sans-serif", 
+            fontSize: "clamp(1.5rem, 5vw, 2.5rem)",
+            fontWeight: 700, 
+            color: C.textPrimary, 
+            lineHeight: 1.2, 
+            marginBottom: "0.75rem",
           }}>
             Transparent Pricing
           </h2>
-          <p style={{ fontFamily: "'Inter', sans-serif", color: C.textBody, fontSize: "1rem" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", color: C.textBody, fontSize: "clamp(0.875rem, 3vw, 1rem)" }}>
             Fixed-price quotes always. No surprises.
           </p>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "1.5rem" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem" }}>
           {PRICING_PLANS.map((plan, i) => (
             <motion.div
               key={plan.name}
@@ -961,7 +948,8 @@ function Pricing() {
                 <div style={{
                   position: "absolute", top: -13, right: 20,
                   background: C.blue, color: "#fff",
-                  fontSize: "0.72rem", fontFamily: "'Inter', sans-serif",
+                  fontSize: "clamp(0.65rem, 3vw, 0.72rem)", 
+                  fontFamily: "'Inter', sans-serif",
                   fontWeight: 600, padding: "0.3rem 1rem", borderRadius: 20,
                   letterSpacing: "0.02em",
                 }}>
@@ -969,7 +957,7 @@ function Pricing() {
                 </div>
               )}
 
-              <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.25rem" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.25rem", flexWrap: "wrap" }}>
                 <div style={{
                   width: "46px", height: "46px", borderRadius: "10px",
                   background: "#1E3A5F", display: "flex", alignItems: "center",
@@ -978,17 +966,17 @@ function Pricing() {
                   <span style={{ fontSize: "1.6rem" }}>{plan.icon}</span>
                 </div>
                 <div>
-                  <h3 style={{ fontFamily: "'Sora', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: C.textPrimary, marginBottom: "0.15rem" }}>
+                  <h3 style={{ fontFamily: "'Sora', sans-serif", fontSize: "clamp(0.9rem, 3vw, 1.1rem)", fontWeight: 600, color: C.textPrimary, marginBottom: "0.15rem" }}>
                     {plan.name}
                   </h3>
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.78rem", color: C.textMuted }}>
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "clamp(0.7rem, 3vw, 0.78rem)", color: C.textMuted }}>
                     {plan.tagline}
                   </p>
                 </div>
               </div>
 
               <div style={{ marginBottom: "0.75rem" }}>
-                <span style={{ fontFamily: "'Sora', sans-serif", fontSize: "1.6rem", fontWeight: 700, color: C.textPrimary }}>
+                <span style={{ fontFamily: "'Sora', sans-serif", fontSize: "clamp(1.2rem, 4vw, 1.6rem)", fontWeight: 700, color: C.textPrimary }}>
                   {plan.price}
                 </span>
                 <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.78rem", color: C.textMuted, marginLeft: "0.3rem" }}>/ project</span>
@@ -1009,7 +997,7 @@ function Pricing() {
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                       <path d="M11 3L5 9L2 6" stroke={plan.color} strokeWidth="1.5" strokeLinecap="round" />
                     </svg>
-                    <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.85rem", color: C.textBody }}>{feature}</span>
+                    <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "clamp(0.75rem, 3vw, 0.85rem)", color: C.textBody }}>{feature}</span>
                   </div>
                 ))}
                 {plan.features.length > 4 && (
@@ -1029,7 +1017,8 @@ function Pricing() {
                       border: `1px solid ${plan.popular ? C.blue : C.border}`,
                       padding: "0.7rem", borderRadius: "8px",
                       color: "#fff", fontFamily: "'Inter', sans-serif",
-                      fontWeight: 600, fontSize: "0.875rem", cursor: "pointer",
+                      fontWeight: 600, fontSize: "clamp(0.8rem, 3vw, 0.875rem)", 
+                      cursor: "pointer",
                       transition: "background 0.2s",
                     }}
                   >
@@ -1038,9 +1027,8 @@ function Pricing() {
                 </Link>
               </div>
 
-              {/* FIX CV-04: Reassurance below CTA */}
               <p style={{
-                fontFamily: "'Inter', sans-serif", fontSize: "0.75rem",
+                fontFamily: "'Inter', sans-serif", fontSize: "clamp(0.7rem, 3vw, 0.75rem)",
                 color: C.textMuted, textAlign: "center", marginTop: "0.75rem",
               }}>
                 No commitment required. Free 30-min discovery call.
@@ -1055,9 +1043,11 @@ function Pricing() {
               whileHover={{ scale: 1.04, background: C.surfaceHover }}
               whileTap={{ scale: 0.98 }}
               style={{
-                background: "transparent", border: `1px solid ${C.border}`, padding: "0.8rem 2rem",
+                background: "transparent", border: `1px solid ${C.border}`, 
+                padding: "0.8rem 2rem",
                 borderRadius: "8px", color: C.textPrimary, fontFamily: "'Inter', sans-serif",
-                fontWeight: 600, fontSize: "0.9rem", cursor: "pointer", transition: "background 0.2s",
+                fontWeight: 600, fontSize: "clamp(0.8rem, 3vw, 0.9rem)", 
+                cursor: "pointer", transition: "background 0.2s",
               }}
             >
               View All Pricing Plans →
@@ -1069,7 +1059,7 @@ function Pricing() {
   );
 }
 
-// ─── BLOG SECTION ─────────────────────────────────────────────────────────────
+// ─── BLOG SECTION ──────────────────────────────────────────
 const BLOG_POSTS = [
   { id: 1, title: "The Future of Web Development in 2026", excerpt: "Explore emerging trends like AI-driven development, WebAssembly, and edge computing.", date: "Mar 15, 2026", readTime: "5 min read", category: "Trends", image: blogImg1 },
   { id: 2, title: "How to Choose the Right Tech Stack", excerpt: "A comprehensive guide to selecting the best technologies for your next project.", date: "Mar 10, 2026", readTime: "8 min read", category: "Development", image: blogImg2 },
@@ -1090,17 +1080,17 @@ function Blog() {
     <section id="blog" ref={ref} style={{ 
       position: "relative", 
       zIndex: 5, 
-      padding: "80px 2rem 100px", 
+      padding: "clamp(3rem, 8vw, 5rem) clamp(1rem, 5vw, 2rem) clamp(4rem, 10vw, 6.25rem)", 
       background: C.bg 
     }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-        <div style={{ textAlign: "center", marginBottom: "3rem" }}>
+        <div style={{ textAlign: "center", marginBottom: "clamp(2rem, 5vw, 3rem)" }}>
           <div style={{
             display: "inline-block", 
             background: "#1E3A5F", 
             borderRadius: 20,
             padding: "0.3rem 1rem", 
-            fontSize: "0.75rem", 
+            fontSize: "clamp(0.7rem, 3vw, 0.75rem)", 
             fontFamily: "'Inter', sans-serif",
             fontWeight: 500, 
             color: C.blueHover, 
@@ -1110,12 +1100,12 @@ function Blog() {
           }}>
             ✦ OUR BLOG
           </div>
-          <h2 style={{ fontFamily: "'Sora', sans-serif", fontSize: "clamp(1.8rem, 4vw, 2.5rem)", fontWeight: 700, color: C.textPrimary, lineHeight: 1.2 }}>
+          <h2 style={{ fontFamily: "'Sora', sans-serif", fontSize: "clamp(1.5rem, 5vw, 2.5rem)", fontWeight: 700, color: C.textPrimary, lineHeight: 1.2 }}>
             Latest Insights
           </h2>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "1.5rem" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem" }}>
           {BLOG_POSTS.map((post) => (
             <motion.article
               key={post.id}
@@ -1134,19 +1124,19 @@ function Blog() {
                 />
               </div>
               <div style={{ padding: "1.25rem 1.5rem" }}>
-                <div style={{ display: "flex", gap: "1rem", marginBottom: "0.6rem" }}>
-                  <span style={{ fontFamily: "'Inter', sans-serif", color: C.blueHover, fontSize: "0.75rem", textTransform: "uppercase", letterSpacing: "0.06em", fontWeight: 500 }}>{post.category}</span>
-                  <span style={{ fontFamily: "'Inter', sans-serif", color: C.textMuted, fontSize: "0.75rem" }}>{post.date}</span>
+                <div style={{ display: "flex", gap: "1rem", marginBottom: "0.6rem", flexWrap: "wrap" }}>
+                  <span style={{ fontFamily: "'Inter', sans-serif", color: C.blueHover, fontSize: "clamp(0.7rem, 3vw, 0.75rem)", textTransform: "uppercase", letterSpacing: "0.06em", fontWeight: 500 }}>{post.category}</span>
+                  <span style={{ fontFamily: "'Inter', sans-serif", color: C.textMuted, fontSize: "clamp(0.7rem, 3vw, 0.75rem)" }}>{post.date}</span>
                 </div>
-                <h3 style={{ fontFamily: "'Sora', sans-serif", fontSize: "1.05rem", fontWeight: 600, color: C.textPrimary, marginBottom: "0.5rem", lineHeight: 1.4 }}>
+                <h3 style={{ fontFamily: "'Sora', sans-serif", fontSize: "clamp(0.9rem, 3vw, 1.05rem)", fontWeight: 600, color: C.textPrimary, marginBottom: "0.5rem", lineHeight: 1.4 }}>
                   {post.title}
                 </h3>
-                <p style={{ fontFamily: "'Inter', sans-serif", color: C.textBody, fontSize: "0.875rem", lineHeight: 1.6, marginBottom: "1rem" }}>
+                <p style={{ fontFamily: "'Inter', sans-serif", color: C.textBody, fontSize: "clamp(0.8rem, 3vw, 0.875rem)", lineHeight: 1.6, marginBottom: "1rem" }}>
                   {post.excerpt}
                 </p>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                  <span style={{ fontFamily: "'Inter', sans-serif", color: C.textMuted, fontSize: "0.78rem" }}>⏱ {post.readTime}</span>
-                  <span style={{ fontFamily: "'Inter', sans-serif", color: C.blueHover, fontSize: "0.85rem", fontWeight: 500 }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "0.5rem" }}>
+                  <span style={{ fontFamily: "'Inter', sans-serif", color: C.textMuted, fontSize: "clamp(0.7rem, 3vw, 0.78rem)" }}>⏱ {post.readTime}</span>
+                  <span style={{ fontFamily: "'Inter', sans-serif", color: C.blueHover, fontSize: "clamp(0.75rem, 3vw, 0.85rem)", fontWeight: 500 }}>
                     Read more →
                   </span>
                 </div>
@@ -1161,9 +1151,11 @@ function Blog() {
               whileHover={{ scale: 1.04, background: C.surfaceHover }}
               whileTap={{ scale: 0.98 }}
               style={{
-                background: "transparent", border: `1px solid ${C.border}`, padding: "0.8rem 2rem",
+                background: "transparent", border: `1px solid ${C.border}`, 
+                padding: "0.8rem 2rem",
                 borderRadius: "8px", color: C.textPrimary, fontFamily: "'Inter', sans-serif",
-                fontWeight: 600, fontSize: "0.9rem", cursor: "pointer", transition: "background 0.2s",
+                fontWeight: 600, fontSize: "clamp(0.8rem, 3vw, 0.9rem)", 
+                cursor: "pointer", transition: "background 0.2s",
               }}
             >
               View All Articles →
@@ -1175,7 +1167,7 @@ function Blog() {
   );
 }
 
-// ─── CONTACT SECTION (Fixes #07, #08) ─────────────────────────────────────────
+// ─── CONTACT SECTION ──────────────────────────────────────────
 function Contact() {
   const [form, setForm] = useState({ name: "", email: "", budget: "", msg: "" });
   const ref = useRef();
@@ -1199,17 +1191,17 @@ function Contact() {
     <section id="contact" ref={ref} style={{ 
       position: "relative", 
       zIndex: 5, 
-      padding: "80px 2rem 100px", 
+      padding: "clamp(3rem, 8vw, 5rem) clamp(1rem, 5vw, 2rem) clamp(4rem, 10vw, 6.25rem)", 
       background: C.surface 
     }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-        <div style={{ textAlign: "center", marginBottom: "3rem" }}>
+        <div style={{ textAlign: "center", marginBottom: "clamp(2rem, 5vw, 3rem)" }}>
           <div style={{
             display: "inline-block", 
             background: "#1E3A5F", 
             borderRadius: 20,
             padding: "0.3rem 1rem", 
-            fontSize: "0.75rem", 
+            fontSize: "clamp(0.7rem, 3vw, 0.75rem)", 
             fontFamily: "'Inter', sans-serif",
             fontWeight: 500, 
             color: C.blueHover, 
@@ -1219,19 +1211,22 @@ function Contact() {
           }}>
             ✦ GET IN TOUCH
           </div>
-          {/* FIX #07: Specific, promise-driven headline */}
           <h2 style={{
-            fontFamily: "'Sora', sans-serif", fontSize: "clamp(1.8rem, 4vw, 2.5rem)",
-            fontWeight: 700, color: C.textPrimary, lineHeight: 1.2, marginBottom: "0.75rem",
+            fontFamily: "'Sora', sans-serif", 
+            fontSize: "clamp(1.5rem, 5vw, 2.5rem)",
+            fontWeight: 700, 
+            color: C.textPrimary, 
+            lineHeight: 1.2, 
+            marginBottom: "0.75rem",
           }}>
             Tell Us About Your Project
           </h2>
-          <p style={{ fontFamily: "'Inter', sans-serif", color: C.textBody, fontSize: "1rem" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", color: C.textBody, fontSize: "clamp(0.875rem, 3vw, 1rem)" }}>
             We respond within 4 hours — guaranteed.
           </p>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: "3rem", maxWidth: 1000, margin: "0 auto" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "3rem", maxWidth: 1000, margin: "0 auto" }}>
           <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
             {infos.map((info) => (
               <motion.div
@@ -1243,21 +1238,21 @@ function Contact() {
                   background: C.bg, border: `1px solid ${C.border}`,
                   borderRadius: 10, padding: "1rem 1.25rem",
                   opacity: 0, cursor: "default", transition: "border-color 0.2s",
+                  flexWrap: "wrap",
                 }}
               >
                 <span style={{ fontSize: "1.4rem" }}>{info.icon}</span>
                 <div>
-                  <div style={{ fontFamily: "'Inter', sans-serif", color: C.blueHover, fontSize: "0.75rem", textTransform: "uppercase", fontWeight: 600, letterSpacing: "0.04em" }}>
+                  <div style={{ fontFamily: "'Inter', sans-serif", color: C.blueHover, fontSize: "clamp(0.7rem, 3vw, 0.75rem)", textTransform: "uppercase", fontWeight: 600, letterSpacing: "0.04em" }}>
                     {info.label}
                   </div>
-                  <div style={{ fontFamily: "'Inter', sans-serif", color: C.textBody, fontSize: "0.875rem", marginTop: 2 }}>
+                  <div style={{ fontFamily: "'Inter', sans-serif", color: C.textBody, fontSize: "clamp(0.8rem, 3vw, 0.875rem)", marginTop: 2 }}>
                     {info.val}
                   </div>
                 </div>
               </motion.div>
             ))}
 
-            {/* WhatsApp option (Audit CV-06) */}
             <div style={{
               background: C.bg, border: `1px solid ${C.border}`,
               borderRadius: 10, padding: "1rem 1.25rem",
@@ -1274,7 +1269,7 @@ function Contact() {
                   display: "inline-flex", alignItems: "center", gap: "0.5rem",
                   background: "#25D366", color: "#fff", padding: "0.55rem 1.1rem",
                   borderRadius: "8px", textDecoration: "none",
-                  fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.85rem",
+                  fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "clamp(0.8rem, 3vw, 0.85rem)",
                 }}
               >
                 💬 Message on WhatsApp
@@ -1284,28 +1279,36 @@ function Contact() {
 
           <div style={{
             background: C.bg, border: `1px solid ${C.border}`,
-            borderRadius: 14, padding: "2rem",
+            borderRadius: 14, padding: "clamp(1.5rem, 5vw, 2rem)",
           }}>
-            {[
-              { k: "name", ph: "Your Name", type: "text" },
-              { k: "email", ph: "Your Email", type: "email" },
-            ].map(({ k, ph, type }) => (
-              <input
-                key={k} type={type} placeholder={ph}
-                value={form[k]} onChange={(e) => setForm((f) => ({ ...f, [k]: e.target.value }))}
-                style={{
-                  width: "100%", background: C.surface, border: `1px solid ${C.border}`,
-                  borderRadius: "8px", padding: "0.85rem 1.1rem",
-                  color: C.textPrimary, fontFamily: "'Inter', sans-serif",
-                  fontSize: "0.95rem", marginBottom: "1rem", outline: "none",
-                  boxSizing: "border-box", transition: "border-color 0.2s",
-                }}
-                onFocus={(e) => (e.target.style.borderColor = C.blue)}
-                onBlur={(e) => (e.target.style.borderColor = C.border)}
-              />
-            ))}
+            <input
+              type="text" placeholder="Your Name"
+              value={form.name} onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
+              style={{
+                width: "100%", background: C.surface, border: `1px solid ${C.border}`,
+                borderRadius: "8px", padding: "0.85rem 1.1rem",
+                color: C.textPrimary, fontFamily: "'Inter', sans-serif",
+                fontSize: "clamp(0.85rem, 3vw, 0.95rem)", marginBottom: "1rem", outline: "none",
+                boxSizing: "border-box", transition: "border-color 0.2s",
+              }}
+              onFocus={(e) => (e.target.style.borderColor = C.blue)}
+              onBlur={(e) => (e.target.style.borderColor = C.border)}
+            />
 
-            {/* FIX #08: Budget field — optional, friendly label */}
+            <input
+              type="email" placeholder="Your Email"
+              value={form.email} onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
+              style={{
+                width: "100%", background: C.surface, border: `1px solid ${C.border}`,
+                borderRadius: "8px", padding: "0.85rem 1.1rem",
+                color: C.textPrimary, fontFamily: "'Inter', sans-serif",
+                fontSize: "clamp(0.85rem, 3vw, 0.95rem)", marginBottom: "1rem", outline: "none",
+                boxSizing: "border-box", transition: "border-color 0.2s",
+              }}
+              onFocus={(e) => (e.target.style.borderColor = C.blue)}
+              onBlur={(e) => (e.target.style.borderColor = C.border)}
+            />
+
             <div style={{ position: "relative", marginBottom: "1rem" }}>
               <input
                 type="text"
@@ -1316,13 +1319,13 @@ function Contact() {
                   width: "100%", background: C.surface, border: `1px solid ${C.border}`,
                   borderRadius: "8px", padding: "0.85rem 1.1rem",
                   color: C.textPrimary, fontFamily: "'Inter', sans-serif",
-                  fontSize: "0.95rem", outline: "none",
+                  fontSize: "clamp(0.85rem, 3vw, 0.95rem)", outline: "none",
                   boxSizing: "border-box", transition: "border-color 0.2s",
                 }}
                 onFocus={(e) => (e.target.style.borderColor = C.blue)}
                 onBlur={(e) => (e.target.style.borderColor = C.border)}
               />
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", color: C.textMuted, marginTop: "0.3rem" }}>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "clamp(0.7rem, 3vw, 0.75rem)", color: C.textMuted, marginTop: "0.3rem" }}>
                 Not sure yet? No worries — just describe your project and we'll guide you.
               </p>
             </div>
@@ -1334,7 +1337,7 @@ function Contact() {
                 width: "100%", background: C.surface, border: `1px solid ${C.border}`,
                 borderRadius: "8px", padding: "0.85rem 1.1rem",
                 color: C.textPrimary, fontFamily: "'Inter', sans-serif",
-                fontSize: "0.95rem", marginBottom: "1.25rem", outline: "none",
+                fontSize: "clamp(0.85rem, 3vw, 0.95rem)", marginBottom: "1.25rem", outline: "none",
                 resize: "vertical", boxSizing: "border-box", transition: "border-color 0.2s",
               }}
               onFocus={(e) => (e.target.style.borderColor = C.blue)}
@@ -1348,15 +1351,14 @@ function Contact() {
                 width: "100%", background: C.blue, border: "none",
                 padding: "1rem", borderRadius: "8px", color: "#fff",
                 fontFamily: "'Inter', sans-serif", fontWeight: 700,
-                fontSize: "0.95rem", cursor: "pointer", transition: "background 0.2s",
+                fontSize: "clamp(0.85rem, 3vw, 0.95rem)", cursor: "pointer", transition: "background 0.2s",
               }}
             >
               Send Message →
             </motion.button>
 
-            {/* Form reassurance (Audit Doc4 #04) */}
             <p style={{
-              fontFamily: "'Inter', sans-serif", fontSize: "0.78rem",
+              fontFamily: "'Inter', sans-serif", fontSize: "clamp(0.7rem, 3vw, 0.78rem)",
               color: C.textMuted, textAlign: "center", marginTop: "0.75rem",
             }}>
               Takes less than 2 minutes. No spam. We respond within 4 hours.
@@ -1368,7 +1370,7 @@ function Contact() {
   );
 }
 
-// ─── MAIN HOME COMPONENT ──────────────────────────────────────────────────────
+// ─── MAIN HOME COMPONENT ──────────────────────────────────────────
 export default function Home() {
   return (
     <>

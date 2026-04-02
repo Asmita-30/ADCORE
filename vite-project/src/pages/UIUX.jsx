@@ -116,10 +116,146 @@ function UIUX() {
     }
   };
 
+  // Responsive styles
+  const responsiveStyles = `
+    @media (max-width: 1024px) {
+      .hero-padding {
+        padding: 100px 1.5rem 50px !important;
+      }
+      .section-padding {
+        padding: 50px 1.5rem !important;
+      }
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1.5rem !important;
+      }
+      .deliverables-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1.2rem !important;
+      }
+      .process-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1.5rem !important;
+      }
+      .hero-title {
+        font-size: clamp(2rem, 4vw, 2.5rem) !important;
+      }
+      .hero-subtitle {
+        font-size: 1rem !important;
+      }
+      .section-title {
+        font-size: 1.8rem !important;
+      }
+      .pricing-card {
+        padding: 1.5rem !important;
+        margin: 0 1rem !important;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero-padding {
+        padding: 80px 1rem 40px !important;
+      }
+      .section-padding {
+        padding: 40px 1rem !important;
+      }
+      .features-grid, .deliverables-grid, .process-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+      }
+      .hero-title {
+        font-size: clamp(1.5rem, 5vw, 1.8rem) !important;
+      }
+      .hero-subtitle {
+        font-size: 0.9rem !important;
+      }
+      .section-title {
+        font-size: 1.4rem !important;
+      }
+      .hero-buttons {
+        flex-direction: column !important;
+        width: 100% !important;
+      }
+      .hero-buttons button {
+        width: 100% !important;
+      }
+      .feature-card, .deliverable-card, .process-card {
+        padding: 1.2rem !important;
+      }
+      .feature-icon, .deliverable-icon {
+        font-size: 2rem !important;
+      }
+      .feature-title, .deliverable-title, .process-title {
+        font-size: 1rem !important;
+      }
+      .pricing-features {
+        flex-wrap: wrap !important;
+        gap: 0.5rem !important;
+      }
+      .pricing-features > div {
+        font-size: 0.7rem !important;
+        padding: 0.2rem 0.6rem !important;
+      }
+      .faq-question {
+        font-size: 0.9rem !important;
+        padding: 1rem !important;
+      }
+      .faq-answer {
+        padding: 0 1rem 1rem 1rem !important;
+        font-size: 0.85rem !important;
+      }
+      .cta-title {
+        font-size: 1.5rem !important;
+      }
+      .cta-buttons {
+        flex-direction: column !important;
+        gap: 0.8rem !important;
+      }
+      .cta-buttons button {
+        width: 100% !important;
+        padding: 0.8rem 1.5rem !important;
+      }
+      .hero-badge {
+        font-size: 0.7rem !important;
+      }
+      .process-step-number {
+        width: 45px !important;
+        height: 45px !important;
+        font-size: 1.2rem !important;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .hero-padding {
+        padding: 70px 0.8rem 35px !important;
+      }
+      .section-padding {
+        padding: 30px 0.8rem !important;
+      }
+      .hero-title {
+        font-size: 1.4rem !important;
+      }
+      .hero-subtitle {
+        font-size: 0.85rem !important;
+      }
+      .section-title {
+        font-size: 1.2rem !important;
+      }
+      .feature-card, .deliverable-card, .process-card {
+        padding: 1rem !important;
+      }
+      .pricing-card {
+        padding: 1.2rem !important;
+      }
+    }
+  `;
+
   return (
     <>
+      <style>{responsiveStyles}</style>
+      
       {/* Hero Section with Background Image */}
-      <section ref={heroRef} style={{ 
+      <section ref={heroRef} className="hero-padding" style={{ 
         minHeight: "60vh", 
         display: "flex", 
         alignItems: "center", 
@@ -149,6 +285,7 @@ function UIUX() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
+              className="hero-badge"
               style={{ 
                 fontFamily: "'Inter', sans-serif", 
                 fontSize: "0.75rem", 
@@ -169,6 +306,7 @@ function UIUX() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
+              className="hero-title"
               style={{ 
                 fontFamily: "'Sora', sans-serif", 
                 fontSize: "clamp(2.5rem, 5vw, 4rem)", 
@@ -184,6 +322,7 @@ function UIUX() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
+              className="hero-subtitle"
               style={{ 
                 fontSize: "1.125rem", 
                 color: C.textLead, 
@@ -200,6 +339,7 @@ function UIUX() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
+              className="hero-buttons"
               style={{ marginTop: "2rem", display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}
             >
               {/* Service-specific CTA */}
@@ -253,7 +393,7 @@ function UIUX() {
       </section>
 
       {/* Features Section */}
-      <section style={{ padding: "80px 2rem", position: "relative", zIndex: 2, background: C.surface }}>
+      <section className="section-padding" style={{ padding: "80px 2rem", position: "relative", zIndex: 2, background: C.surface }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -277,7 +417,7 @@ function UIUX() {
             }}>
               ✦ OUR APPROACH
             </div>
-            <h2 style={{ fontFamily: "'Sora', sans-serif", fontSize: "2rem", fontWeight: 700, marginBottom: "1rem", color: C.textPrimary }}>
+            <h2 className="section-title" style={{ fontFamily: "'Sora', sans-serif", fontSize: "2rem", fontWeight: 700, marginBottom: "1rem", color: C.textPrimary }}>
               Human-Centered <span style={{ color: C.blue }}>Design</span>
             </h2>
             <p style={{ color: C.textBody, maxWidth: 600, margin: "0 auto" }}>
@@ -285,7 +425,7 @@ function UIUX() {
             </p>
           </motion.div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))", gap: "2rem" }}>
+          <div className="features-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))", gap: "2rem" }}>
             {features.map((feature, index) => (
               <motion.div
                 key={feature.title}
@@ -293,6 +433,7 @@ function UIUX() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
+                className="feature-card"
                 style={{
                   background: C.bg,
                   border: `1px solid ${C.border}`,
@@ -302,8 +443,8 @@ function UIUX() {
                 }}
                 whileHover={{ borderColor: C.blue, y: -5 }}
               >
-                <div style={{ fontSize: "2.5rem", marginBottom: "1rem" }}>{feature.icon}</div>
-                <h3 style={{ fontFamily: "'Sora', sans-serif", fontSize: "1.2rem", fontWeight: 600, marginBottom: "0.5rem", color: C.textPrimary }}>{feature.title}</h3>
+                <div className="feature-icon" style={{ fontSize: "2.5rem", marginBottom: "1rem" }}>{feature.icon}</div>
+                <h3 className="feature-title" style={{ fontFamily: "'Sora', sans-serif", fontSize: "1.2rem", fontWeight: 600, marginBottom: "0.5rem", color: C.textPrimary }}>{feature.title}</h3>
                 <p style={{ color: C.textBody, fontSize: "0.9rem", lineHeight: 1.6 }}>{feature.desc}</p>
               </motion.div>
             ))}
@@ -312,7 +453,7 @@ function UIUX() {
       </section>
 
       {/* Deliverables Section */}
-      <section style={{ padding: "60px 2rem", position: "relative", zIndex: 2, background: C.bg }}>
+      <section className="section-padding" style={{ padding: "60px 2rem", position: "relative", zIndex: 2, background: C.bg }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -336,12 +477,12 @@ function UIUX() {
             }}>
               ✦ WHAT YOU GET
             </div>
-            <h2 style={{ fontFamily: "'Sora', sans-serif", fontSize: "1.8rem", fontWeight: 700, marginBottom: "1rem", color: C.textPrimary }}>
+            <h2 className="section-title" style={{ fontFamily: "'Sora', sans-serif", fontSize: "1.8rem", fontWeight: 700, marginBottom: "1rem", color: C.textPrimary }}>
               Design <span style={{ color: C.blue }}>Deliverables</span>
             </h2>
           </motion.div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem" }}>
+          <div className="deliverables-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem" }}>
             {deliverables.map((item, index) => (
               <motion.div
                 key={item.name}
@@ -349,6 +490,7 @@ function UIUX() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05, duration: 0.3 }}
+                className="deliverable-card"
                 style={{
                   background: C.surface,
                   border: `1px solid ${C.border}`,
@@ -358,8 +500,8 @@ function UIUX() {
                 }}
                 whileHover={{ borderColor: C.blue, y: -5 }}
               >
-                <div style={{ fontSize: "2rem", marginBottom: "0.5rem" }}>{item.icon}</div>
-                <h3 style={{ fontFamily: "'Sora', sans-serif", fontSize: "1rem", fontWeight: 600, marginBottom: "0.3rem", color: C.textPrimary }}>{item.name}</h3>
+                <div className="deliverable-icon" style={{ fontSize: "2rem", marginBottom: "0.5rem" }}>{item.icon}</div>
+                <h3 className="deliverable-title" style={{ fontFamily: "'Sora', sans-serif", fontSize: "1rem", fontWeight: 600, marginBottom: "0.3rem", color: C.textPrimary }}>{item.name}</h3>
                 <p style={{ color: C.textBody, fontSize: "0.8rem" }}>{item.desc}</p>
               </motion.div>
             ))}
@@ -368,7 +510,7 @@ function UIUX() {
       </section>
 
       {/* Process Section - Simplified to 4 steps */}
-      <section style={{ padding: "80px 2rem", position: "relative", zIndex: 2, background: C.surface }}>
+      <section className="section-padding" style={{ padding: "80px 2rem", position: "relative", zIndex: 2, background: C.surface }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -392,12 +534,12 @@ function UIUX() {
             }}>
               ✦ OUR PROCESS
             </div>
-            <h2 style={{ fontFamily: "'Sora', sans-serif", fontSize: "1.8rem", fontWeight: 700, marginBottom: "1rem", color: C.textPrimary }}>
+            <h2 className="section-title" style={{ fontFamily: "'Sora', sans-serif", fontSize: "1.8rem", fontWeight: 700, marginBottom: "1rem", color: C.textPrimary }}>
               How We Bring <span style={{ color: C.blue }}>Your Vision</span> to Life
             </h2>
           </motion.div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "2rem" }}>
+          <div className="process-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "2rem" }}>
             {processSteps.map((step, index) => (
               <motion.div
                 key={step.step}
@@ -405,6 +547,7 @@ function UIUX() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
+                className="process-card"
                 style={{
                   background: C.bg,
                   border: `1px solid ${C.border}`,
@@ -413,7 +556,7 @@ function UIUX() {
                   textAlign: "center"
                 }}
               >
-                <div style={{
+                <div className="process-step-number" style={{
                   width: 60,
                   height: 60,
                   background: C.blue,
@@ -428,7 +571,7 @@ function UIUX() {
                 }}>
                   {step.step}
                 </div>
-                <h3 style={{ fontFamily: "'Sora', sans-serif", fontSize: "1.1rem", fontWeight: 600, marginBottom: "0.5rem", color: C.textPrimary }}>{step.title}</h3>
+                <h3 className="process-title" style={{ fontFamily: "'Sora', sans-serif", fontSize: "1.1rem", fontWeight: 600, marginBottom: "0.5rem", color: C.textPrimary }}>{step.title}</h3>
                 <p style={{ color: C.textBody, fontSize: "0.85rem", lineHeight: 1.6 }}>{step.desc}</p>
               </motion.div>
             ))}
@@ -437,13 +580,14 @@ function UIUX() {
       </section>
 
       {/* C-15: Condensed Pricing Preview on Service Page */}
-      <section style={{ padding: "60px 2rem", position: "relative", zIndex: 2, background: C.bg }}>
+      <section className="section-padding" style={{ padding: "60px 2rem", position: "relative", zIndex: 2, background: C.bg }}>
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            className="pricing-card"
             style={{
               background: C.surface,
               border: `1px solid ${C.border}`,
@@ -453,12 +597,9 @@ function UIUX() {
             }}
           >
             <div style={{ fontSize: "2rem", marginBottom: "0.5rem" }}>🎨</div>
-            {/* <h3 style={{ fontFamily: "'Sora', sans-serif", fontSize: "1.5rem", fontWeight: 700, color: C.textPrimary, marginBottom: "0.5rem" }}>
-              Starting from <span style={{ color: C.blue }}>{pricingPreview.startingPrice}</span>
-            </h3> */}
             <p style={{ color: C.textBody, marginBottom: "1.5rem" }}>{pricingPreview.description}</p>
             
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", justifyContent: "center", marginBottom: "1.5rem" }}>
+            <div className="pricing-features" style={{ display: "flex", flexWrap: "wrap", gap: "1rem", justifyContent: "center", marginBottom: "1.5rem" }}>
               {pricingPreview.features.map((feature, i) => (
                 <div key={i} style={{ display: "flex", alignItems: "center", gap: "0.3rem", background: C.bg, padding: "0.3rem 0.8rem", borderRadius: 20 }}>
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -469,7 +610,7 @@ function UIUX() {
               ))}
             </div>
             
-            <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
+            <div className="cta-buttons" style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
               <Link to="/pricing">
                 <motion.button
                   whileHover={{ scale: 1.02, background: C.blueHover }}
@@ -513,7 +654,7 @@ function UIUX() {
       </section>
 
       {/* FAQ Section - Accordion style */}
-      <section style={{ padding: "60px 2rem", position: "relative", zIndex: 2, background: C.surface }}>
+      <section className="section-padding" style={{ padding: "60px 2rem", position: "relative", zIndex: 2, background: C.surface }}>
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -537,7 +678,7 @@ function UIUX() {
             }}>
               ✦ FAQ
             </div>
-            <h2 style={{ fontFamily: "'Sora', sans-serif", fontSize: "1.8rem", fontWeight: 700, color: C.textPrimary }}>
+            <h2 className="section-title" style={{ fontFamily: "'Sora', sans-serif", fontSize: "1.8rem", fontWeight: 700, color: C.textPrimary }}>
               Frequently Asked <span style={{ color: C.blue }}>Questions</span>
             </h2>
           </motion.div>
@@ -560,6 +701,7 @@ function UIUX() {
               >
                 <button
                   onClick={() => toggleFaq(i)}
+                  className="faq-question"
                   style={{
                     width: "100%",
                     display: "flex",
@@ -580,7 +722,7 @@ function UIUX() {
                   </span>
                 </button>
                 {activeFaq === i && (
-                  <div style={{ padding: "0 1.5rem 1.25rem 1.5rem" }}>
+                  <div className="faq-answer" style={{ padding: "0 1.5rem 1.25rem 1.5rem" }}>
                     <p style={{ fontSize: "0.9rem", color: C.textBody, lineHeight: 1.6, margin: 0 }}>
                       {faq.answer}
                     </p>
@@ -593,7 +735,7 @@ function UIUX() {
       </section>
 
       {/* CTA Section */}
-      <section style={{ padding: "80px 2rem", position: "relative", zIndex: 2, background: C.bg }}>
+      <section className="section-padding" style={{ padding: "80px 2rem", position: "relative", zIndex: 2, background: C.bg }}>
         <div style={{ maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -602,13 +744,13 @@ function UIUX() {
             transition={{ duration: 0.6 }}
           >
             <div style={{ fontSize: "3rem", marginBottom: "1rem" }}>🎨</div>
-            <h2 style={{ fontFamily: "'Sora', sans-serif", fontSize: "2rem", fontWeight: 700, marginBottom: "1rem", color: C.textPrimary }}>
+            <h2 className="cta-title" style={{ fontFamily: "'Sora', sans-serif", fontSize: "2rem", fontWeight: 700, marginBottom: "1rem", color: C.textPrimary }}>
               Ready to Create <span style={{ color: C.blue }}>Beautiful Experiences</span>?
             </h2>
             <p style={{ color: C.textBody, marginBottom: "2rem", fontSize: "1rem" }}>
               Let's bring your vision to life with stunning, user-centered design.
             </p>
-            <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
+            <div className="cta-buttons" style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
               <motion.button
                 whileHover={{ scale: 1.05, background: C.blueHover }}
                 whileTap={{ scale: 0.95 }}

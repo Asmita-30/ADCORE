@@ -134,168 +134,350 @@ function MobileAppDevelopment() {
           transform: translateY(-4px);
           border-color: ${COLORS.primaryAccent};
         }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+          .features-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .app-types-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+          .process-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .tech-stack-grid {
+            gap: 0.5rem !important;
+          }
+          .hero-padding {
+            padding: 100px 1rem 60px !important;
+          }
+          .section-padding {
+            padding: 60px 1rem !important;
+          }
+          .cta-buttons {
+            flex-direction: column !important;
+            align-items: center !important;
+          }
+          .cta-buttons button {
+            width: 100% !important;
+            max-width: 280px !important;
+          }
+        }
+        
+        @media (max-width: 640px) {
+          .app-types-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .features-grid {
+            gap: 1rem !important;
+          }
+          .feature-item {
+            padding: 1rem !important;
+          }
+          .process-step {
+            padding: 1.25rem !important;
+          }
+          .tech-card {
+            padding: 0.4rem 1rem !important;
+            font-size: 0.75rem !important;
+          }
+          .hero-title {
+            font-size: 1.8rem !important;
+          }
+          .hero-subtitle {
+            font-size: 0.9rem !important;
+          }
+        }
+        
+        @media (min-width: 641px) and (max-width: 768px) {
+          .app-types-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+          .features-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+          .process-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+          .hero-padding {
+            padding: 110px 1.5rem 70px !important;
+          }
+        }
+        
+        @media (min-width: 769px) and (max-width: 1024px) {
+          .features-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+          .app-types-grid {
+            grid-template-columns: repeat(3, 1fr) !important;
+          }
+          .process-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+          .hero-padding {
+            padding: 120px 2rem 80px !important;
+          }
+        }
+        
+        @media (min-width: 1025px) {
+          .features-grid {
+            grid-template-columns: repeat(3, 1fr) !important;
+          }
+          .app-types-grid {
+            grid-template-columns: repeat(4, 1fr) !important;
+          }
+          .process-grid {
+            grid-template-columns: repeat(3, 1fr) !important;
+          }
+        }
+        
+        ::-webkit-scrollbar {
+          width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+          background: ${COLORS.primaryBg};
+        }
+        
+        ::-webkit-scrollbar-thumb {
+          background: ${COLORS.primaryAccent};
+          border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+          background: ${COLORS.accentHover};
+        }
       `}</style>
 
       {/* Hero Section - Service-specific styling */}
-     <section ref={heroRef} style={{ 
-  minHeight: "60vh", 
-  display: "flex", 
-  alignItems: "center", 
-  justifyContent: "center",
-  position: "relative",
-  padding: "120px 2rem 60px",
-  background: `linear-gradient(rgba(10, 15, 30, 0.78), rgba(10, 15, 30, 0.85)), url(${mobileAppHeroBg})`,
-  backgroundSize: "cover",
-  backgroundPosition: "center",
-  backgroundAttachment: "fixed",
-  overflow: "hidden"
-}}>
-  {/* Service-specific gradient background */}
-  <div style={{
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundImage: serviceGradient.mobileapp,
-    pointerEvents: "none",
-    opacity: 0.6
-  }} />
-  
-  {/* Optional: Add a radial gradient for better text readability */}
-  <div style={{
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    background: "radial-gradient(ellipse 70% 40% at 50% 30%, rgba(6,182,212,0.08) 0%, transparent 70%)",
-    pointerEvents: "none"
-  }} />
-  
-  <motion.div style={{ opacity, scale }} className="hero-animate">
-    <div style={{ textAlign: "center", maxWidth: 900, margin: "0 auto", position: "relative", zIndex: 2 }}>
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }}
-        style={{ 
-          fontFamily: "'Inter', sans-serif", 
-          fontSize: "0.75rem", 
-          letterSpacing: "0.2em", 
-          color: COLORS.primaryAccent, 
-          marginBottom: "1rem",
-          textTransform: "uppercase",
-          display: "inline-block",
-          background: "rgba(30, 58, 95, 0.7)",
-          backdropFilter: "blur(8px)",
-          padding: "0.3rem 1rem",
-          borderRadius: "20px"
-        }}
-      >
-        Mobile Development
-      </motion.div>
-      <motion.h1 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4 }}
-        style={{ 
-          fontFamily: "'Sora', sans-serif", 
-          fontSize: "clamp(2.5rem, 5vw, 4rem)", 
-          fontWeight: 700, 
-          marginBottom: "1.5rem", 
-          color: COLORS.primaryText,
-          lineHeight: "1.2"
-        }}
-      >
-        Mobile App <span style={{ color: COLORS.primaryAccent }}>Development</span>
-      </motion.h1>
-      <motion.p 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6 }}
-        style={{ 
-          fontSize: "1.125rem", 
-          color: COLORS.bodyText, 
-          lineHeight: 1.6, 
-          maxWidth: 700, 
-          margin: "0 auto",
-          fontFamily: "'Inter', sans-serif"
-        }}
-      >
-        Create powerful mobile experiences that engage users and drive business growth. 
-        iOS, Android, and cross-platform solutions tailored to your needs.
-      </motion.p>
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.8 }}
-        style={{ marginTop: "2rem", display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}
-      >
-        {/* Service-specific CTA button */}
-        <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          onClick={scrollToContact}
-          style={{
-            background: COLORS.primaryAccent,
-            border: "none",
-            padding: "0.9rem 2rem",
-            borderRadius: 50,
-            color: "#fff",
-            fontFamily: "'Inter', sans-serif",
-            fontWeight: 600,
-            fontSize: "0.9rem",
-            cursor: "pointer"
-          }}
-          onMouseEnter={(e) => e.target.style.background = COLORS.accentHover}
-          onMouseLeave={(e) => e.target.style.background = COLORS.primaryAccent}
-        >
-          Plan Your Mobile App →
-        </motion.button>
-        <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          onClick={handleWhatsApp}
-          style={{
-            background: "transparent",
-            border: `1px solid ${COLORS.borderDefault}`,
-            padding: "0.9rem 2rem",
-            borderRadius: 50,
-            color: COLORS.primaryText,
-            fontFamily: "'Inter', sans-serif",
-            fontWeight: 500,
-            fontSize: "0.9rem",
-            cursor: "pointer"
-          }}
-          onMouseEnter={(e) => {
-            e.target.style.borderColor = COLORS.primaryAccent;
-            e.target.style.color = COLORS.primaryAccent;
-          }}
-          onMouseLeave={(e) => {
-            e.target.style.borderColor = COLORS.borderDefault;
-            e.target.style.color = COLORS.primaryText;
-          }}
-        >
-          Chat on WhatsApp 💬
-        </motion.button>
-      </motion.div>
-    </div>
-  </motion.div>
-</section>
-      {/* App Types Section */}
-      <section style={{ padding: "60px 2rem", background: COLORS.cardBg, position: "relative", zIndex: 2 }}>
+      <section ref={heroRef} className="hero-padding" style={{ 
+        minHeight: "60vh", 
+        display: "flex", 
+        alignItems: "center", 
+        justifyContent: "center",
+        position: "relative",
+        padding: "120px 2rem 60px",
+        background: `linear-gradient(rgba(10, 15, 30, 0.78), rgba(10, 15, 30, 0.85)), url(${mobileAppHeroBg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+        overflow: "hidden"
+      }}>
+        <div style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundImage: serviceGradient.mobileapp,
+          pointerEvents: "none",
+          opacity: 0.6
+        }} />
+        
+        <div style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: "radial-gradient(ellipse 70% 40% at 50% 30%, rgba(6,182,212,0.08) 0%, transparent 70%)",
+          pointerEvents: "none"
+        }} />
+        
+        <motion.div style={{ opacity, scale }} className="hero-animate">
+          <div style={{ textAlign: "center", maxWidth: 900, margin: "0 auto", position: "relative", zIndex: 2, padding: "0 1rem" }}>
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              style={{ 
+                fontFamily: "'Inter', sans-serif", 
+                fontSize: "clamp(0.7rem, 3vw, 0.75rem)", 
+                letterSpacing: "0.2em", 
+                color: COLORS.primaryAccent, 
+                marginBottom: "1rem",
+                textTransform: "uppercase",
+                display: "inline-block",
+                background: "rgba(30, 58, 95, 0.7)",
+                backdropFilter: "blur(8px)",
+                padding: "0.3rem 1rem",
+                borderRadius: "20px"
+              }}
+            >
+              Mobile Development
+            </motion.div>
+            <motion.h1 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="hero-title"
+              style={{ 
+                fontFamily: "'Sora', sans-serif", 
+                fontSize: "clamp(2rem, 5vw, 4rem)", 
+                fontWeight: 700, 
+                marginBottom: "1.5rem", 
+                color: COLORS.primaryText,
+                lineHeight: "1.2"
+              }}
+            >
+              Mobile App <span style={{ color: COLORS.primaryAccent }}>Development</span>
+            </motion.h1>
+            <motion.p 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              className="hero-subtitle"
+              style={{ 
+                fontSize: "clamp(0.9rem, 4vw, 1.125rem)", 
+                color: COLORS.bodyText, 
+                lineHeight: 1.6, 
+                maxWidth: 700, 
+                margin: "0 auto",
+                fontFamily: "'Inter', sans-serif"
+              }}
+            >
+              Create powerful mobile experiences that engage users and drive business growth. 
+              iOS, Android, and cross-platform solutions tailored to your needs.
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8 }}
+              className="cta-buttons"
+              style={{ marginTop: "2rem", display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}
+            >
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={scrollToContact}
+                style={{
+                  background: COLORS.primaryAccent,
+                  border: "none",
+                  padding: "clamp(0.7rem, 2vw, 0.9rem) clamp(1.5rem, 4vw, 2rem)",
+                  borderRadius: 50,
+                  color: "#fff",
+                  fontFamily: "'Inter', sans-serif",
+                  fontWeight: 600,
+                  fontSize: "clamp(0.8rem, 3vw, 0.9rem)",
+                  cursor: "pointer"
+                }}
+                onMouseEnter={(e) => e.target.style.background = COLORS.accentHover}
+                onMouseLeave={(e) => e.target.style.background = COLORS.primaryAccent}
+              >
+                Plan Your Mobile App →
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={handleWhatsApp}
+                style={{
+                  background: "transparent",
+                  border: `1px solid ${COLORS.borderDefault}`,
+                  padding: "clamp(0.7rem, 2vw, 0.9rem) clamp(1.5rem, 4vw, 2rem)",
+                  borderRadius: 50,
+                  color: COLORS.primaryText,
+                  fontFamily: "'Inter', sans-serif",
+                  fontWeight: 500,
+                  fontSize: "clamp(0.8rem, 3vw, 0.9rem)",
+                  cursor: "pointer"
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.borderColor = COLORS.primaryAccent;
+                  e.target.style.color = COLORS.primaryAccent;
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.borderColor = COLORS.borderDefault;
+                  e.target.style.color = COLORS.primaryText;
+                }}
+              >
+                Chat on WhatsApp 💬
+              </motion.button>
+            </motion.div>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Features Section */}
+      <section className="section-padding" style={{ padding: "80px 2rem", position: "relative", zIndex: 2, background: COLORS.primaryBg }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            style={{ textAlign: "center", marginBottom: "3rem" }}
+            style={{ textAlign: "center", marginBottom: "clamp(2rem, 5vw, 3rem)" }}
           >
             <div style={{ 
               fontFamily: "'Inter', sans-serif", 
-              fontSize: "0.7rem", 
+              fontSize: "clamp(0.65rem, 3vw, 0.7rem)", 
+              letterSpacing: "0.2em", 
+              color: COLORS.primaryAccent, 
+              marginBottom: "1rem",
+              textTransform: "uppercase"
+            }}>
+              Why Choose Us
+            </div>
+            <h2 style={{ 
+              fontFamily: "'Sora', sans-serif", 
+              fontSize: "clamp(1.5rem, 5vw, 2rem)", 
+              fontWeight: 700, 
+              marginBottom: "1rem", 
+              color: COLORS.primaryText 
+            }}>
+              What Makes Our <span style={{ color: COLORS.primaryAccent }}>Mobile Apps</span> Stand Out
+            </h2>
+            <p style={{ color: COLORS.bodyText, maxWidth: 600, margin: "0 auto", fontFamily: "'Inter', sans-serif", fontSize: "clamp(0.875rem, 3vw, 1rem)" }}>
+              We build apps that users love and businesses trust.
+            </p>
+          </motion.div>
+
+          <div className="features-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "2rem" }}>
+            {features.map((feature, index) => (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+                className="feature-item"
+                style={{
+                  background: COLORS.cardBg,
+                  border: `1px solid ${COLORS.borderDefault}`,
+                  borderRadius: 20,
+                  padding: "clamp(1rem, 4vw, 1.5rem)",
+                  transition: "all 0.3s ease"
+                }}
+                whileHover={{ borderColor: COLORS.primaryAccent, y: -4 }}
+              >
+                <div style={{ fontSize: "clamp(2rem, 5vw, 2.5rem)", marginBottom: "1rem" }}>{feature.icon}</div>
+                <h3 style={{ 
+                  fontFamily: "'Sora', sans-serif", 
+                  fontSize: "clamp(1rem, 4vw, 1.2rem)", 
+                  fontWeight: 600, 
+                  marginBottom: "0.5rem", 
+                  color: COLORS.primaryText 
+                }}>{feature.title}</h3>
+                <p style={{ color: COLORS.bodyText, fontSize: "clamp(0.8rem, 3vw, 0.9rem)", lineHeight: 1.6, fontFamily: "'Inter', sans-serif" }}>{feature.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* App Types Section */}
+      <section className="section-padding" style={{ padding: "60px 2rem", background: COLORS.cardBg, position: "relative", zIndex: 2 }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            style={{ textAlign: "center", marginBottom: "clamp(2rem, 5vw, 3rem)" }}
+          >
+            <div style={{ 
+              fontFamily: "'Inter', sans-serif", 
+              fontSize: "clamp(0.65rem, 3vw, 0.7rem)", 
               letterSpacing: "0.2em", 
               color: COLORS.primaryAccent, 
               marginBottom: "1rem",
@@ -305,7 +487,7 @@ function MobileAppDevelopment() {
             </div>
             <h2 style={{ 
               fontFamily: "'Sora', sans-serif", 
-              fontSize: "1.8rem", 
+              fontSize: "clamp(1.5rem, 5vw, 1.8rem)", 
               fontWeight: 700, 
               marginBottom: "1rem", 
               color: COLORS.primaryText 
@@ -314,7 +496,7 @@ function MobileAppDevelopment() {
             </h2>
           </motion.div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem" }}>
+          <div className="app-types-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1.5rem" }}>
             {appTypes.map((app, index) => (
               <motion.div
                 key={app.name}
@@ -327,21 +509,21 @@ function MobileAppDevelopment() {
                   background: COLORS.primaryBg,
                   border: `1px solid ${COLORS.borderDefault}`,
                   borderRadius: 16,
-                  padding: "1.2rem",
+                  padding: "clamp(0.8rem, 3vw, 1.2rem)",
                   textAlign: "center",
                   transition: "all 0.3s ease"
                 }}
                 whileHover={{ borderColor: COLORS.primaryAccent, y: -2 }}
               >
-                <div style={{ fontSize: "2rem", marginBottom: "0.5rem" }}>{app.icon}</div>
+                <div style={{ fontSize: "clamp(1.5rem, 5vw, 2rem)", marginBottom: "0.5rem" }}>{app.icon}</div>
                 <h3 style={{ 
                   fontFamily: "'Sora', sans-serif", 
-                  fontSize: "1rem", 
+                  fontSize: "clamp(0.85rem, 3vw, 1rem)", 
                   fontWeight: 600, 
                   marginBottom: "0.3rem", 
                   color: COLORS.primaryText 
                 }}>{app.name}</h3>
-                <p style={{ color: COLORS.bodyText, fontSize: "0.8rem", fontFamily: "'Inter', sans-serif" }}>{app.desc}</p>
+                <p style={{ color: COLORS.bodyText, fontSize: "clamp(0.7rem, 3vw, 0.8rem)", fontFamily: "'Inter', sans-serif" }}>{app.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -349,7 +531,7 @@ function MobileAppDevelopment() {
       </section>
 
       {/* Tech Stack Section - With logos */}
-      <section style={{ padding: "60px 2rem", position: "relative", zIndex: 2, background: COLORS.primaryBg }}>
+      <section className="section-padding" style={{ padding: "60px 2rem", position: "relative", zIndex: 2, background: COLORS.primaryBg }}>
         <div style={{ maxWidth: 1000, margin: "0 auto", textAlign: "center" }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -359,7 +541,7 @@ function MobileAppDevelopment() {
           >
             <div style={{ 
               fontFamily: "'Inter', sans-serif", 
-              fontSize: "0.7rem", 
+              fontSize: "clamp(0.65rem, 3vw, 0.7rem)", 
               letterSpacing: "0.2em", 
               color: COLORS.primaryAccent, 
               marginBottom: "1rem",
@@ -369,14 +551,14 @@ function MobileAppDevelopment() {
             </div>
             <h2 style={{ 
               fontFamily: "'Sora', sans-serif", 
-              fontSize: "1.8rem", 
+              fontSize: "clamp(1.5rem, 5vw, 1.8rem)", 
               fontWeight: 700, 
               marginBottom: "2rem", 
               color: COLORS.primaryText 
             }}>
               Modern Tech <span style={{ color: COLORS.primaryAccent }}>Stack</span>
             </h2>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", justifyContent: "center" }}>
+            <div className="tech-stack-grid" style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", justifyContent: "center" }}>
               {techStack.map((tech, index) => (
                 <motion.div
                   key={tech.name}
@@ -389,16 +571,16 @@ function MobileAppDevelopment() {
                     background: COLORS.cardBg,
                     border: `1px solid ${COLORS.borderDefault}`,
                     borderRadius: 50,
-                    padding: "0.6rem 1.25rem",
+                    padding: "clamp(0.4rem, 2vw, 0.6rem) clamp(1rem, 3vw, 1.25rem)",
                     display: "inline-flex",
                     alignItems: "center",
                     gap: "0.6rem",
                     cursor: "default"
                   }}
                 >
-                  <span style={{ fontSize: "1.1rem" }}>{tech.logo}</span>
-                  <span style={{ color: COLORS.primaryText, fontSize: "0.85rem", fontWeight: 500, fontFamily: "'Inter', sans-serif" }}>{tech.name}</span>
-                  <span style={{ color: COLORS.secondaryAccent, fontSize: "0.7rem", marginLeft: "0.2rem", fontFamily: "'Inter', sans-serif" }}>{tech.platform}</span>
+                  <span style={{ fontSize: "clamp(0.9rem, 3vw, 1.1rem)" }}>{tech.logo}</span>
+                  <span style={{ color: COLORS.primaryText, fontSize: "clamp(0.75rem, 3vw, 0.85rem)", fontWeight: 500, fontFamily: "'Inter', sans-serif" }}>{tech.name}</span>
+                  <span style={{ color: COLORS.secondaryAccent, fontSize: "clamp(0.65rem, 2vw, 0.7rem)", marginLeft: "0.2rem", fontFamily: "'Inter', sans-serif" }}>{tech.platform}</span>
                 </motion.div>
               ))}
             </div>
@@ -407,7 +589,7 @@ function MobileAppDevelopment() {
       </section>
 
       {/* Pricing Preview - Added to service page */}
-      {/* <section style={{ padding: "60px 2rem", position: "relative", zIndex: 2, background: COLORS.cardBg }}>
+      <section className="section-padding" style={{ padding: "60px 2rem", position: "relative", zIndex: 2, background: COLORS.cardBg }}>
         <div style={{ maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -418,12 +600,12 @@ function MobileAppDevelopment() {
               background: COLORS.primaryBg,
               border: `1px solid ${COLORS.borderDefault}`,
               borderRadius: 24,
-              padding: "2rem"
+              padding: "clamp(1.5rem, 5vw, 2rem)"
             }}
           >
             <div style={{ 
               fontFamily: "'Inter', sans-serif", 
-              fontSize: "0.7rem", 
+              fontSize: "clamp(0.65rem, 3vw, 0.7rem)", 
               letterSpacing: "0.2em", 
               color: COLORS.primaryAccent, 
               marginBottom: "1rem",
@@ -433,7 +615,7 @@ function MobileAppDevelopment() {
             </div>
             <h2 style={{ 
               fontFamily: "'Sora', sans-serif", 
-              fontSize: "2rem", 
+              fontSize: "clamp(1.5rem, 5vw, 2rem)", 
               fontWeight: 700, 
               marginBottom: "0.5rem", 
               color: COLORS.primaryText 
@@ -441,10 +623,10 @@ function MobileAppDevelopment() {
               {pricingPreview.startingPrice}
               <span style={{ fontSize: "1rem", color: COLORS.mutedText }}>+</span>
             </h2>
-            <p style={{ color: COLORS.bodyText, marginBottom: "1rem", fontFamily: "'Inter', sans-serif" }}>
+            <p style={{ color: COLORS.bodyText, marginBottom: "1rem", fontFamily: "'Inter', sans-serif", fontSize: "clamp(0.85rem, 3vw, 1rem)" }}>
               {pricingPreview.priceRange} • {pricingPreview.description}
             </p>
-            <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
+            <div className="cta-buttons" style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -452,12 +634,12 @@ function MobileAppDevelopment() {
                 style={{
                   background: COLORS.primaryAccent,
                   border: "none",
-                  padding: "0.75rem 1.5rem",
+                  padding: "clamp(0.6rem, 2vw, 0.75rem) clamp(1.2rem, 4vw, 1.5rem)",
                   borderRadius: 50,
                   color: "#fff",
                   fontFamily: "'Inter', sans-serif",
                   fontWeight: 600,
-                  fontSize: "0.875rem",
+                  fontSize: "clamp(0.75rem, 3vw, 0.875rem)",
                   cursor: "pointer"
                 }}
               >
@@ -470,12 +652,12 @@ function MobileAppDevelopment() {
                   style={{
                     background: "transparent",
                     border: `1px solid ${COLORS.borderDefault}`,
-                    padding: "0.75rem 1.5rem",
+                    padding: "clamp(0.6rem, 2vw, 0.75rem) clamp(1.2rem, 4vw, 1.5rem)",
                     borderRadius: 50,
                     color: COLORS.primaryText,
                     fontFamily: "'Inter', sans-serif",
                     fontWeight: 500,
-                    fontSize: "0.875rem",
+                    fontSize: "clamp(0.75rem, 3vw, 0.875rem)",
                     cursor: "pointer"
                   }}
                 >
@@ -485,21 +667,21 @@ function MobileAppDevelopment() {
             </div>
           </motion.div>
         </div>
-      </section> */}
+      </section>
 
       {/* Process Section */}
-      <section style={{ padding: "80px 2rem", position: "relative", zIndex: 2, background: COLORS.primaryBg }}>
+      <section className="section-padding" style={{ padding: "80px 2rem", position: "relative", zIndex: 2, background: COLORS.primaryBg }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            style={{ textAlign: "center", marginBottom: "3rem" }}
+            style={{ textAlign: "center", marginBottom: "clamp(2rem, 5vw, 3rem)" }}
           >
             <div style={{ 
               fontFamily: "'Inter', sans-serif", 
-              fontSize: "0.7rem", 
+              fontSize: "clamp(0.65rem, 3vw, 0.7rem)", 
               letterSpacing: "0.2em", 
               color: COLORS.primaryAccent, 
               marginBottom: "1rem",
@@ -509,7 +691,7 @@ function MobileAppDevelopment() {
             </div>
             <h2 style={{ 
               fontFamily: "'Sora', sans-serif", 
-              fontSize: "1.8rem", 
+              fontSize: "clamp(1.5rem, 5vw, 1.8rem)", 
               fontWeight: 700, 
               marginBottom: "1rem", 
               color: COLORS.primaryText 
@@ -518,7 +700,7 @@ function MobileAppDevelopment() {
             </h2>
           </motion.div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "2rem" }}>
+          <div className="process-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "2rem" }}>
             {processSteps.map((step, index) => (
               <motion.div
                 key={step.step}
@@ -531,22 +713,22 @@ function MobileAppDevelopment() {
                   background: COLORS.cardBg,
                   border: `1px solid ${COLORS.borderDefault}`,
                   borderRadius: 20,
-                  padding: "1.5rem",
+                  padding: "clamp(1rem, 4vw, 1.5rem)",
                   textAlign: "center",
                   transition: "all 0.3s ease"
                 }}
                 whileHover={{ borderColor: COLORS.primaryAccent, y: -4 }}
               >
                 <div style={{
-                  width: 60,
-                  height: 60,
+                  width: "clamp(50px, 10vw, 60px)",
+                  height: "clamp(50px, 10vw, 60px)",
                   background: COLORS.primaryAccent,
                   borderRadius: "50%",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                   margin: "0 auto 1rem auto",
-                  fontSize: "1.25rem",
+                  fontSize: "clamp(1rem, 4vw, 1.25rem)",
                   fontWeight: "bold",
                   color: "#fff",
                   fontFamily: "'Sora', sans-serif"
@@ -555,12 +737,12 @@ function MobileAppDevelopment() {
                 </div>
                 <h3 style={{ 
                   fontFamily: "'Sora', sans-serif", 
-                  fontSize: "1.1rem", 
+                  fontSize: "clamp(0.9rem, 4vw, 1.1rem)", 
                   fontWeight: 600, 
                   marginBottom: "0.5rem", 
                   color: COLORS.primaryText 
                 }}>{step.title}</h3>
-                <p style={{ color: COLORS.bodyText, fontSize: "0.85rem", lineHeight: 1.6, fontFamily: "'Inter', sans-serif" }}>{step.desc}</p>
+                <p style={{ color: COLORS.bodyText, fontSize: "clamp(0.75rem, 3vw, 0.85rem)", lineHeight: 1.6, fontFamily: "'Inter', sans-serif" }}>{step.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -568,7 +750,7 @@ function MobileAppDevelopment() {
       </section>
 
       {/* CTA Section */}
-      <section style={{ padding: "80px 2rem", position: "relative", zIndex: 2, background: COLORS.cardBg }}>
+      <section className="section-padding" style={{ padding: "80px 2rem", position: "relative", zIndex: 2, background: COLORS.cardBg }}>
         <div style={{ maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -576,20 +758,20 @@ function MobileAppDevelopment() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div style={{ fontSize: "3rem", marginBottom: "1rem" }}>📱</div>
+            <div style={{ fontSize: "clamp(2rem, 8vw, 3rem)", marginBottom: "1rem" }}>📱</div>
             <h2 style={{ 
               fontFamily: "'Sora', sans-serif", 
-              fontSize: "2rem", 
+              fontSize: "clamp(1.5rem, 5vw, 2rem)", 
               fontWeight: 700, 
               marginBottom: "1rem", 
               color: COLORS.primaryText 
             }}>
               Ready to Launch Your <span style={{ color: COLORS.primaryAccent }}>Mobile App</span>?
             </h2>
-            <p style={{ color: COLORS.bodyText, marginBottom: "2rem", fontSize: "1rem", fontFamily: "'Inter', sans-serif" }}>
+            <p style={{ color: COLORS.bodyText, marginBottom: "2rem", fontSize: "clamp(0.875rem, 3vw, 1rem)", fontFamily: "'Inter', sans-serif", padding: "0 1rem" }}>
               Let's turn your app idea into reality. Get a free consultation today.
             </p>
-            <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
+            <div className="cta-buttons" style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -597,12 +779,12 @@ function MobileAppDevelopment() {
                 style={{
                   background: COLORS.primaryAccent,
                   border: "none",
-                  padding: "1rem 2.5rem",
+                  padding: "clamp(0.8rem, 2vw, 1rem) clamp(1.5rem, 5vw, 2.5rem)",
                   borderRadius: 50,
                   color: "#fff",
                   fontFamily: "'Inter', sans-serif",
                   fontWeight: 600,
-                  fontSize: "1rem",
+                  fontSize: "clamp(0.85rem, 3vw, 1rem)",
                   cursor: "pointer"
                 }}
               >
@@ -615,12 +797,12 @@ function MobileAppDevelopment() {
                 style={{
                   background: "transparent",
                   border: `1px solid ${COLORS.borderDefault}`,
-                  padding: "1rem 2.5rem",
+                  padding: "clamp(0.8rem, 2vw, 1rem) clamp(1.5rem, 5vw, 2.5rem)",
                   borderRadius: 50,
                   color: COLORS.primaryText,
                   fontFamily: "'Inter', sans-serif",
                   fontWeight: 500,
-                  fontSize: "1rem",
+                  fontSize: "clamp(0.85rem, 3vw, 1rem)",
                   cursor: "pointer"
                 }}
                 onMouseEnter={(e) => {

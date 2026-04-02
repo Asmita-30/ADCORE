@@ -340,6 +340,96 @@ function Portfolio() {
           transform: translateY(-4px);
         }
         
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+          .portfolio-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .hero-padding {
+            padding: 100px 1rem 60px !important;
+          }
+          .section-padding {
+            padding: 40px 1rem !important;
+          }
+          .filter-buttons {
+            gap: 0.5rem !important;
+          }
+          .filter-button {
+            padding: 0.4rem 1rem !important;
+            font-size: 0.75rem !important;
+          }
+          .search-input {
+            padding: 1rem 1.5rem !important;
+            font-size: 0.875rem !important;
+          }
+          .modal-content {
+            margin: 60px 1rem 40px 1rem !important;
+            padding: 1.5rem !important;
+          }
+          .modal-header {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+          }
+          .modal-image {
+            height: 200px !important;
+          }
+          .cta-padding {
+            padding: 2rem !important;
+          }
+        }
+        
+        @media (max-width: 640px) {
+          .portfolio-item h3 {
+            font-size: 1rem !important;
+          }
+          .portfolio-item p {
+            font-size: 0.8rem !important;
+          }
+          .portfolio-item .tech-tag {
+            font-size: 0.6rem !important;
+          }
+          .portfolio-item button {
+            padding: 0.4rem 0.8rem !important;
+            font-size: 0.7rem !important;
+          }
+          .results-grid {
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important;
+          }
+          .features-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+        
+        @media (min-width: 641px) and (max-width: 768px) {
+          .portfolio-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+          .hero-padding {
+            padding: 110px 1.5rem 70px !important;
+          }
+          .section-padding {
+            padding: 60px 1.5rem !important;
+          }
+        }
+        
+        @media (min-width: 769px) and (max-width: 1024px) {
+          .portfolio-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+          .hero-padding {
+            padding: 120px 2rem 80px !important;
+          }
+          .section-padding {
+            padding: 80px 2rem !important;
+          }
+        }
+        
+        @media (min-width: 1025px) {
+          .portfolio-grid {
+            grid-template-columns: repeat(3, 1fr) !important;
+          }
+        }
+        
         ::-webkit-scrollbar {
           width: 8px;
         }
@@ -352,10 +442,14 @@ function Portfolio() {
           background: ${C.blue};
           border-radius: 4px;
         }
+        
+        ::-webkit-scrollbar-thumb:hover {
+          background: ${C.blueHover};
+        }
       `}</style>
 
       {/* Hero Section */}
-      <section ref={heroRef} style={{ 
+      <section ref={heroRef} className="hero-padding" style={{ 
         minHeight: "50vh", 
         display: "flex", 
         alignItems: "center", 
@@ -379,7 +473,7 @@ function Portfolio() {
         }} />
         
         <motion.div style={{ opacity, scale }} className="hero-animate" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
-          <div style={{ textAlign: "center", maxWidth: 900, margin: "0 auto", position: "relative", zIndex: 2 }}>
+          <div style={{ textAlign: "center", maxWidth: 900, margin: "0 auto", position: "relative", zIndex: 2, padding: "0 1rem" }}>
             <motion.div 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -390,7 +484,7 @@ function Portfolio() {
                 backdropFilter: "blur(8px)",
                 borderRadius: 20,
                 padding: "0.3rem 1rem",
-                fontSize: "0.75rem",
+                fontSize: "clamp(0.7rem, 3vw, 0.75rem)",
                 fontFamily: "'Inter', sans-serif",
                 fontWeight: 500,
                 color: C.blueHover,
@@ -407,7 +501,7 @@ function Portfolio() {
               transition={{ delay: 0.4 }}
               style={{
                 fontFamily: "'Sora', sans-serif",
-                fontSize: "clamp(2.5rem,5vw,4rem)",
+                fontSize: "clamp(2rem, 5vw, 4rem)",
                 fontWeight: 700,
                 marginBottom: "1.5rem",
                 color: C.textPrimary,
@@ -428,7 +522,7 @@ function Portfolio() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
               style={{
-                fontSize: "1.1rem",
+                fontSize: "clamp(0.9rem, 4vw, 1.1rem)",
                 color: C.textLead,
                 lineHeight: 1.6,
                 maxWidth: 700,
@@ -443,11 +537,12 @@ function Portfolio() {
       </section>
 
       {/* Search Bar */}
-      <section style={{ padding: "2rem 2rem 0", position: "relative", zIndex: 2, background: C.bg }}>
+      <section className="section-padding" style={{ padding: "2rem 2rem 0", position: "relative", zIndex: 2, background: C.bg }}>
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
           <div style={{ position: "relative" }}>
             <input
               type="text"
+              className="search-input"
               placeholder="Search projects by name, client, industry, or technology..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -456,9 +551,9 @@ function Portfolio() {
                 background: C.surface,
                 border: `1px solid ${C.border}`,
                 borderRadius: 60,
-                padding: "1.2rem 5rem 1.2rem 2rem",
+                padding: "clamp(0.8rem, 3vw, 1.2rem) 5rem clamp(0.8rem, 3vw, 1.2rem) clamp(1rem, 4vw, 2rem)",
                 color: C.textPrimary,
-                fontSize: "1rem",
+                fontSize: "clamp(0.875rem, 3vw, 1rem)",
                 fontFamily: "'Inter', sans-serif",
                 outline: "none",
                 transition: "all 0.3s ease"
@@ -479,7 +574,7 @@ function Portfolio() {
           </div>
           {searchQuery && (
             <div style={{ textAlign: "center", marginTop: "0.5rem" }}>
-              <span style={{ fontSize: "0.75rem", color: C.textMuted }}>
+              <span style={{ fontSize: "clamp(0.7rem, 3vw, 0.75rem)", color: C.textMuted }}>
                 Found {filteredProjects.length} project(s) matching "{searchQuery}"
               </span>
             </div>
@@ -488,23 +583,24 @@ function Portfolio() {
       </section>
 
       {/* Filter Bar */}
-      <section style={{ padding: "2rem 2rem 0", position: "relative", zIndex: 2, background: C.bg }}>
+      <section className="section-padding" style={{ padding: "2rem 2rem 0", position: "relative", zIndex: 2, background: C.bg }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ display: "flex", gap: "0.8rem", flexWrap: "wrap", justifyContent: "center" }}>
+          <div className="filter-buttons" style={{ display: "flex", gap: "0.8rem", flexWrap: "wrap", justifyContent: "center" }}>
             {CATEGORIES.map((cat) => (
               <motion.button
                 key={cat.id}
+                className="filter-button"
                 onClick={() => setActiveFilter(cat.id)}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 style={{
-                  padding: "0.6rem 1.2rem",
+                  padding: "clamp(0.4rem, 2vw, 0.6rem) clamp(1rem, 3vw, 1.2rem)",
                   borderRadius: 40,
                   background: activeFilter === cat.id ? C.blue : "transparent",
                   border: `1px solid ${activeFilter === cat.id ? C.blue : C.border}`,
                   color: activeFilter === cat.id ? "#fff" : C.textBody,
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: "0.875rem",
+                  fontSize: "clamp(0.75rem, 3vw, 0.875rem)",
                   fontWeight: 500,
                   cursor: "pointer",
                   transition: "all 0.2s ease",
@@ -522,14 +618,14 @@ function Portfolio() {
       </section>
 
       {/* Portfolio Grid */}
-      <section style={{ padding: "60px 2rem", position: "relative", zIndex: 2, background: C.bg }}>
+      <section className="section-padding" style={{ padding: "60px 2rem", position: "relative", zIndex: 2, background: C.bg }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           {filteredProjects.length === 0 ? (
             <div style={{ textAlign: "center", padding: "4rem" }}>
               <p style={{ color: C.textMuted }}>No projects found matching your search.</p>
             </div>
           ) : (
-            <div className="portfolio-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))", gap: "2rem" }}>
+            <div className="portfolio-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "2rem" }}>
               {filteredProjects.map((project, index) => (
                 <motion.div
                   key={project.id}
@@ -549,7 +645,7 @@ function Portfolio() {
                     transition: "all 0.3s ease"
                   }}
                 >
-                  <div style={{ height: 220, overflow: "hidden", position: "relative" }}>
+                  <div style={{ height: "clamp(180px, 30vw, 220px)", overflow: "hidden", position: "relative" }}>
                     <img 
                       src={project.image} 
                       alt={project.name}
@@ -564,27 +660,27 @@ function Portfolio() {
                       background: "rgba(0,0,0,0.7)",
                       padding: "0.2rem 0.6rem",
                       borderRadius: 12,
-                      fontSize: "0.65rem",
+                      fontSize: "clamp(0.6rem, 2vw, 0.65rem)",
                       color: C.cyan,
                       fontFamily: "'Inter', sans-serif"
                     }}>
                       {project.year}
                     </div>
                   </div>
-                  <div style={{ padding: "1.5rem" }}>
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem" }}>
-                      <span style={{ fontSize: "0.7rem", color: C.blueHover, textTransform: "uppercase", letterSpacing: "0.05em" }}>{project.industry}</span>
+                  <div style={{ padding: "clamp(1rem, 4vw, 1.5rem)" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem", flexWrap: "wrap", gap: "0.3rem" }}>
+                      <span style={{ fontSize: "clamp(0.65rem, 2vw, 0.7rem)", color: C.blueHover, textTransform: "uppercase", letterSpacing: "0.05em" }}>{project.industry}</span>
                     </div>
-                    <h3 style={{ fontFamily: "'Sora', sans-serif", fontSize: "1.1rem", fontWeight: 600, marginBottom: "0.5rem", color: C.textPrimary }}>{project.name}</h3>
-                    <p style={{ fontSize: "0.85rem", color: C.textBody, marginBottom: "1rem", lineHeight: 1.5 }}>{project.description}</p>
+                    <h3 style={{ fontFamily: "'Sora', sans-serif", fontSize: "clamp(0.9rem, 4vw, 1.1rem)", fontWeight: 600, marginBottom: "0.5rem", color: C.textPrimary }}>{project.name}</h3>
+                    <p style={{ fontSize: "clamp(0.75rem, 3vw, 0.85rem)", color: C.textBody, marginBottom: "1rem", lineHeight: 1.5 }}>{project.description}</p>
                     
                     <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", marginBottom: "1rem" }}>
                       {project.techStack.slice(0, 4).map((tech, i) => (
-                        <span key={i} style={{
+                        <span key={i} className="tech-tag" style={{
                           background: C.codeBg,
                           padding: "0.2rem 0.6rem",
                           borderRadius: 12,
-                          fontSize: "0.65rem",
+                          fontSize: "clamp(0.55rem, 2vw, 0.65rem)",
                           color: C.cyan,
                           fontFamily: "'Inter', sans-serif"
                         }}>
@@ -593,7 +689,7 @@ function Portfolio() {
                       ))}
                     </div>
                     
-                    <div style={{ display: "flex", gap: "0.5rem" }}>
+                    <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
                       <motion.button
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
@@ -604,18 +700,17 @@ function Portfolio() {
                         style={{
                           background: C.blue,
                           border: "none",
-                          padding: "0.5rem 1.2rem",
+                          padding: "clamp(0.4rem, 2vw, 0.5rem) clamp(0.8rem, 3vw, 1.2rem)",
                           borderRadius: 8,
                           color: "#fff",
                           fontFamily: "'Inter', sans-serif",
                           fontWeight: 500,
-                          fontSize: "0.75rem",
+                          fontSize: "clamp(0.65rem, 2.5vw, 0.75rem)",
                           cursor: "pointer"
                         }}
                       >
                         View Case Study →
                       </motion.button>
-                      {/* Live Preview Button - Replaces Build Similar */}
                       <motion.button
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
@@ -626,12 +721,12 @@ function Portfolio() {
                         style={{
                           background: "transparent",
                           border: `1px solid ${C.border}`,
-                          padding: "0.5rem 1.2rem",
+                          padding: "clamp(0.4rem, 2vw, 0.5rem) clamp(0.8rem, 3vw, 1.2rem)",
                           borderRadius: 8,
                           color: C.textPrimary,
                           fontFamily: "'Inter', sans-serif",
                           fontWeight: 500,
-                          fontSize: "0.75rem",
+                          fontSize: "clamp(0.65rem, 2.5vw, 0.75rem)",
                           cursor: "pointer"
                         }}
                       >
@@ -647,24 +742,25 @@ function Portfolio() {
       </section>
 
       {/* CTA Section */}
-      <section style={{ padding: "60px 2rem 100px", position: "relative", zIndex: 2, background: C.bg }}>
+      <section className="section-padding" style={{ padding: "60px 2rem 100px", position: "relative", zIndex: 2, background: C.bg }}>
         <div style={{ maxWidth: 900, margin: "0 auto", textAlign: "center" }}>
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            className="cta-padding"
             style={{
               background: C.surface,
               border: `1px solid ${C.border}`,
               borderRadius: 20,
-              padding: "3rem"
+              padding: "clamp(1.5rem, 5vw, 3rem)"
             }}
           >
-            <h2 style={{ fontFamily: "'Sora', sans-serif", fontSize: "clamp(1.5rem,3vw,2rem)", fontWeight: 700, marginBottom: "1rem", color: C.textPrimary }}>
+            <h2 style={{ fontFamily: "'Sora', sans-serif", fontSize: "clamp(1.3rem, 5vw, 2rem)", fontWeight: 700, marginBottom: "1rem", color: C.textPrimary }}>
               Ready to Build Your <span style={{ color: C.blue }}>Success Story?</span>
             </h2>
-            <p style={{ fontSize: "1rem", color: C.textBody, marginBottom: "2rem", lineHeight: 1.6 }}>
+            <p style={{ fontSize: "clamp(0.875rem, 3vw, 1rem)", color: C.textBody, marginBottom: "2rem", lineHeight: 1.6 }}>
               Let's discuss your project and see how we can help you achieve similar results.
             </p>
             <Link to="/contact">
@@ -674,12 +770,12 @@ function Portfolio() {
                 style={{
                   background: C.blue,
                   border: "none",
-                  padding: "1rem 2.5rem",
+                  padding: "clamp(0.8rem, 2vw, 1rem) clamp(1.5rem, 5vw, 2.5rem)",
                   borderRadius: 8,
                   color: "#fff",
                   fontFamily: "'Inter', sans-serif",
                   fontWeight: 600,
-                  fontSize: "0.9rem",
+                  fontSize: "clamp(0.8rem, 3vw, 0.9rem)",
                   cursor: "pointer"
                 }}
               >
@@ -702,19 +798,20 @@ function Portfolio() {
           backdropFilter: "blur(8px)",
           zIndex: 2000,
           overflowY: "auto",
-          padding: "2rem"
+          padding: "clamp(1rem, 5vw, 2rem)"
         }} onClick={() => setSelectedProject(null)}>
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            className="modal-content"
             style={{
               maxWidth: 900,
               margin: "0 auto",
               background: C.bg,
               border: `1px solid ${C.border}`,
               borderRadius: 20,
-              padding: "2rem",
+              padding: "clamp(1.5rem, 5vw, 2rem)",
               position: "relative"
             }}
             onClick={(e) => e.stopPropagation()}
@@ -727,10 +824,10 @@ function Portfolio() {
                 right: "1rem",
                 background: C.surface,
                 border: `1px solid ${C.border}`,
-                width: "40px",
-                height: "40px",
+                width: "clamp(32px, 5vw, 40px)",
+                height: "clamp(32px, 5vw, 40px)",
                 borderRadius: "50%",
-                fontSize: "1.5rem",
+                fontSize: "clamp(1.2rem, 4vw, 1.5rem)",
                 cursor: "pointer",
                 color: C.textMuted,
                 display: "flex",
@@ -751,29 +848,30 @@ function Portfolio() {
             </button>
 
             <div style={{ marginBottom: "2rem" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "1rem", marginBottom: "1rem" }}>
+              <div className="modal-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "1rem", marginBottom: "1rem" }}>
                 <div>
-                  <h1 style={{ fontFamily: "'Sora', sans-serif", fontSize: "1.8rem", fontWeight: 700, marginTop: "0.5rem", color: C.textPrimary }}>{selectedProject.name}</h1>
-                  <p style={{ color: C.textBody, marginTop: "0.5rem", lineHeight: 1.6 }}>{selectedProject.description}</p>
+                  <h1 style={{ fontFamily: "'Sora', sans-serif", fontSize: "clamp(1.3rem, 5vw, 1.8rem)", fontWeight: 700, marginTop: "0.5rem", color: C.textPrimary }}>{selectedProject.name}</h1>
+                  <p style={{ color: C.textBody, marginTop: "0.5rem", lineHeight: 1.6, fontSize: "clamp(0.85rem, 3vw, 1rem)" }}>{selectedProject.description}</p>
                 </div>
                 <div style={{ textAlign: "right" }}>
-                  <div style={{ fontSize: "0.8rem", color: C.textMuted }}>Client</div>
-                  <div style={{ fontSize: "1rem", fontWeight: 600, color: C.textPrimary }}>{selectedProject.client}</div>
-                  <div style={{ fontSize: "0.8rem", color: C.blue }}>{selectedProject.year}</div>
+                  <div style={{ fontSize: "clamp(0.7rem, 2.5vw, 0.8rem)", color: C.textMuted }}>Client</div>
+                  <div style={{ fontSize: "clamp(0.85rem, 3vw, 1rem)", fontWeight: 600, color: C.textPrimary }}>{selectedProject.client}</div>
+                  <div style={{ fontSize: "clamp(0.7rem, 2.5vw, 0.8rem)", color: C.blue }}>{selectedProject.year}</div>
                 </div>
               </div>
             </div>
 
-            <div style={{
+            <div className="modal-image" style={{
               borderRadius: 12,
               overflow: "hidden",
               marginBottom: "2rem",
-              border: `1px solid ${C.border}`
+              border: `1px solid ${C.border}`,
+              height: "clamp(200px, 40vw, 300px)"
             }}>
-              <img src={selectedProject.image} alt={selectedProject.name} style={{ width: "100%", height: "auto" }} />
+              <img src={selectedProject.image} alt={selectedProject.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             </div>
 
-            <div style={{
+            <div className="results-grid" style={{
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
               gap: "1rem",
@@ -784,40 +882,40 @@ function Portfolio() {
               border: `1px solid ${C.border}`
             }}>
               <div>
-                <span style={{ fontSize: "0.7rem", color: C.textMuted }}>Industry</span>
-                <div style={{ color: C.textPrimary, fontWeight: 500 }}>{selectedProject.industry}</div>
+                <span style={{ fontSize: "clamp(0.65rem, 2.5vw, 0.7rem)", color: C.textMuted }}>Industry</span>
+                <div style={{ color: C.textPrimary, fontWeight: 500, fontSize: "clamp(0.85rem, 3vw, 1rem)" }}>{selectedProject.industry}</div>
               </div>
               <div>
-                <span style={{ fontSize: "0.7rem", color: C.textMuted }}>Technology Stack</span>
-                <div style={{ color: C.textPrimary, fontWeight: 500 }}>{selectedProject.techStack.join(", ")}</div>
+                <span style={{ fontSize: "clamp(0.65rem, 2.5vw, 0.7rem)", color: C.textMuted }}>Technology Stack</span>
+                <div style={{ color: C.textPrimary, fontWeight: 500, fontSize: "clamp(0.85rem, 3vw, 1rem)" }}>{selectedProject.techStack.join(", ")}</div>
               </div>
             </div>
 
             {selectedProject.challenge && (
               <div style={{ marginBottom: "2rem" }}>
-                <h2 style={{ fontFamily: "'Sora', sans-serif", fontSize: "1.2rem", color: C.blue, marginBottom: "1rem" }}>The Challenge</h2>
-                <p style={{ fontSize: "1rem", color: C.textBody, lineHeight: 1.6 }}>{selectedProject.challenge}</p>
+                <h2 style={{ fontFamily: "'Sora', sans-serif", fontSize: "clamp(1rem, 4vw, 1.2rem)", color: C.blue, marginBottom: "1rem" }}>The Challenge</h2>
+                <p style={{ fontSize: "clamp(0.85rem, 3vw, 1rem)", color: C.textBody, lineHeight: 1.6 }}>{selectedProject.challenge}</p>
               </div>
             )}
 
             {selectedProject.solution && (
               <div style={{ marginBottom: "2rem" }}>
-                <h2 style={{ fontFamily: "'Sora', sans-serif", fontSize: "1.2rem", color: C.blue, marginBottom: "1rem" }}>Our Solution</h2>
-                <p style={{ fontSize: "1rem", color: C.textBody, lineHeight: 1.6 }}>{selectedProject.solution}</p>
+                <h2 style={{ fontFamily: "'Sora', sans-serif", fontSize: "clamp(1rem, 4vw, 1.2rem)", color: C.blue, marginBottom: "1rem" }}>Our Solution</h2>
+                <p style={{ fontSize: "clamp(0.85rem, 3vw, 1rem)", color: C.textBody, lineHeight: 1.6 }}>{selectedProject.solution}</p>
               </div>
             )}
 
             {selectedProject.features && (
               <div style={{ marginBottom: "2rem" }}>
-                <h2 style={{ fontFamily: "'Sora', sans-serif", fontSize: "1.2rem", color: C.blue, marginBottom: "1rem" }}>Key Features</h2>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "0.8rem" }}>
+                <h2 style={{ fontFamily: "'Sora', sans-serif", fontSize: "clamp(1rem, 4vw, 1.2rem)", color: C.blue, marginBottom: "1rem" }}>Key Features</h2>
+                <div className="features-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "0.8rem" }}>
                   {selectedProject.features.map((feature, i) => (
                     <div key={i} style={{ display: "flex", alignItems: "center", gap: "0.5rem", padding: "0.5rem", background: C.surface, borderRadius: 8 }}>
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                         <circle cx="8" cy="8" r="6" fill={C.blue} fillOpacity="0.2" stroke={C.blue} strokeWidth="1" />
                         <path d="M6 8l2 2 3-4" stroke={C.blue} strokeWidth="1.5" strokeLinecap="round" />
                       </svg>
-                      <span style={{ fontSize: "0.85rem", color: C.textBody }}>{feature}</span>
+                      <span style={{ fontSize: "clamp(0.8rem, 3vw, 0.85rem)", color: C.textBody }}>{feature}</span>
                     </div>
                   ))}
                 </div>
@@ -826,12 +924,12 @@ function Portfolio() {
 
             {selectedProject.results && (
               <div style={{ marginBottom: "2rem" }}>
-                <h2 style={{ fontFamily: "'Sora', sans-serif", fontSize: "1.2rem", color: C.blue, marginBottom: "1rem" }}>Results</h2>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1rem" }}>
+                <h2 style={{ fontFamily: "'Sora', sans-serif", fontSize: "clamp(1rem, 4vw, 1.2rem)", color: C.blue, marginBottom: "1rem" }}>Results</h2>
+                <div className="results-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1rem" }}>
                   {selectedProject.results.map((result, i) => (
                     <div key={i} style={{ background: C.surface, borderRadius: 12, padding: "1rem", textAlign: "center", border: `1px solid ${C.border}` }}>
-                      <div style={{ fontSize: "1rem", fontWeight: 700, color: C.blue }}>{result.value}</div>
-                      <div style={{ fontSize: "0.7rem", color: C.textMuted }}>{result.label}</div>
+                      <div style={{ fontSize: "clamp(0.85rem, 3vw, 1rem)", fontWeight: 700, color: C.blue }}>{result.value}</div>
+                      <div style={{ fontSize: "clamp(0.65rem, 2.5vw, 0.7rem)", color: C.textMuted }}>{result.label}</div>
                     </div>
                   ))}
                 </div>
@@ -846,12 +944,12 @@ function Portfolio() {
                   style={{
                     background: C.blue,
                     border: "none",
-                    padding: "0.8rem 2rem",
+                    padding: "clamp(0.6rem, 2vw, 0.8rem) clamp(1.2rem, 4vw, 2rem)",
                     borderRadius: 8,
                     color: "#fff",
                     fontFamily: "'Inter', sans-serif",
                     fontWeight: 600,
-                    fontSize: "0.85rem",
+                    fontSize: "clamp(0.75rem, 3vw, 0.85rem)",
                     cursor: "pointer"
                   }}
                 >
@@ -865,12 +963,12 @@ function Portfolio() {
                 style={{
                   background: "transparent",
                   border: `1px solid ${C.border}`,
-                  padding: "0.8rem 2rem",
+                  padding: "clamp(0.6rem, 2vw, 0.8rem) clamp(1.2rem, 4vw, 2rem)",
                   borderRadius: 8,
                   color: C.textPrimary,
                   fontFamily: "'Inter', sans-serif",
                   fontWeight: 600,
-                  fontSize: "0.85rem",
+                  fontSize: "clamp(0.75rem, 3vw, 0.85rem)",
                   cursor: "pointer"
                 }}
               >
@@ -883,12 +981,12 @@ function Portfolio() {
                 style={{
                   background: "transparent",
                   border: `1px solid ${C.border}`,
-                  padding: "0.8rem 2rem",
+                  padding: "clamp(0.6rem, 2vw, 0.8rem) clamp(1.2rem, 4vw, 2rem)",
                   borderRadius: 8,
                   color: C.textMuted,
                   fontFamily: "'Inter', sans-serif",
                   fontWeight: 500,
-                  fontSize: "0.85rem",
+                  fontSize: "clamp(0.75rem, 3vw, 0.85rem)",
                   cursor: "pointer"
                 }}
               >

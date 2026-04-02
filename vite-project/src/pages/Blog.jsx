@@ -10,8 +10,7 @@ import springImg from "../assets/images/springbootblog.png";
 import startupImg from "../assets/images/startupblog.png";
 import landingImg from "../assets/images/landingblog.png";
 import costImg from "../assets/images/costblog.png";
-import blogHeroBg from "../assets/images/blog-bg.png"; // Add your image to assets/images/
-
+import blogHeroBg from "../assets/images/blog-bg.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -352,7 +351,7 @@ function Blog() {
           padding: 1rem 1.5rem;
           margin: 1.5rem 0;
           background: rgba(37, 99, 235, 0.05);
-          border-radius: 8px;
+          borderRadius: 8px;
           font-style: italic;
           color: ${COLORS.leadText};
         }
@@ -374,101 +373,177 @@ function Blog() {
         ::-webkit-scrollbar-thumb:hover {
           background: ${COLORS.accentHover};
         }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+          .featured-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .blog-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .hero-padding {
+            padding: 100px 1rem 60px !important;
+          }
+          .section-padding {
+            padding: 40px 1rem !important;
+          }
+          .modal-content {
+            margin: 60px 1rem 40px 1rem !important;
+            padding: 1.5rem !important;
+          }
+          .modal-header {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+          }
+          .modal-image {
+            height: 200px !important;
+          }
+        }
+        
+        @media (max-width: 640px) {
+          .blog-card h3 {
+            font-size: 1rem !important;
+          }
+          .blog-card p {
+            font-size: 0.8rem !important;
+          }
+          .search-input {
+            padding: 0.8rem 1.5rem !important;
+          }
+          .newsletter-form {
+            flex-direction: column !important;
+          }
+          .newsletter-input {
+            width: 100% !important;
+          }
+          .filter-buttons {
+            gap: 0.5rem !important;
+          }
+          .filter-button {
+            padding: 0.4rem 1rem !important;
+            font-size: 0.75rem !important;
+          }
+        }
+        
+        @media (min-width: 641px) and (max-width: 768px) {
+          .featured-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .blog-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+          .hero-padding {
+            padding: 110px 1.5rem 70px !important;
+          }
+        }
+        
+        @media (min-width: 769px) and (max-width: 1024px) {
+          .featured-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+          .blog-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+          .hero-padding {
+            padding: 120px 2rem 80px !important;
+          }
+        }
       `}</style>
 
       {/* Hero Section - Refined with proper typography and background image */}
-<section ref={heroRef} style={{ 
-  minHeight: "50vh", 
-  display: "flex", 
-  alignItems: "center", 
-  justifyContent: "center",
-  position: "relative",
-  padding: "120px 2rem 60px",
-  background: `linear-gradient(rgba(10, 15, 30, 0.82), rgba(10, 15, 30, 0.88)), url(${blogHeroBg})`,
-  backgroundSize: "cover",
-  backgroundPosition: "center",
-  backgroundAttachment: "fixed",
-  overflow: "hidden"
-}}>
-  {/* Optional: Add a subtle gradient overlay for depth */}
-  <div style={{
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    background: "radial-gradient(ellipse 70% 40% at 50% 30%, rgba(37,99,235,0.08) 0%, transparent 70%)",
-    pointerEvents: "none"
-  }} />
-  
-  <motion.div 
-    style={{ opacity, scale }} 
-    className="hero-animate"
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ duration: 1 }}
-  >
-    <div style={{ textAlign: "center", maxWidth: 900, margin: "0 auto", position: "relative", zIndex: 2 }}>
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }}
-        style={{ 
-          fontFamily: "'Inter', sans-serif", 
-          fontSize: "0.75rem", 
-          letterSpacing: "0.2em", 
-          color: COLORS.primaryAccent, 
-          marginBottom: "1rem",
-          textTransform: "uppercase",
-          display: "inline-block",
-          background: "rgba(30, 58, 95, 0.7)",
-          backdropFilter: "blur(8px)",
-          padding: "0.3rem 1rem",
-          borderRadius: "20px"
-        }}
-      >
-        Insights & Stories
-      </motion.div>
-      <motion.h1 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4 }}
-        style={{ 
-          fontFamily: "'Sora', sans-serif", 
-          fontSize: "clamp(2.5rem, 6vw, 4rem)", 
-          fontWeight: 700, 
-          marginBottom: "1.5rem", 
-          color: COLORS.primaryText,
-          lineHeight: "1.2"
-        }}
-      >
-        From the Workshop
-      </motion.h1>
-      <motion.p 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6 }}
-        style={{ 
-          fontSize: "1.125rem", 
-          color: COLORS.bodyText, 
-          lineHeight: 1.6, 
-          maxWidth: 700, 
-          margin: "0 auto",
-          fontFamily: "'Inter', sans-serif"
-        }}
-      >
-        Stories, tips, and trends from the digital frontier. Learn from our experiences building for startups and enterprises.
-      </motion.p>
-    </div>
-  </motion.div>
-</section>
+      <section ref={heroRef} className="hero-padding" style={{ 
+        minHeight: "50vh", 
+        display: "flex", 
+        alignItems: "center", 
+        justifyContent: "center",
+        position: "relative",
+        padding: "120px 2rem 60px",
+        background: `linear-gradient(rgba(10, 15, 30, 0.85), rgba(10, 15, 30, 0.92)), url(${blogHeroBg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+        overflow: "hidden"
+      }}>
+        <div style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: "radial-gradient(ellipse 70% 40% at 50% 30%, rgba(37,99,235,0.08) 0%, transparent 70%)",
+          pointerEvents: "none"
+        }} />
+        
+        <motion.div 
+          style={{ opacity, scale }} 
+          className="hero-animate"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
+          <div style={{ textAlign: "center", maxWidth: 900, margin: "0 auto", position: "relative", zIndex: 2, padding: "0 1rem" }}>
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              style={{ 
+                fontFamily: "'Inter', sans-serif", 
+                fontSize: "0.75rem", 
+                letterSpacing: "0.2em", 
+                color: COLORS.primaryAccent, 
+                marginBottom: "1rem",
+                textTransform: "uppercase",
+                display: "inline-block",
+                background: "rgba(30, 58, 95, 0.7)",
+                backdropFilter: "blur(8px)",
+                padding: "0.3rem 1rem",
+                borderRadius: "20px"
+              }}
+            >
+              Insights & Stories
+            </motion.div>
+            <motion.h1 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              style={{ 
+                fontFamily: "'Sora', sans-serif", 
+                fontSize: "clamp(2rem, 6vw, 4rem)", 
+                fontWeight: 700, 
+                marginBottom: "1.5rem", 
+                color: COLORS.primaryText,
+                lineHeight: "1.2"
+              }}
+            >
+              From the Workshop
+            </motion.h1>
+            <motion.p 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              style={{ 
+                fontSize: "clamp(0.9rem, 4vw, 1.125rem)", 
+                color: COLORS.bodyText, 
+                lineHeight: 1.6, 
+                maxWidth: 700, 
+                margin: "0 auto",
+                fontFamily: "'Inter', sans-serif"
+              }}
+            >
+              Stories, tips, and trends from the digital frontier. Learn from our experiences building for startups and enterprises.
+            </motion.p>
+          </div>
+        </motion.div>
+      </section>
 
       {/* Search Bar */}
-      <section style={{ padding: "2rem 2rem 0", position: "relative", zIndex: 2, background: COLORS.primaryBg }}>
+      <section className="section-padding" style={{ padding: "2rem 2rem 0", position: "relative", zIndex: 2, background: COLORS.primaryBg }}>
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
           <div style={{ position: "relative" }}>
             <input
               type="text"
+              className="search-input"
               placeholder="Search articles..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -479,7 +554,7 @@ function Blog() {
                 borderRadius: 60,
                 padding: "1rem 2rem",
                 color: COLORS.primaryText,
-                fontSize: "1rem",
+                fontSize: "clamp(0.875rem, 4vw, 1rem)",
                 fontFamily: "'Inter', sans-serif",
                 outline: "none",
                 transition: "all 0.2s ease"
@@ -512,12 +587,13 @@ function Blog() {
       </section>
 
       {/* Category Filter */}
-      <section style={{ padding: "2rem 2rem", position: "relative", zIndex: 2, background: COLORS.primaryBg }}>
+      <section className="section-padding" style={{ padding: "2rem 2rem", position: "relative", zIndex: 2, background: COLORS.primaryBg }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", justifyContent: "center" }}>
+          <div className="filter-buttons" style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", justifyContent: "center" }}>
             {CATEGORIES.map((cat) => (
               <motion.button
                 key={cat.id}
+                className="filter-button"
                 onClick={() => setActiveFilter(cat.id)}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -528,7 +604,7 @@ function Blog() {
                   border: `1px solid ${activeFilter === cat.id ? COLORS.primaryAccent : COLORS.borderDefault}`,
                   color: activeFilter === cat.id ? COLORS.primaryText : COLORS.bodyText,
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: "0.875rem",
+                  fontSize: "clamp(0.75rem, 3vw, 0.875rem)",
                   fontWeight: 500,
                   cursor: "pointer",
                   transition: "all 0.2s ease"
@@ -543,18 +619,18 @@ function Blog() {
 
       {/* Featured Posts Section */}
       {activeFilter === "all" && featuredPosts.length > 0 && (
-        <section style={{ padding: "40px 2rem", position: "relative", zIndex: 2, background: COLORS.primaryBg }}>
+        <section className="section-padding" style={{ padding: "40px 2rem", position: "relative", zIndex: 2, background: COLORS.primaryBg }}>
           <div style={{ maxWidth: 1200, margin: "0 auto" }}>
             <h2 style={{ 
               fontFamily: "'Sora', sans-serif", 
-              fontSize: "1.5rem", 
+              fontSize: "clamp(1.25rem, 4vw, 1.5rem)", 
               fontWeight: 700, 
               color: COLORS.primaryText, 
               marginBottom: "2rem" 
             }}>
               Featured Articles
             </h2>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(500px, 1fr))", gap: "2rem" }}>
+            <div className="featured-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(500px, 1fr))", gap: "2rem" }}>
               {featuredPosts.map((post, index) => (
                 <motion.article
                   key={post.id}
@@ -576,8 +652,8 @@ function Blog() {
                   }}
                 >
                   <BlogThumbnail image={post.image} title={post.title} category={post.category} />
-                  <div style={{ padding: "1.5rem" }}>
-                    <div style={{ display: "flex", gap: "1rem", marginBottom: "0.75rem" }}>
+                  <div style={{ padding: "clamp(1rem, 4vw, 1.5rem)" }}>
+                    <div style={{ display: "flex", gap: "1rem", marginBottom: "0.75rem", flexWrap: "wrap" }}>
                       <span style={{ 
                         color: COLORS.secondaryAccent, 
                         fontSize: "0.75rem", 
@@ -597,7 +673,7 @@ function Blog() {
                     </div>
                     <h3 style={{ 
                       fontFamily: "'Sora', sans-serif", 
-                      fontSize: "1.25rem", 
+                      fontSize: "clamp(1rem, 4vw, 1.25rem)", 
                       fontWeight: 600, 
                       marginBottom: "0.75rem", 
                       color: COLORS.primaryText,
@@ -607,13 +683,13 @@ function Blog() {
                     </h3>
                     <p style={{ 
                       color: COLORS.bodyText, 
-                      fontSize: "0.875rem", 
+                      fontSize: "clamp(0.8rem, 3vw, 0.875rem)", 
                       lineHeight: 1.6, 
                       marginBottom: "1.25rem" 
                     }}>
                       {post.excerpt}
                     </p>
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "0.5rem" }}>
                       <div>
                         <div style={{ 
                           fontSize: "0.75rem", 
@@ -649,13 +725,13 @@ function Blog() {
       )}
 
       {/* Blog Grid */}
-      <section style={{ padding: "40px 2rem 80px", position: "relative", zIndex: 2, background: COLORS.primaryBg }}>
+      <section className="section-padding" style={{ padding: "40px 2rem 80px", position: "relative", zIndex: 2, background: COLORS.primaryBg }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           {regularPosts.length > 0 && (
             <>
               <h2 style={{ 
                 fontFamily: "'Sora', sans-serif", 
-                fontSize: "1.5rem", 
+                fontSize: "clamp(1.25rem, 4vw, 1.5rem)", 
                 fontWeight: 700, 
                 color: COLORS.primaryText, 
                 marginBottom: "2rem" 
@@ -682,8 +758,8 @@ function Blog() {
                     }}
                   >
                     <BlogThumbnail image={post.image} title={post.title} category={post.category} />
-                    <div style={{ padding: "1.5rem" }}>
-                      <div style={{ display: "flex", gap: "1rem", marginBottom: "0.75rem" }}>
+                    <div style={{ padding: "clamp(1rem, 4vw, 1.5rem)" }}>
+                      <div style={{ display: "flex", gap: "1rem", marginBottom: "0.75rem", flexWrap: "wrap" }}>
                         <span style={{ 
                           color: COLORS.secondaryAccent, 
                           fontSize: "0.7rem", 
@@ -698,7 +774,7 @@ function Blog() {
                       </div>
                       <h3 style={{ 
                         fontFamily: "'Sora', sans-serif", 
-                        fontSize: "1.1rem", 
+                        fontSize: "clamp(0.9rem, 4vw, 1.1rem)", 
                         fontWeight: 600, 
                         marginBottom: "0.75rem", 
                         color: COLORS.primaryText 
@@ -707,13 +783,13 @@ function Blog() {
                       </h3>
                       <p style={{ 
                         color: COLORS.bodyText, 
-                        fontSize: "0.85rem", 
+                        fontSize: "clamp(0.75rem, 3vw, 0.85rem)", 
                         lineHeight: 1.6, 
                         marginBottom: "1.25rem" 
                       }}>
                         {post.excerpt.substring(0, 120)}...
                       </p>
-                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "0.5rem" }}>
                         <div>
                           <div style={{ fontSize: "0.75rem", fontWeight: 600, color: COLORS.primaryText }}>
                             {post.author}
@@ -744,7 +820,7 @@ function Blog() {
 
       {/* Newsletter Section */}
       <section style={{ 
-        padding: "60px 2rem", 
+        padding: "clamp(2rem, 8vw, 3rem) clamp(1rem, 5vw, 2rem)", 
         background: COLORS.cardBg, 
         position: "relative", 
         zIndex: 2,
@@ -758,35 +834,36 @@ function Blog() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div style={{ fontSize: "2.5rem", marginBottom: "1rem" }}>📬</div>
+            <div style={{ fontSize: "clamp(2rem, 8vw, 2.5rem)", marginBottom: "1rem" }}>📬</div>
             <h2 style={{ 
               fontFamily: "'Sora', sans-serif", 
-              fontSize: "1.75rem", 
+              fontSize: "clamp(1.25rem, 5vw, 1.75rem)", 
               fontWeight: 700, 
               marginBottom: "0.75rem", 
               color: COLORS.primaryText 
             }}>
               Get the <span style={{ color: COLORS.primaryAccent }}>Latest Insights</span>
             </h2>
-            <p style={{ color: COLORS.bodyText, marginBottom: "2rem", fontFamily: "'Inter', sans-serif" }}>
+            <p style={{ color: COLORS.bodyText, marginBottom: "2rem", fontFamily: "'Inter', sans-serif", fontSize: "clamp(0.875rem, 3vw, 1rem)" }}>
               Subscribe to our newsletter and get the best articles delivered to your inbox.
             </p>
-            <form onSubmit={handleNewsletterSubmit} style={{ display: "flex", gap: "1rem", flexWrap: "wrap", justifyContent: "center" }}>
+            <form className="newsletter-form" onSubmit={handleNewsletterSubmit} style={{ display: "flex", gap: "1rem", flexWrap: "wrap", justifyContent: "center" }}>
               <input
                 type="email"
+                className="newsletter-input"
                 placeholder="Your email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 style={{
                   flex: 1,
-                  minWidth: "250px",
+                  minWidth: "200px",
                   background: COLORS.primaryBg,
                   border: `1px solid ${COLORS.borderDefault}`,
                   borderRadius: 50,
                   padding: "0.85rem 1.5rem",
                   color: COLORS.primaryText,
-                  fontSize: "0.9rem",
+                  fontSize: "clamp(0.8rem, 3vw, 0.9rem)",
                   outline: "none",
                   fontFamily: "'Inter', sans-serif",
                   transition: "all 0.2s ease"
@@ -810,7 +887,7 @@ function Blog() {
                   color: COLORS.primaryText,
                   fontFamily: "'Inter', sans-serif",
                   fontWeight: 600,
-                  fontSize: "0.875rem",
+                  fontSize: "clamp(0.75rem, 3vw, 0.875rem)",
                   cursor: "pointer",
                   transition: "all 0.2s ease"
                 }}
@@ -868,12 +945,13 @@ function Blog() {
             display: "flex",
             alignItems: "flex-start",
             justifyContent: "center",
-            padding: "2rem"
+            padding: "clamp(1rem, 5vw, 2rem)"
           }} onClick={() => setSelectedPost(null)}>
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="modal-content"
               style={{
                 maxWidth: 900,
                 width: "100%",
@@ -881,7 +959,7 @@ function Blog() {
                 background: COLORS.primaryBg,
                 border: `1px solid ${COLORS.borderDefault}`,
                 borderRadius: 24,
-                padding: "2rem",
+                padding: "clamp(1.5rem, 5vw, 2rem)",
                 position: "relative",
                 boxShadow: "0 25px 50px -12px rgba(0,0,0,0.5)"
               }}
@@ -932,14 +1010,14 @@ function Blog() {
                 </div>
                 <h1 style={{ 
                   fontFamily: "'Sora', sans-serif", 
-                  fontSize: "clamp(1.75rem, 4vw, 2.5rem)", 
+                  fontSize: "clamp(1.5rem, 5vw, 2.5rem)", 
                   fontWeight: 700, 
                   marginBottom: "1rem", 
                   color: COLORS.primaryText 
                 }}>
                   {selectedPost.title}
                 </h1>
-                <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1rem" }}>
+                <div className="modal-header" style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1rem", flexWrap: "wrap" }}>
                   <div>
                     <div style={{ fontWeight: 600, color: COLORS.primaryText, fontFamily: "'Inter', sans-serif" }}>
                       {selectedPost.author}
@@ -953,8 +1031,8 @@ function Blog() {
                 </div>
               </div>
 
-              <div style={{
-                height: 300,
+              <div className="modal-image" style={{
+                height: "clamp(200px, 40vw, 300px)",
                 background: COLORS.cardBg,
                 borderRadius: 16,
                 marginBottom: "2rem",
@@ -978,7 +1056,7 @@ function Blog() {
                 className="blog-modal-content"
                 dangerouslySetInnerHTML={{ __html: selectedPost.content }}
                 style={{
-                  fontSize: "1rem",
+                  fontSize: "clamp(0.875rem, 3vw, 1rem)",
                   marginBottom: "2rem"
                 }}
               />
@@ -1015,10 +1093,10 @@ function Blog() {
                 marginBottom: "2rem",
                 borderLeft: `3px solid ${COLORS.primaryAccent}`
               }}>
-                <p style={{ fontSize: "0.9rem", color: COLORS.bodyText, marginBottom: "1rem" }}>
+                <p style={{ fontSize: "clamp(0.8rem, 3vw, 0.9rem)", color: COLORS.bodyText, marginBottom: "1rem" }}>
                   Enjoyed this article? Get more insights like this delivered to your inbox.
                 </p>
-                <form onSubmit={handleNewsletterSubmit} style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+                <form className="newsletter-form" onSubmit={handleNewsletterSubmit} style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
                   <input
                     type="email"
                     placeholder="Your email"
@@ -1057,7 +1135,7 @@ function Blog() {
                 </form>
               </div>
 
-              <div style={{ display: "flex", gap: "1rem", justifyContent: "center" }}>
+              <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}

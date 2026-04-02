@@ -202,99 +202,255 @@ function Pricing() {
     setActiveFaq(activeFaq === index ? null : index);
   };
 
+  // Responsive styles
+  const responsiveStyles = `
+    @media (max-width: 1024px) {
+      .hero-padding {
+        padding: 100px 1.5rem 50px !important;
+      }
+      .section-padding {
+        padding: 50px 1.5rem !important;
+      }
+      .pricing-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1.5rem !important;
+      }
+      .addons-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1.2rem !important;
+      }
+      .hero-title {
+        font-size: clamp(2rem, 4vw, 2.5rem) !important;
+      }
+      .hero-subtitle {
+        font-size: 1rem !important;
+      }
+      .section-title {
+        font-size: 1.8rem !important;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero-padding {
+        padding: 80px 1rem 40px !important;
+      }
+      .section-padding {
+        padding: 40px 1rem !important;
+      }
+      .pricing-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+        max-width: 450px !important;
+        margin: 0 auto !important;
+      }
+      .addons-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+      }
+      .hero-title {
+        font-size: clamp(1.5rem, 5vw, 1.8rem) !important;
+      }
+      .hero-subtitle {
+        font-size: 0.9rem !important;
+      }
+      .section-title {
+        font-size: 1.4rem !important;
+      }
+      .hero-buttons {
+        flex-direction: column !important;
+        width: 100% !important;
+      }
+      .hero-buttons button {
+        width: 100% !important;
+      }
+      .pricing-card {
+        padding: 1.5rem !important;
+      }
+      .pricing-card-icon {
+        font-size: 2.5rem !important;
+      }
+      .pricing-card-title {
+        font-size: 1.3rem !important;
+      }
+      .pricing-price {
+        font-size: 1.6rem !important;
+      }
+      .feature-item {
+        font-size: 0.8rem !important;
+      }
+      .faq-question {
+        font-size: 0.9rem !important;
+        padding: 1rem !important;
+      }
+      .faq-answer {
+        padding: 0 1rem 1rem 1rem !important;
+        font-size: 0.85rem !important;
+      }
+      .cta-title {
+        font-size: 1.5rem !important;
+      }
+      .cta-buttons {
+        flex-direction: column !important;
+        gap: 0.8rem !important;
+      }
+      .cta-buttons button {
+        width: 100% !important;
+        padding: 0.8rem 1.5rem !important;
+      }
+      .hero-badge {
+        font-size: 0.7rem !important;
+      }
+      .calculator-modal {
+        padding: 1.5rem !important;
+        margin: 1rem !important;
+      }
+      .calculator-title {
+        font-size: 1.1rem !important;
+      }
+      .calculator-price {
+        font-size: 1.5rem !important;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .hero-padding {
+        padding: 70px 0.8rem 35px !important;
+      }
+      .section-padding {
+        padding: 30px 0.8rem !important;
+      }
+      .hero-title {
+        font-size: 1.4rem !important;
+      }
+      .hero-subtitle {
+        font-size: 0.85rem !important;
+      }
+      .section-title {
+        font-size: 1.2rem !important;
+      }
+      .pricing-card {
+        padding: 1.2rem !important;
+      }
+      .pricing-card-title {
+        font-size: 1.1rem !important;
+      }
+      .pricing-price {
+        font-size: 1.4rem !important;
+      }
+      .addon-card {
+        padding: 1rem !important;
+      }
+      .addon-price {
+        font-size: 0.9rem !important;
+      }
+      .guarantee-card {
+        padding: 1.2rem !important;
+      }
+      .calculator-buttons {
+        flex-direction: column !important;
+        gap: 0.5rem !important;
+      }
+    }
+  `;
+
   return (
     <>
-     {/* Hero Section - Removed full-screen quote section, integrated into header */}
-<section ref={heroRef} style={{ 
-  minHeight: "50vh", 
-  display: "flex", 
-  alignItems: "center", 
-  justifyContent: "center",
-  position: "relative",
-  padding: "120px 2rem 60px",
-  background: `linear-gradient(rgba(10, 15, 30, 0.82), rgba(10, 15, 30, 0.88)), url(${pricingHeroBg})`,
-  backgroundSize: "cover",
-  backgroundPosition: "center",
-  backgroundAttachment: "fixed",
-  overflow: "hidden"
-}}>
-  {/* Optional: Add a radial gradient for better text readability */}
-  <div style={{
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    background: "radial-gradient(ellipse 70% 40% at 50% 30%, rgba(37,99,235,0.08) 0%, transparent 70%)",
-    pointerEvents: "none"
-  }} />
-  
-  <motion.div style={{ opacity, scale }} className="hero-animate" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
-    <div style={{ textAlign: "center", maxWidth: 900, margin: "0 auto", position: "relative", zIndex: 2 }}>
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }}
-        style={{
-          display: "inline-block",
-          background: "rgba(30, 58, 95, 0.7)",
-          backdropFilter: "blur(8px)",
-          borderRadius: 20,
-          padding: "0.3rem 1rem",
-          fontSize: "0.75rem",
-          fontFamily: "'Inter', sans-serif",
-          fontWeight: 500,
-          color: C.blueHover,
-          letterSpacing: "0.08em",
-          textTransform: "uppercase",
-          marginBottom: "1rem",
-        }}
-      >
-        ✦ TRANSPARENT PRICING
-      </motion.div>
-      <motion.h1 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4 }}
-        style={{
-          fontFamily: "'Sora', sans-serif",
-          fontSize: "clamp(2.5rem,5vw,4rem)",
-          fontWeight: 800,
-          marginBottom: "1.5rem",
-          color: C.textPrimary,
-          lineHeight: 1.2,
-        }}
-      >
-        No Surprises.{" "}
-        <span style={{
-          background: `linear-gradient(135deg, ${C.blue}, ${C.cyan})`,
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-        }}>
-          Just Results.
-        </span>
-      </motion.h1>
-      <motion.p 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6 }}
-        style={{
-          fontSize: "1.1rem",
-          color: C.textLead,
-          lineHeight: 1.6,
-          maxWidth: 700,
-          margin: "0 auto"
-        }}
-      >
-        Fixed-price packages. You know exactly what you're getting before we start. 
-        No hidden fees, no scope surprises.
-      </motion.p>
-    </div>
-  </motion.div>
-</section>
+      <style>{responsiveStyles}</style>
+      
+      {/* Hero Section - Removed full-screen quote section, integrated into header */}
+      <section ref={heroRef} className="hero-padding" style={{ 
+        minHeight: "50vh", 
+        display: "flex", 
+        alignItems: "center", 
+        justifyContent: "center",
+        position: "relative",
+        padding: "120px 2rem 60px",
+        background: `linear-gradient(rgba(10, 15, 30, 0.82), rgba(10, 15, 30, 0.88)), url(${pricingHeroBg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+        overflow: "hidden"
+      }}>
+        {/* Optional: Add a radial gradient for better text readability */}
+        <div style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: "radial-gradient(ellipse 70% 40% at 50% 30%, rgba(37,99,235,0.08) 0%, transparent 70%)",
+          pointerEvents: "none"
+        }} />
+        
+        <motion.div style={{ opacity, scale }} className="hero-animate" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
+          <div style={{ textAlign: "center", maxWidth: 900, margin: "0 auto", position: "relative", zIndex: 2 }}>
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="hero-badge"
+              style={{
+                display: "inline-block",
+                background: "rgba(30, 58, 95, 0.7)",
+                backdropFilter: "blur(8px)",
+                borderRadius: 20,
+                padding: "0.3rem 1rem",
+                fontSize: "0.75rem",
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: 500,
+                color: C.blueHover,
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                marginBottom: "1rem",
+              }}
+            >
+              ✦ TRANSPARENT PRICING
+            </motion.div>
+            <motion.h1 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="hero-title"
+              style={{
+                fontFamily: "'Sora', sans-serif",
+                fontSize: "clamp(2.5rem,5vw,4rem)",
+                fontWeight: 800,
+                marginBottom: "1.5rem",
+                color: C.textPrimary,
+                lineHeight: 1.2,
+              }}
+            >
+              No Surprises.{" "}
+              <span style={{
+                background: `linear-gradient(135deg, ${C.blue}, ${C.cyan})`,
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}>
+                Just Results.
+              </span>
+            </motion.h1>
+            <motion.p 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              className="hero-subtitle"
+              style={{
+                fontSize: "1.1rem",
+                color: C.textLead,
+                lineHeight: 1.6,
+                maxWidth: 700,
+                margin: "0 auto"
+              }}
+            >
+              Fixed-price packages. You know exactly what you're getting before we start. 
+              No hidden fees, no scope surprises.
+            </motion.p>
+          </div>
+        </motion.div>
+      </section>
 
       {/* Pricing Grid */}
-      <section style={{ padding: "60px 2rem", position: "relative", zIndex: 2, background: C.surface }}>
+      <section className="section-padding" style={{ padding: "60px 2rem", position: "relative", zIndex: 2, background: C.surface }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div className="pricing-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "2rem" }}>
             {PRICING_PLANS.map((plan, index) => (
@@ -331,13 +487,13 @@ function Pricing() {
                   </div>
                 )}
                 <div style={{ padding: "2rem" }}>
-                  <div style={{ fontSize: "3rem", marginBottom: "1rem" }}>{plan.icon}</div>
-                  <h2 style={{ fontFamily: "'Sora', sans-serif", fontSize: "1.5rem", fontWeight: 700, color: plan.color, marginBottom: "0.5rem" }}>
+                  <div className="pricing-card-icon" style={{ fontSize: "3rem", marginBottom: "1rem" }}>{plan.icon}</div>
+                  <h2 className="pricing-card-title" style={{ fontFamily: "'Sora', sans-serif", fontSize: "1.5rem", fontWeight: 700, color: plan.color, marginBottom: "0.5rem" }}>
                     {plan.name}
                   </h2>
                   <p style={{ fontSize: "0.8rem", color: C.textMuted, marginBottom: "1rem" }}>{plan.tagline}</p>
                   <div style={{ marginBottom: "1rem" }}>
-                    <span style={{ fontFamily: "'Sora', sans-serif", fontSize: "2rem", fontWeight: 700, color: C.textPrimary }}>
+                    <span className="pricing-price" style={{ fontFamily: "'Sora', sans-serif", fontSize: "2rem", fontWeight: 700, color: C.textPrimary }}>
                       {plan.price}
                     </span>
                     {plan.priceRange.max && (
@@ -357,7 +513,7 @@ function Pricing() {
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                           <path d="M13 4L6 11L3 8" stroke={plan.color} strokeWidth="2" strokeLinecap="round" />
                         </svg>
-                        <span style={{ fontSize: "0.85rem", color: C.textBody }}>{feature}</span>
+                        <span className="feature-item" style={{ fontSize: "0.85rem", color: C.textBody }}>{feature}</span>
                       </div>
                     ))}
                     {plan.additionalFeatures && plan.additionalFeatures.map((feature, i) => (
@@ -366,12 +522,12 @@ function Pricing() {
                           <circle cx="8" cy="8" r="6" stroke="#D97706" strokeWidth="1.5" />
                           <path d="M8 5v3M8 11h.01" stroke="#D97706" strokeWidth="1.5" strokeLinecap="round" />
                         </svg>
-                        <span style={{ fontSize: "0.85rem", color: "#D97706" }}>{feature}</span>
+                        <span className="feature-item" style={{ fontSize: "0.85rem", color: "#D97706" }}>{feature}</span>
                       </div>
                     ))}
                   </div>
                   
-                  <div style={{ display: "flex", gap: "0.5rem", flexDirection: "column" }}>
+                  <div className="cta-buttons" style={{ display: "flex", gap: "0.5rem", flexDirection: "column" }}>
                     <motion.button
                       whileHover={{ scale: 1.02, background: C.blueHover }}
                       whileTap={{ scale: 0.98 }}
@@ -429,7 +585,7 @@ function Pricing() {
       </section>
 
       {/* Add-ons Section - Consolidated below pricing cards */}
-      <section style={{ padding: "60px 2rem", position: "relative", zIndex: 2, background: C.bg }}>
+      <section className="section-padding" style={{ padding: "60px 2rem", position: "relative", zIndex: 2, background: C.bg }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", textAlign: "center" }}>
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
             <div style={{
@@ -447,14 +603,14 @@ function Pricing() {
             }}>
               ✦ ADD-ONS
             </div>
-            <h2 style={{ fontFamily: "'Sora', sans-serif", fontSize: "clamp(1.8rem,3vw,2.5rem)", fontWeight: 700, marginBottom: "1rem", color: C.textPrimary }}>
+            <h2 className="section-title" style={{ fontFamily: "'Sora', sans-serif", fontSize: "clamp(1.8rem,3vw,2.5rem)", fontWeight: 700, marginBottom: "1rem", color: C.textPrimary }}>
               Customize Your <span style={{ color: C.blue }}>Package</span>
             </h2>
             <p style={{ color: C.textBody, marginBottom: "3rem" }}>
               Add these features to any package for an enhanced experience
             </p>
           </motion.div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "1.5rem" }}>
+          <div className="addons-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "1.5rem" }}>
             {ADDONS.map((addon, i) => (
               <motion.div
                 key={addon.name}
@@ -463,6 +619,7 @@ function Pricing() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05, duration: 0.3 }}
                 whileHover={{ y: -5 }}
+                className="addon-card"
                 style={{
                   background: C.surface,
                   border: `1px solid ${C.border}`,
@@ -474,7 +631,7 @@ function Pricing() {
                 <div style={{ fontSize: "2.5rem", marginBottom: "0.5rem" }}>{addon.icon}</div>
                 <h3 style={{ fontFamily: "'Sora', sans-serif", fontSize: "1rem", fontWeight: 600, marginBottom: "0.5rem", color: C.textPrimary }}>{addon.name}</h3>
                 <p style={{ fontSize: "0.75rem", color: C.textMuted, marginBottom: "0.5rem" }}>{addon.desc}</p>
-                <p style={{ fontSize: "1.1rem", fontWeight: 700, color: C.blue }}>{addon.price}</p>
+                <p className="addon-price" style={{ fontSize: "1.1rem", fontWeight: 700, color: C.blue }}>{addon.price}</p>
               </motion.div>
             ))}
           </div>
@@ -489,6 +646,7 @@ function Pricing() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            className="guarantee-card"
             style={{
               background: C.surface,
               border: `1px solid ${C.border}`,
@@ -509,7 +667,7 @@ function Pricing() {
       </section>
 
       {/* FAQ Section - Accordion style, integrated below add-ons */}
-      <section className="faq-section" style={{ padding: "60px 2rem", background: C.surface, position: "relative", zIndex: 2 }}>
+      <section className="faq-section section-padding" style={{ padding: "60px 2rem", background: C.surface, position: "relative", zIndex: 2 }}>
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
             <div style={{
@@ -531,7 +689,7 @@ function Pricing() {
             }}>
               ✦ FAQ
             </div>
-            <h2 style={{ fontFamily: "'Sora', sans-serif", fontSize: "clamp(1.8rem,3vw,2.5rem)", fontWeight: 700, marginBottom: "3rem", textAlign: "center", color: C.textPrimary }}>
+            <h2 className="section-title" style={{ fontFamily: "'Sora', sans-serif", fontSize: "clamp(1.8rem,3vw,2.5rem)", fontWeight: 700, marginBottom: "3rem", textAlign: "center", color: C.textPrimary }}>
               Frequently Asked <span style={{ color: C.blue }}>Questions</span>
             </h2>
           </motion.div>
@@ -554,6 +712,7 @@ function Pricing() {
               >
                 <button
                   onClick={() => toggleFaq(i)}
+                  className="faq-question"
                   style={{
                     width: "100%",
                     display: "flex",
@@ -574,7 +733,7 @@ function Pricing() {
                   </span>
                 </button>
                 {activeFaq === i && (
-                  <div style={{ padding: "0 1.5rem 1.25rem 1.5rem" }}>
+                  <div className="faq-answer" style={{ padding: "0 1.5rem 1.25rem 1.5rem" }}>
                     <p style={{ fontSize: "0.9rem", color: C.textBody, lineHeight: 1.6, margin: 0 }}>
                       {faq.answer}
                     </p>
@@ -587,7 +746,7 @@ function Pricing() {
       </section>
 
       {/* CTA Section */}
-      <section style={{ padding: "60px 2rem 100px", position: "relative", zIndex: 2, background: C.bg }}>
+      <section className="section-padding" style={{ padding: "60px 2rem 100px", position: "relative", zIndex: 2, background: C.bg }}>
         <div style={{ maxWidth: 900, margin: "0 auto", textAlign: "center" }}>
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -601,7 +760,7 @@ function Pricing() {
               padding: "3rem"
             }}
           >
-            <h2 style={{ fontFamily: "'Sora', sans-serif", fontSize: "clamp(1.5rem,3vw,2rem)", fontWeight: 700, marginBottom: "1rem", color: C.textPrimary }}>
+            <h2 className="cta-title" style={{ fontFamily: "'Sora', sans-serif", fontSize: "clamp(1.5rem,3vw,2rem)", fontWeight: 700, marginBottom: "1rem", color: C.textPrimary }}>
               Ready to Get <span style={{ color: C.blue }}>Started?</span>
             </h2>
             <p style={{ fontSize: "1rem", color: C.textBody, marginBottom: "2rem", lineHeight: 1.6 }}>
@@ -643,13 +802,14 @@ function Pricing() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          padding: "2rem",
+          padding: "1rem",
           backdropFilter: "blur(10px)"
         }} onClick={() => setShowCalculator(false)}>
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            className="calculator-modal"
             style={{
               maxWidth: 500,
               width: "100%",
@@ -657,7 +817,8 @@ function Pricing() {
               border: `1px solid ${C.border}`,
               borderRadius: 20,
               padding: "2rem",
-              position: "relative"
+              position: "relative",
+              margin: "1rem"
             }}
             onClick={(e) => e.stopPropagation()}
           >
@@ -683,7 +844,7 @@ function Pricing() {
               ×
             </button>
 
-            <h2 style={{ fontFamily: "'Sora', sans-serif", fontSize: "1.3rem", fontWeight: 700, color: C.blue, marginBottom: "1rem" }}>
+            <h2 className="calculator-title" style={{ fontFamily: "'Sora', sans-serif", fontSize: "1.3rem", fontWeight: 700, color: C.blue, marginBottom: "1rem" }}>
               Get Your Exact Quote
             </h2>
 
@@ -750,7 +911,7 @@ function Pricing() {
                           }}
                           style={{ width: 18, height: 18, cursor: "pointer", accentColor: C.blue }}
                         />
-                        <span style={{ color: C.textBody, flex: 1 }}>{addon.name}</span>
+                        <span style={{ color: C.textBody, flex: 1, fontSize: "0.85rem" }}>{addon.name}</span>
                         <span style={{ color: C.blue, fontSize: "0.8rem" }}>{addon.price}</span>
                       </label>
                     ))}
@@ -809,7 +970,7 @@ function Pricing() {
                     textAlign: "center"
                   }}>
                     <div style={{ fontSize: "0.8rem", color: C.textMuted }}>Estimated Price</div>
-                    <div style={{ fontFamily: "'Sora', sans-serif", fontSize: "2rem", fontWeight: 700, color: C.blue }}>
+                    <div className="calculator-price" style={{ fontFamily: "'Sora', sans-serif", fontSize: "2rem", fontWeight: 700, color: C.blue }}>
                       ₹{getEstimatedPrice().toLocaleString()}
                     </div>
                     <div style={{ fontSize: "0.7rem", color: C.textMuted }}>+ applicable taxes</div>

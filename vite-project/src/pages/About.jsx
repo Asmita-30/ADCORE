@@ -54,103 +54,178 @@ function About() {
 
   return (
     <>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap');
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+          .about-grid {
+            grid-template-columns: 1fr !important;
+            gap: 2rem !important;
+          }
+          .about-stats {
+            justify-content: center !important;
+          }
+          .capabilities-grid {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+          }
+          .values-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .cta-padding {
+            padding: 2rem !important;
+          }
+        }
+        
+        @media (max-width: 640px) {
+          .hero-padding {
+            padding: 100px 1rem 60px !important;
+          }
+          .section-padding {
+            padding: 60px 1rem !important;
+          }
+          .stats-container {
+            gap: 1rem !important;
+          }
+          .stat-value {
+            font-size: 1.5rem !important;
+          }
+        }
+        
+        @media (min-width: 641px) and (max-width: 768px) {
+          .hero-padding {
+            padding: 110px 1.5rem 70px !important;
+          }
+          .section-padding {
+            padding: 70px 1.5rem !important;
+          }
+        }
+        
+        @media (min-width: 769px) and (max-width: 1024px) {
+          .hero-padding {
+            padding: 120px 2rem 80px !important;
+          }
+          .section-padding {
+            padding: 80px 2rem !important;
+          }
+        }
+        
+        ::-webkit-scrollbar {
+          width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+          background: ${C.bg};
+        }
+        
+        ::-webkit-scrollbar-thumb {
+          background: ${C.blue};
+          border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+          background: ${C.blueHover};
+        }
+      `}</style>
+
       {/* Hero Section - C-06: Specific mission-driven headline */}
-    <section
-  style={{
-    minHeight: "50vh",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    position: "relative",
-    padding: "120px 2rem 80px",
-    background: `linear-gradient(rgba(10, 15, 30, 0.85), rgba(10, 15, 30, 0.92)), url(${aboutHeroBg})`,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundAttachment: "fixed",
-    overflow: "hidden",
-  }}
->
-  {/* Optional: Add an overlay gradient for better text readability */}
-  <div
-    style={{
-      position: "absolute",
-      inset: 0,
-      pointerEvents: "none",
-      background: "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(37,99,235,0.12) 0%, transparent 70%)",
-    }}
-  />
-
-  <div style={{ textAlign: "center", maxWidth: 900, margin: "0 auto", position: "relative", zIndex: 2 }}>
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.2 }}
-      style={{
-        display: "inline-block",
-        background: "rgba(30, 58, 95, 0.9)",
-        backdropFilter: "blur(8px)",
-        borderRadius: 20,
-        padding: "0.3rem 1rem",
-        fontSize: "0.75rem",
-        fontFamily: "'Inter', sans-serif",
-        fontWeight: 500,
-        color: C.blueHover,
-        letterSpacing: "0.08em",
-        textTransform: "uppercase",
-        marginBottom: "1rem",
-      }}
-    >
-      ✦ ABOUT ADRIX CORE
-    </motion.div>
-
-    {/* C-06: Changed from "FROM IDEA TO IMPACT" to specific mission-driven statement */}
-    <motion.h1
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.4 }}
-      style={{
-        fontFamily: "'Sora', sans-serif",
-        fontSize: "clamp(2.5rem, 5vw, 4rem)",
-        fontWeight: 800,
-        marginBottom: "1.5rem",
-        color: C.textPrimary,
-        lineHeight: 1.2,
-      }}
-    >
-      Engineering-First.{" "}
-      <span
+      <section
+        className="hero-padding"
         style={{
-          background: `linear-gradient(135deg, ${C.blue}, ${C.cyan})`,
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
+          minHeight: "50vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          position: "relative",
+          padding: "120px 2rem 80px",
+          background: `linear-gradient(rgba(10, 15, 30, 0.85), rgba(10, 15, 30, 0.92)), url(${aboutHeroBg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+          overflow: "hidden",
         }}
       >
-        Results-Driven.
-      </span>
-    </motion.h1>
+        {/* Optional: Add an overlay gradient for better text readability */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            pointerEvents: "none",
+            background: "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(37,99,235,0.12) 0%, transparent 70%)",
+          }}
+        />
 
-    <motion.p
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.6 }}
-      style={{
-        fontSize: "1.1rem",
-        color: C.textLead,
-        lineHeight: 1.6,
-        maxWidth: 700,
-        margin: "0 auto",
-      }}
-    >
-      Built by engineers. Trusted by founders. We build web, mobile, and AI
-      solutions that are production-ready — not just good-looking demos.
-    </motion.p>
-  </div>
-</section>
+        <div style={{ textAlign: "center", maxWidth: 900, margin: "0 auto", position: "relative", zIndex: 2, padding: "0 1rem" }}>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            style={{
+              display: "inline-block",
+              background: "rgba(30, 58, 95, 0.9)",
+              backdropFilter: "blur(8px)",
+              borderRadius: 20,
+              padding: "0.3rem 1rem",
+              fontSize: "0.75rem",
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 500,
+              color: C.blueHover,
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              marginBottom: "1rem",
+            }}
+          >
+            ✦ ABOUT ADRIX CORE
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            style={{
+              fontFamily: "'Sora', sans-serif",
+              fontSize: "clamp(2rem, 5vw, 4rem)",
+              fontWeight: 700,
+              marginBottom: "1.5rem",
+              color: C.textPrimary,
+              lineHeight: 1.2,
+            }}
+          >
+            Engineering-First.{" "}
+            <span
+              style={{
+                background: `linear-gradient(135deg, ${C.blue}, ${C.cyan})`,
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              Results-Driven.
+            </span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+            style={{
+              fontSize: "clamp(1rem, 4vw, 1.1rem)",
+              color: C.textLead,
+              lineHeight: 1.6,
+              maxWidth: 700,
+              margin: "0 auto",
+              fontFamily: "'Inter', sans-serif"
+            }}
+          >
+            Built by engineers. Trusted by founders. We build web, mobile, and AI
+            solutions that are production-ready — not just good-looking demos.
+          </motion.p>
+        </div>
+      </section>
 
       {/* WHO WE ARE Section - C-07: Lead with SIH win */}
       <section
         ref={sectionRef}
-        className="about-section"
+        className="about-section section-padding"
         style={{
           padding: "80px 2rem",
           position: "relative",
@@ -160,6 +235,7 @@ function About() {
       >
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div
+            className="about-grid"
             style={{
               display: "grid",
               gridTemplateColumns: "1fr 1fr",
@@ -185,7 +261,7 @@ function About() {
                 className="animate-item"
                 style={{
                   fontFamily: "'Sora', sans-serif",
-                  fontSize: "clamp(1.8rem, 3vw, 2.5rem)",
+                  fontSize: "clamp(1.5rem, 3vw, 2.5rem)",
                   fontWeight: 700,
                   marginBottom: "1.5rem",
                   color: C.textPrimary,
@@ -194,14 +270,14 @@ function About() {
                 About <span style={{ color: C.blue }}>Adrix Core</span>
               </h2>
 
-              {/* C-07: Lead with SIH win as primary credibility anchor */}
               <p
                 className="animate-item"
                 style={{
-                  fontSize: "1rem",
+                  fontSize: "clamp(0.9rem, 4vw, 1rem)",
                   lineHeight: 1.7,
                   color: C.textLead,
                   marginBottom: "1rem",
+                  fontFamily: "'Inter', sans-serif"
                 }}
               >
                 Adrix Core was founded by a two-time national Smart India Hackathon
@@ -213,10 +289,11 @@ function About() {
               <p
                 className="animate-item"
                 style={{
-                  fontSize: "1rem",
+                  fontSize: "clamp(0.9rem, 4vw, 1rem)",
                   lineHeight: 1.7,
                   color: C.textBody,
                   marginBottom: "1rem",
+                  fontFamily: "'Inter', sans-serif"
                 }}
               >
                 We started Adrix Core because too many businesses were settling for
@@ -226,7 +303,7 @@ function About() {
 
               {/* C-09: Replace inflated stats with process-proof stats */}
               <div
-                className="animate-item"
+                className="animate-item stats-container"
                 style={{
                   display: "flex",
                   gap: "2rem",
@@ -242,9 +319,10 @@ function About() {
                 ].map((stat, i) => (
                   <div key={stat.label}>
                     <div
+                      className="stat-value"
                       style={{
                         fontFamily: "'Sora', sans-serif",
-                        fontSize: "1.8rem",
+                        fontSize: "clamp(1.5rem, 3vw, 1.8rem)",
                         fontWeight: 700,
                         color: C.blueHover,
                       }}
@@ -273,7 +351,8 @@ function About() {
                   borderRadius: 16,
                   overflow: "hidden",
                   border: `1px solid ${C.border}`,
-                  height: 400,
+                  height: "auto",
+                  minHeight: 300,
                 }}
               >
                 <img
@@ -293,7 +372,7 @@ function About() {
 
       {/* WHAT WE DO Section */}
       <section
-        className="about-section"
+        className="about-section section-padding"
         style={{
           padding: "80px 2rem",
           background: C.bg,
@@ -324,7 +403,7 @@ function About() {
             className="animate-item"
             style={{
               fontFamily: "'Sora', sans-serif",
-              fontSize: "clamp(1.8rem, 3vw, 2.5rem)",
+              fontSize: "clamp(1.5rem, 3vw, 2.5rem)",
               fontWeight: 700,
               marginBottom: "3rem",
               color: C.textPrimary,
@@ -334,6 +413,7 @@ function About() {
           </h2>
 
           <div
+            className="capabilities-grid"
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
@@ -407,6 +487,7 @@ function About() {
                     fontSize: "0.85rem",
                     color: C.textBody,
                     lineHeight: 1.5,
+                    fontFamily: "'Inter', sans-serif"
                   }}
                 >
                   {item.desc}
@@ -419,7 +500,7 @@ function About() {
 
       {/* CORE VALUES Section - C-08: Reduced to 3 core values */}
       <section
-        className="about-section"
+        className="about-section section-padding"
         style={{
           padding: "80px 2rem",
           background: C.surface,
@@ -450,7 +531,7 @@ function About() {
             className="animate-item"
             style={{
               fontFamily: "'Sora', sans-serif",
-              fontSize: "clamp(1.8rem, 3vw, 2.5rem)",
+              fontSize: "clamp(1.5rem, 3vw, 2.5rem)",
               fontWeight: 700,
               marginBottom: "1rem",
               color: C.textPrimary,
@@ -463,6 +544,7 @@ function About() {
             style={{
               color: C.textBody,
               marginBottom: "3rem",
+              fontFamily: "'Inter', sans-serif"
             }}
           >
             The operating principles behind every decision we make
@@ -470,6 +552,7 @@ function About() {
 
           {/* C-08: Reduced to 3 core values maximum */}
           <div
+            className="values-grid"
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
@@ -529,6 +612,7 @@ function About() {
                     fontSize: "0.85rem",
                     color: C.textBody,
                     lineHeight: 1.5,
+                    fontFamily: "'Inter', sans-serif"
                   }}
                 >
                   {value.desc}
@@ -541,6 +625,7 @@ function About() {
 
       {/* CTA Section */}
       <section
+        className="section-padding"
         style={{
           padding: "80px 2rem",
           position: "relative",
@@ -554,6 +639,7 @@ function About() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            className="cta-padding"
             style={{
               background: C.surface,
               border: `1px solid ${C.border}`,
@@ -564,7 +650,7 @@ function About() {
             <h2
               style={{
                 fontFamily: "'Sora', sans-serif",
-                fontSize: "clamp(1.5rem, 3vw, 2rem)",
+                fontSize: "clamp(1.3rem, 3vw, 2rem)",
                 fontWeight: 700,
                 marginBottom: "1rem",
                 color: C.textPrimary,
@@ -575,10 +661,11 @@ function About() {
             </h2>
             <p
               style={{
-                fontSize: "1rem",
+                fontSize: "clamp(0.9rem, 4vw, 1rem)",
                 color: C.textBody,
                 marginBottom: "2rem",
                 lineHeight: 1.6,
+                fontFamily: "'Inter', sans-serif"
               }}
             >
               We are Adrix Core. Let's build something that matters.

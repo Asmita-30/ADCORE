@@ -7,7 +7,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import landingPageHeroBg from "../assets/images/Landing-bg.png";
 
-
 gsap.registerPlugin(ScrollTrigger);
 
 // ─── DESIGN SYSTEM (Consistent with Home page) ──────────────────────────────
@@ -123,145 +122,292 @@ function LandingPages() {
     }
   };
 
+  // Responsive styles
+  const responsiveStyles = `
+    @media (max-width: 1024px) {
+      .hero-padding {
+        padding: 100px 1.5rem 50px !important;
+      }
+      .section-padding {
+        padding: 60px 1.5rem !important;
+      }
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1.5rem !important;
+      }
+      .templates-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1.2rem !important;
+      }
+      .strategies-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1.2rem !important;
+      }
+      .process-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1.5rem !important;
+      }
+      .hero-title {
+        font-size: clamp(2rem, 4vw, 2.5rem) !important;
+      }
+      .hero-subtitle {
+        font-size: 1rem !important;
+      }
+      .section-title {
+        font-size: 1.8rem !important;
+      }
+      .pricing-card {
+        padding: 1.5rem !important;
+        margin: 0 1rem !important;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero-padding {
+        padding: 80px 1rem 40px !important;
+      }
+      .section-padding {
+        padding: 40px 1rem !important;
+      }
+      .features-grid, .templates-grid, .strategies-grid, .process-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+      }
+      .hero-title {
+        font-size: clamp(1.5rem, 5vw, 1.8rem) !important;
+      }
+      .hero-subtitle {
+        font-size: 0.9rem !important;
+      }
+      .section-title {
+        font-size: 1.4rem !important;
+      }
+      .hero-buttons {
+        flex-direction: column !important;
+        width: 100% !important;
+      }
+      .hero-buttons button {
+        width: 100% !important;
+      }
+      .feature-card, .template-card, .strategy-card, .process-card {
+        padding: 1.2rem !important;
+      }
+      .feature-icon, .template-icon {
+        font-size: 2rem !important;
+      }
+      .feature-title, .template-title, .strategy-title, .process-title {
+        font-size: 1rem !important;
+      }
+      .pricing-features {
+        flex-wrap: wrap !important;
+        gap: 0.5rem !important;
+      }
+      .pricing-features > div {
+        font-size: 0.7rem !important;
+        padding: 0.2rem 0.6rem !important;
+      }
+      .faq-question {
+        font-size: 0.9rem !important;
+        padding: 1rem !important;
+      }
+      .faq-answer {
+        padding: 0 1rem 1rem 1rem !important;
+        font-size: 0.85rem !important;
+      }
+      .cta-title {
+        font-size: 1.5rem !important;
+      }
+      .cta-buttons {
+        flex-direction: column !important;
+        gap: 0.8rem !important;
+      }
+      .cta-buttons button {
+        width: 100% !important;
+        padding: 0.8rem 1.5rem !important;
+      }
+      .hero-badge {
+        font-size: 0.7rem !important;
+      }
+      .process-step-number {
+        width: 45px !important;
+        height: 45px !important;
+        font-size: 1.2rem !important;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .hero-padding {
+        padding: 70px 0.8rem 35px !important;
+      }
+      .section-padding {
+        padding: 30px 0.8rem !important;
+      }
+      .hero-title {
+        font-size: 1.4rem !important;
+      }
+      .hero-subtitle {
+        font-size: 0.85rem !important;
+      }
+      .section-title {
+        font-size: 1.2rem !important;
+      }
+      .feature-card, .template-card, .strategy-card, .process-card {
+        padding: 1rem !important;
+      }
+      .pricing-card {
+        padding: 1.2rem !important;
+      }
+      .template-price {
+        font-size: 0.9rem !important;
+      }
+    }
+  `;
+
   return (
     <>
+      <style>{responsiveStyles}</style>
+      
       {/* Hero Section - C-11: Differentiated with landing page specific background */}
-    <section ref={heroRef} style={{ 
-  minHeight: "60vh", 
-  display: "flex", 
-  alignItems: "center", 
-  justifyContent: "center",
-  position: "relative",
-  padding: "120px 2rem 60px",
-  background: `linear-gradient(rgba(10, 15, 30, 0.78), rgba(10, 15, 30, 0.85)), url(${landingPageHeroBg})`,
-  backgroundSize: "cover",
-  backgroundPosition: "center",
-  backgroundAttachment: "fixed",
-  overflow: "hidden"
-}}>
-  {/* Landing page specific gradient pattern */}
-  <div style={{
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundImage: `radial-gradient(circle at 20% 40%, rgba(37,99,235,0.08) 0%, transparent 50%),
-                     radial-gradient(circle at 80% 60%, rgba(6,182,212,0.06) 0%, transparent 50%),
-                     repeating-linear-gradient(90deg, rgba(37,99,235,0.02) 0px, rgba(37,99,235,0.02) 1px, transparent 1px, transparent 40px)`,
-    pointerEvents: "none"
-  }} />
-  
-  <motion.div style={{ opacity, scale }} className="hero-animate">
-    <div style={{ textAlign: "center", maxWidth: 900, margin: "0 auto", position: "relative", zIndex: 2 }}>
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }}
-        style={{
-          display: "inline-block",
-          background: "rgba(30, 58, 95, 0.8)",
-          backdropFilter: "blur(8px)",
-          borderRadius: 20,
-          padding: "0.3rem 1rem",
-          fontSize: "0.75rem",
-          fontFamily: "'Inter', sans-serif",
-          fontWeight: 500,
-          color: C.blueHover,
-          letterSpacing: "0.08em",
-          textTransform: "uppercase",
-          marginBottom: "1rem",
-        }}
-      >
-        ✦ LANDING PAGES
-      </motion.div>
-      <motion.h1 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4 }}
-        style={{
-          fontFamily: "'Sora', sans-serif",
-          fontSize: "clamp(2.5rem,5vw,4rem)",
-          fontWeight: 800,
-          marginBottom: "1.5rem",
-          color: C.textPrimary,
-          lineHeight: 1.2,
-        }}
-      >
-        Convert Visitors into{" "}
-        <span style={{
-          background: `linear-gradient(135deg, ${C.blue}, ${C.cyan})`,
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-        }}>
-          Customers
-        </span>
-      </motion.h1>
-      <motion.p 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6 }}
-        style={{
-          fontSize: "1.1rem",
-          color: C.textLead,
-          lineHeight: 1.6,
-          maxWidth: 700,
-          margin: "0 auto"
-        }}
-      >
-        High-converting landing pages designed to capture leads, drive sales, and grow your business. 
-        Custom designs optimized for maximum conversions.
-      </motion.p>
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.8 }}
-        style={{ marginTop: "2rem", display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}
-      >
-        {/* C-13: Service-specific CTA */}
-        <motion.button
-          whileHover={{ scale: 1.05, background: C.blueHover }}
-          whileTap={{ scale: 0.95 }}
-          onClick={scrollToContact}
-          style={{
-            background: C.blue,
-            border: "none",
-            padding: "0.8rem 2rem",
-            borderRadius: 8,
-            color: "#fff",
-            fontFamily: "'Inter', sans-serif",
-            fontWeight: 600,
-            fontSize: "0.9rem",
-            cursor: "pointer"
-          }}
-        >
-          Get Your Landing Page →
-        </motion.button>
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={handleWhatsApp}
-          style={{
-            background: "transparent",
-            border: `1px solid ${C.border}`,
-            padding: "0.8rem 2rem",
-            borderRadius: 8,
-            color: C.textPrimary,
-            fontFamily: "'Inter', sans-serif",
-            fontWeight: 600,
-            fontSize: "0.9rem",
-            cursor: "pointer"
-          }}
-        >
-          Chat on WhatsApp 💬
-        </motion.button>
-      </motion.div>
-    </div>
-  </motion.div>
-</section>
+      <section ref={heroRef} className="hero-padding" style={{ 
+        minHeight: "60vh", 
+        display: "flex", 
+        alignItems: "center", 
+        justifyContent: "center",
+        position: "relative",
+        padding: "120px 2rem 60px",
+        background: `linear-gradient(rgba(10, 15, 30, 0.78), rgba(10, 15, 30, 0.85)), url(${landingPageHeroBg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+        overflow: "hidden"
+      }}>
+        {/* Landing page specific gradient pattern */}
+        <div style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundImage: `radial-gradient(circle at 20% 40%, rgba(37,99,235,0.08) 0%, transparent 50%),
+                           radial-gradient(circle at 80% 60%, rgba(6,182,212,0.06) 0%, transparent 50%),
+                           repeating-linear-gradient(90deg, rgba(37,99,235,0.02) 0px, rgba(37,99,235,0.02) 1px, transparent 1px, transparent 40px)`,
+          pointerEvents: "none"
+        }} />
+        
+        <motion.div style={{ opacity, scale }} className="hero-animate">
+          <div style={{ textAlign: "center", maxWidth: 900, margin: "0 auto", position: "relative", zIndex: 2 }}>
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="hero-badge"
+              style={{
+                display: "inline-block",
+                background: "rgba(30, 58, 95, 0.8)",
+                backdropFilter: "blur(8px)",
+                borderRadius: 20,
+                padding: "0.3rem 1rem",
+                fontSize: "0.75rem",
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: 500,
+                color: C.blueHover,
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                marginBottom: "1rem",
+              }}
+            >
+              ✦ LANDING PAGES
+            </motion.div>
+            <motion.h1 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="hero-title"
+              style={{
+                fontFamily: "'Sora', sans-serif",
+                fontSize: "clamp(2.5rem,5vw,4rem)",
+                fontWeight: 800,
+                marginBottom: "1.5rem",
+                color: C.textPrimary,
+                lineHeight: 1.2,
+              }}
+            >
+              Convert Visitors into{" "}
+              <span style={{
+                background: `linear-gradient(135deg, ${C.blue}, ${C.cyan})`,
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}>
+                Customers
+              </span>
+            </motion.h1>
+            <motion.p 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              className="hero-subtitle"
+              style={{
+                fontSize: "1.1rem",
+                color: C.textLead,
+                lineHeight: 1.6,
+                maxWidth: 700,
+                margin: "0 auto"
+              }}
+            >
+              High-converting landing pages designed to capture leads, drive sales, and grow your business. 
+              Custom designs optimized for maximum conversions.
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8 }}
+              className="hero-buttons"
+              style={{ marginTop: "2rem", display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}
+            >
+              {/* C-13: Service-specific CTA */}
+              <motion.button
+                whileHover={{ scale: 1.05, background: C.blueHover }}
+                whileTap={{ scale: 0.95 }}
+                onClick={scrollToContact}
+                style={{
+                  background: C.blue,
+                  border: "none",
+                  padding: "0.8rem 2rem",
+                  borderRadius: 8,
+                  color: "#fff",
+                  fontFamily: "'Inter', sans-serif",
+                  fontWeight: 600,
+                  fontSize: "0.9rem",
+                  cursor: "pointer"
+                }}
+              >
+                Get Your Landing Page →
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={handleWhatsApp}
+                style={{
+                  background: "transparent",
+                  border: `1px solid ${C.border}`,
+                  padding: "0.8rem 2rem",
+                  borderRadius: 8,
+                  color: C.textPrimary,
+                  fontFamily: "'Inter', sans-serif",
+                  fontWeight: 600,
+                  fontSize: "0.9rem",
+                  cursor: "pointer"
+                }}
+              >
+                Chat on WhatsApp 💬
+              </motion.button>
+            </motion.div>
+          </div>
+        </motion.div>
+      </section>
 
       {/* Features Section - C-12: Consistent icon styling */}
-      <section style={{ padding: "80px 2rem", position: "relative", zIndex: 2, background: C.surface }}>
+      <section className="section-padding" style={{ padding: "80px 2rem", position: "relative", zIndex: 2, background: C.surface }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -285,7 +431,7 @@ function LandingPages() {
             }}>
               ✦ WHY CHOOSE US
             </div>
-            <h2 style={{ fontFamily: "'Sora', sans-serif", fontSize: "2rem", fontWeight: 700, marginBottom: "1rem", color: C.textPrimary }}>
+            <h2 className="section-title" style={{ fontFamily: "'Sora', sans-serif", fontSize: "2rem", fontWeight: 700, marginBottom: "1rem", color: C.textPrimary }}>
               High-Converting <span style={{ color: C.blue }}>Landing Pages</span>
             </h2>
             <p style={{ color: C.textBody, maxWidth: 600, margin: "0 auto" }}>
@@ -293,7 +439,7 @@ function LandingPages() {
             </p>
           </motion.div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))", gap: "2rem" }}>
+          <div className="features-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))", gap: "2rem" }}>
             {features.map((feature, index) => (
               <motion.div
                 key={feature.title}
@@ -301,6 +447,7 @@ function LandingPages() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
+                className="feature-card"
                 style={{
                   background: C.bg,
                   border: `1px solid ${C.border}`,
@@ -310,8 +457,8 @@ function LandingPages() {
                 }}
                 whileHover={{ borderColor: C.blue, y: -5 }}
               >
-                <div style={{ fontSize: "2.5rem", marginBottom: "1rem" }}>{feature.icon}</div>
-                <h3 style={{ fontFamily: "'Sora', sans-serif", fontSize: "1.2rem", fontWeight: 600, marginBottom: "0.5rem", color: C.textPrimary }}>{feature.title}</h3>
+                <div className="feature-icon" style={{ fontSize: "2.5rem", marginBottom: "1rem" }}>{feature.icon}</div>
+                <h3 className="feature-title" style={{ fontFamily: "'Sora', sans-serif", fontSize: "1.2rem", fontWeight: 600, marginBottom: "0.5rem", color: C.textPrimary }}>{feature.title}</h3>
                 <p style={{ color: C.textBody, fontSize: "0.9rem", lineHeight: 1.6 }}>{feature.desc}</p>
               </motion.div>
             ))}
@@ -320,7 +467,7 @@ function LandingPages() {
       </section>
 
       {/* Templates Section - C-12: Consistent styling */}
-      <section style={{ padding: "60px 2rem", position: "relative", zIndex: 2, background: C.bg }}>
+      <section className="section-padding" style={{ padding: "60px 2rem", position: "relative", zIndex: 2, background: C.bg }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -344,12 +491,12 @@ function LandingPages() {
             }}>
               ✦ POPULAR TEMPLATES
             </div>
-            <h2 style={{ fontFamily: "'Sora', sans-serif", fontSize: "1.8rem", fontWeight: 700, marginBottom: "1rem", color: C.textPrimary }}>
+            <h2 className="section-title" style={{ fontFamily: "'Sora', sans-serif", fontSize: "1.8rem", fontWeight: 700, marginBottom: "1rem", color: C.textPrimary }}>
               Ready-to-Use <span style={{ color: C.blue }}>Designs</span>
             </h2>
           </motion.div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem" }}>
+          <div className="templates-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem" }}>
             {templates.map((template, index) => (
               <motion.div
                 key={template.name}
@@ -357,6 +504,7 @@ function LandingPages() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05, duration: 0.3 }}
+                className="template-card"
                 style={{
                   background: C.surface,
                   border: `1px solid ${C.border}`,
@@ -366,10 +514,10 @@ function LandingPages() {
                 }}
                 whileHover={{ borderColor: C.blue, y: -5 }}
               >
-                <div style={{ fontSize: "2rem", marginBottom: "0.5rem" }}>{template.icon}</div>
-                <h3 style={{ fontFamily: "'Sora', sans-serif", fontSize: "1rem", fontWeight: 600, marginBottom: "0.3rem", color: C.textPrimary }}>{template.name}</h3>
+                <div className="template-icon" style={{ fontSize: "2rem", marginBottom: "0.5rem" }}>{template.icon}</div>
+                <h3 className="template-title" style={{ fontFamily: "'Sora', sans-serif", fontSize: "1rem", fontWeight: 600, marginBottom: "0.3rem", color: C.textPrimary }}>{template.name}</h3>
                 <p style={{ color: C.textBody, fontSize: "0.75rem", marginBottom: "0.5rem" }}>{template.desc}</p>
-                <div style={{ fontSize: "1rem", fontWeight: 700, color: C.blue }}>{template.price}</div>
+                <div className="template-price" style={{ fontSize: "1rem", fontWeight: 700, color: C.blue }}>{template.price}</div>
               </motion.div>
             ))}
           </div>
@@ -377,7 +525,7 @@ function LandingPages() {
       </section>
 
       {/* Conversion Strategies Section */}
-      <section style={{ padding: "60px 2rem", position: "relative", zIndex: 2, background: C.surface }}>
+      <section className="section-padding" style={{ padding: "60px 2rem", position: "relative", zIndex: 2, background: C.surface }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -401,12 +549,12 @@ function LandingPages() {
             }}>
               ✦ CONVERSION OPTIMIZATION
             </div>
-            <h2 style={{ fontFamily: "'Sora', sans-serif", fontSize: "1.8rem", fontWeight: 700, marginBottom: "1rem", color: C.textPrimary }}>
+            <h2 className="section-title" style={{ fontFamily: "'Sora', sans-serif", fontSize: "1.8rem", fontWeight: 700, marginBottom: "1rem", color: C.textPrimary }}>
               Strategies That <span style={{ color: C.blue }}>Convert</span>
             </h2>
           </motion.div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "1.5rem" }}>
+          <div className="strategies-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "1.5rem" }}>
             {conversionStrategies.map((strategy, index) => (
               <motion.div
                 key={strategy.title}
@@ -414,6 +562,7 @@ function LandingPages() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
+                className="strategy-card"
                 style={{
                   background: C.bg,
                   border: `1px solid ${C.border}`,
@@ -424,7 +573,7 @@ function LandingPages() {
                 whileHover={{ borderColor: C.blue }}
               >
                 <div style={{ fontSize: "1.5rem", marginBottom: "0.3rem" }}>{strategy.icon}</div>
-                <h3 style={{ fontFamily: "'Sora', sans-serif", fontSize: "0.9rem", fontWeight: 600, marginBottom: "0.2rem", color: C.textPrimary }}>{strategy.title}</h3>
+                <h3 className="strategy-title" style={{ fontFamily: "'Sora', sans-serif", fontSize: "0.9rem", fontWeight: 600, marginBottom: "0.2rem", color: C.textPrimary }}>{strategy.title}</h3>
                 <p style={{ color: C.textBody, fontSize: "0.75rem" }}>{strategy.desc}</p>
               </motion.div>
             ))}
@@ -433,7 +582,7 @@ function LandingPages() {
       </section>
 
       {/* Process Section - Simplified to 4 steps */}
-      <section style={{ padding: "80px 2rem", position: "relative", zIndex: 2, background: C.bg }}>
+      <section className="section-padding" style={{ padding: "80px 2rem", position: "relative", zIndex: 2, background: C.bg }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -457,12 +606,12 @@ function LandingPages() {
             }}>
               ✦ OUR PROCESS
             </div>
-            <h2 style={{ fontFamily: "'Sora', sans-serif", fontSize: "1.8rem", fontWeight: 700, marginBottom: "1rem", color: C.textPrimary }}>
+            <h2 className="section-title" style={{ fontFamily: "'Sora', sans-serif", fontSize: "1.8rem", fontWeight: 700, marginBottom: "1rem", color: C.textPrimary }}>
               How We Build <span style={{ color: C.blue }}>Your Page</span>
             </h2>
           </motion.div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "2rem" }}>
+          <div className="process-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "2rem" }}>
             {processSteps.map((step, index) => (
               <motion.div
                 key={step.step}
@@ -470,6 +619,7 @@ function LandingPages() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
+                className="process-card"
                 style={{
                   background: C.surface,
                   border: `1px solid ${C.border}`,
@@ -478,7 +628,7 @@ function LandingPages() {
                   textAlign: "center"
                 }}
               >
-                <div style={{
+                <div className="process-step-number" style={{
                   width: 60,
                   height: 60,
                   background: C.blue,
@@ -493,7 +643,7 @@ function LandingPages() {
                 }}>
                   {step.step}
                 </div>
-                <h3 style={{ fontFamily: "'Sora', sans-serif", fontSize: "1.1rem", fontWeight: 600, marginBottom: "0.5rem", color: C.textPrimary }}>{step.title}</h3>
+                <h3 className="process-title" style={{ fontFamily: "'Sora', sans-serif", fontSize: "1.1rem", fontWeight: 600, marginBottom: "0.5rem", color: C.textPrimary }}>{step.title}</h3>
                 <p style={{ color: C.textBody, fontSize: "0.85rem", lineHeight: 1.6 }}>{step.desc}</p>
               </motion.div>
             ))}
@@ -502,13 +652,14 @@ function LandingPages() {
       </section>
 
       {/* C-15: Condensed Pricing Preview on Service Page */}
-      <section style={{ padding: "60px 2rem", position: "relative", zIndex: 2, background: C.surface }}>
+      <section className="section-padding" style={{ padding: "60px 2rem", position: "relative", zIndex: 2, background: C.surface }}>
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            className="pricing-card"
             style={{
               background: C.bg,
               border: `1px solid ${C.border}`,
@@ -518,12 +669,9 @@ function LandingPages() {
             }}
           >
             <div style={{ fontSize: "2rem", marginBottom: "0.5rem" }}>🎯</div>
-            {/* <h3 style={{ fontFamily: "'Sora', sans-serif", fontSize: "1.5rem", fontWeight: 700, color: C.textPrimary, marginBottom: "0.5rem" }}>
-              Starting from <span style={{ color: C.blue }}>{pricingPreview.startingPrice}</span>
-            </h3> */}
             <p style={{ color: C.textBody, marginBottom: "1.5rem" }}>{pricingPreview.description}</p>
             
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", justifyContent: "center", marginBottom: "1.5rem" }}>
+            <div className="pricing-features" style={{ display: "flex", flexWrap: "wrap", gap: "1rem", justifyContent: "center", marginBottom: "1.5rem" }}>
               {pricingPreview.features.map((feature, i) => (
                 <div key={i} style={{ display: "flex", alignItems: "center", gap: "0.3rem", background: C.surface, padding: "0.3rem 0.8rem", borderRadius: 20 }}>
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -578,7 +726,7 @@ function LandingPages() {
       </section>
 
       {/* FAQ Section - Accordion style */}
-      <section style={{ padding: "60px 2rem", position: "relative", zIndex: 2, background: C.bg }}>
+      <section className="section-padding" style={{ padding: "60px 2rem", position: "relative", zIndex: 2, background: C.bg }}>
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -602,7 +750,7 @@ function LandingPages() {
             }}>
               ✦ FAQ
             </div>
-            <h2 style={{ fontFamily: "'Sora', sans-serif", fontSize: "1.8rem", fontWeight: 700, color: C.textPrimary }}>
+            <h2 className="section-title" style={{ fontFamily: "'Sora', sans-serif", fontSize: "1.8rem", fontWeight: 700, color: C.textPrimary }}>
               Frequently Asked <span style={{ color: C.blue }}>Questions</span>
             </h2>
           </motion.div>
@@ -625,6 +773,7 @@ function LandingPages() {
               >
                 <button
                   onClick={() => toggleFaq(i)}
+                  className="faq-question"
                   style={{
                     width: "100%",
                     display: "flex",
@@ -645,7 +794,7 @@ function LandingPages() {
                   </span>
                 </button>
                 {activeFaq === i && (
-                  <div style={{ padding: "0 1.5rem 1.25rem 1.5rem" }}>
+                  <div className="faq-answer" style={{ padding: "0 1.5rem 1.25rem 1.5rem" }}>
                     <p style={{ fontSize: "0.9rem", color: C.textBody, lineHeight: 1.6, margin: 0 }}>
                       {faq.answer}
                     </p>
@@ -658,7 +807,7 @@ function LandingPages() {
       </section>
 
       {/* CTA Section */}
-      <section style={{ padding: "80px 2rem", position: "relative", zIndex: 2, background: C.surface }}>
+      <section className="section-padding" style={{ padding: "80px 2rem", position: "relative", zIndex: 2, background: C.surface }}>
         <div style={{ maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -667,13 +816,13 @@ function LandingPages() {
             transition={{ duration: 0.6 }}
           >
             <div style={{ fontSize: "3rem", marginBottom: "1rem" }}>🎯</div>
-            <h2 style={{ fontFamily: "'Sora', sans-serif", fontSize: "2rem", fontWeight: 700, marginBottom: "1rem", color: C.textPrimary }}>
+            <h2 className="cta-title" style={{ fontFamily: "'Sora', sans-serif", fontSize: "2rem", fontWeight: 700, marginBottom: "1rem", color: C.textPrimary }}>
               Ready to <span style={{ color: C.blue }}>Convert More Visitors</span>?
             </h2>
             <p style={{ color: C.textBody, marginBottom: "2rem", fontSize: "1rem" }}>
               Let's create a landing page that turns visitors into customers.
             </p>
-            <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
+            <div className="cta-buttons" style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
               <motion.button
                 whileHover={{ scale: 1.05, background: C.blueHover }}
                 whileTap={{ scale: 0.95 }}
