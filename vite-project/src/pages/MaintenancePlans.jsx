@@ -491,7 +491,7 @@ function MaintenancePlans() {
       </section>
 
       {/* Pricing Preview - Added to service page */}
-      <section className="section-padding" style={{ padding: "60px 2rem", position: "relative", zIndex: 2, background: COLORS.cardBg }}>
+      {/* <section className="section-padding" style={{ padding: "60px 2rem", position: "relative", zIndex: 2, background: COLORS.cardBg }}>
         <div style={{ maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -570,7 +570,7 @@ function MaintenancePlans() {
             </div>
           </motion.div>
         </div>
-      </section>
+      </section> */}
 
       {/* Services Section */}
       <section className="section-padding" style={{ padding: "60px 2rem", position: "relative", zIndex: 2, background: COLORS.primaryBg }}>
