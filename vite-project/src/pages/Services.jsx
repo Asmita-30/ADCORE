@@ -613,7 +613,7 @@ function Services() {
                     )}
                   </div>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "1rem", flexWrap: "wrap", gap: "0.5rem" }}>
-                    <div>
+                    {/* <div>
                       <span style={{ fontSize: "clamp(0.65rem, 2.5vw, 0.7rem)", color: COLORS.mutedText }}>Starting from</span>
                       <div style={{ 
                         fontFamily: "'Sora', sans-serif", 
@@ -621,7 +621,7 @@ function Services() {
                         fontWeight: 600, 
                         color: service.accentColor 
                       }}>{service.startingPrice}</div>
-                    </div>
+                    </div> */}
                     <span style={{ color: COLORS.primaryAccent, fontSize: "clamp(0.7rem, 3vw, 0.8rem)", fontWeight: 500 }}>Learn more →</span>
                   </div>
                 </div>
