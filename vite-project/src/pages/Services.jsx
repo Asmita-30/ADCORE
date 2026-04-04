@@ -993,7 +993,7 @@ function Services() {
                 }}>{selectedService.timeline}</div>
               </div>
               <div>
-                <div style={{ fontSize: "clamp(0.65rem, 2.5vw, 0.7rem)", color: COLORS.mutedText }}>Starting From</div>
+                {/* <div style={{ fontSize: "clamp(0.65rem, 2.5vw, 0.7rem)", color: COLORS.mutedText }}>Starting From</div>
                 <div style={{ 
                   fontFamily: "'Sora', sans-serif", 
                   fontSize: "clamp(0.9rem, 4vw, 1.1rem)", 
@@ -1001,7 +1001,7 @@ function Services() {
                   color: selectedService.accentColor 
                 }}>{selectedService.startingPrice}</div>
               </div>
-            </div>
+            </div> */}
 
             <Link to={selectedService.link}>
               <motion.button
