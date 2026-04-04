@@ -652,7 +652,7 @@ function LandingPages() {
       </section>
 
       {/* C-15: Condensed Pricing Preview on Service Page */}
-      <section className="section-padding" style={{ padding: "60px 2rem", position: "relative", zIndex: 2, background: C.surface }}>
+      {/* <section className="section-padding" style={{ padding: "60px 2rem", position: "relative", zIndex: 2, background: C.surface }}>
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -723,7 +723,7 @@ function LandingPages() {
             </div>
           </motion.div>
         </div>
-      </section>
+      </section> */}
 
       {/* FAQ Section - Accordion style */}
       <section className="section-padding" style={{ padding: "60px 2rem", position: "relative", zIndex: 2, background: C.bg }}>
