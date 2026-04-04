@@ -65,7 +65,6 @@ const SERVICES_DATA = [
       { name: "Docker", logo: "🐳" }
     ],
     timeline: "30–60 days",
-    startingPrice: "₹60,000",
     ctaText: "Get a Web App Quote",
     link: "/services/web-app-development"
   },
@@ -97,7 +96,6 @@ const SERVICES_DATA = [
       { name: "Node.js", logo: "🟢" }
     ],
     timeline: "45–90 days",
-    startingPrice: "₹90,000",
     ctaText: "Plan Your Mobile App",
     link: "/services/mobile-app-development"
   },
@@ -128,7 +126,6 @@ const SERVICES_DATA = [
       { name: "UsabilityHub", logo: "🔍" }
     ],
     timeline: "14–30 days",
-    startingPrice: "₹35,000",
     ctaText: "Book a Design Review",
     link: "/services/ui-ux-design"
   },
@@ -160,7 +157,6 @@ const SERVICES_DATA = [
       { name: "Supabase", logo: "🔥" }
     ],
     timeline: "30–60 days",
-    startingPrice: "₹75,000",
     ctaText: "Explore AI Integration",
     link: "/services/ai-integration"
   },
@@ -190,7 +186,6 @@ const SERVICES_DATA = [
       { name: "TypeScript", logo: "📘" }
     ],
     timeline: "7–14 days",
-    startingPrice: "₹25,000",
     ctaText: "Launch Your Page",
     link: "/services/landing-pages"
   },
@@ -221,7 +216,6 @@ const SERVICES_DATA = [
       { name: "GitHub Actions", logo: "⚡" }
     ],
     timeline: "Ongoing",
-    startingPrice: "₹15,000/month",
     ctaText: "Start a Maintenance Plan",
     link: "/services/maintenance"
   }
@@ -613,15 +607,6 @@ function Services() {
                     )}
                   </div>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "1rem", flexWrap: "wrap", gap: "0.5rem" }}>
-                    {/* <div>
-                      <span style={{ fontSize: "clamp(0.65rem, 2.5vw, 0.7rem)", color: COLORS.mutedText }}>Starting from</span>
-                      <div style={{ 
-                        fontFamily: "'Sora', sans-serif", 
-                        fontSize: "clamp(0.9rem, 4vw, 1.1rem)", 
-                        fontWeight: 600, 
-                        color: service.accentColor 
-                      }}>{service.startingPrice}</div>
-                    </div> */}
                     <span style={{ color: COLORS.primaryAccent, fontSize: "clamp(0.7rem, 3vw, 0.8rem)", fontWeight: 500 }}>Learn more →</span>
                   </div>
                 </div>
@@ -992,16 +977,7 @@ function Services() {
                   color: selectedService.accentColor 
                 }}>{selectedService.timeline}</div>
               </div>
-              <div>
-                {/* <div style={{ fontSize: "clamp(0.65rem, 2.5vw, 0.7rem)", color: COLORS.mutedText }}>Starting From</div>
-                <div style={{ 
-                  fontFamily: "'Sora', sans-serif", 
-                  fontSize: "clamp(0.9rem, 4vw, 1.1rem)", 
-                  fontWeight: 600, 
-                  color: selectedService.accentColor 
-                }}>{selectedService.startingPrice}</div>
-              </div>
-            </div> */}
+            </div>
 
             <Link to={selectedService.link}>
               <motion.button
