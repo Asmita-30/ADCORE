@@ -9,7 +9,7 @@ import portfolioHeroBg from "../assets/images/ai.png";
 gsap.registerPlugin(ScrollTrigger);
 
 // Import project images
-import ecomReactImg from "../assets/images/E-commerce.png";
+import clothingEcomImg from "../assets/images/E-commerce.png";
 import saInfotechsImg from "../assets/images/mobile.png";
 import transportImg from "../assets/images/Transport.jpeg";
 import medicalImg from "../assets/images/mobile2.png";
@@ -17,6 +17,9 @@ import financeAppImg from "../assets/images/finance-app.png";
 import aiDashboardImg from "../assets/images/ai-analytics.png";
 import crmImg from "../assets/images/CRM.jpeg";
 import bizcartImg from "../assets/images/CAB.jpeg";
+import gymWebsiteImg from "../assets/images/gym.avif";
+import plantWebsiteImg from "../assets/images/plant.avif";
+import petClinicImg from "../assets/images/pet-clinic.webp";
 
 // ─── DESIGN SYSTEM (Consistent with Home page) ──────────────────────────────
 const C = {
@@ -39,18 +42,18 @@ const C = {
 const PROJECTS_DATA = [
   {
     id: 1,
-    name: "E-Commerce React",
-    client: "E-Commerce Platform",
+    name: "Clothing Store - Wearix",
+    client: "Fashion Brand",
     category: "web",
     industry: "E-commerce",
     year: "2025",
-    image: ecomReactImg,
+    image: clothingEcomImg,
     isRealProject: true,
-    description: "Modern e-commerce platform with product catalog, cart, payment integration, and admin dashboard.",
+    description: "Modern clothing e-commerce platform with product catalog, cart, and seamless checkout experience.",
     techStack: ["React", "Node.js", "MongoDB", "Razorpay", "Redux"],
-    liveUrl: "https://www.wix.com/website-template/view/html/wh-1064?originUrl=https%3A%2F%2Fwww.wix.com%2Fwebsite%2Ftemplates%3Fcriteria%3DEcommerce%2BShop&tpClick=view_button&esi=d86b1cb8-4b3e-42c5-ad3d-c568ff02e51a",
-    challenge: "Client needed a scalable e-commerce solution with seamless payment integration and inventory management.",
-    solution: "Built a full-featured React-based e-commerce platform with Razorpay integration, real-time inventory tracking, and admin dashboard.",
+    liveUrl: "https://wearix.framer.website/",
+    challenge: "Client needed a scalable e-commerce solution for their clothing brand with seamless payment integration.",
+    solution: "Built a full-featured React-based clothing e-commerce platform with Razorpay integration, real-time inventory tracking, and admin dashboard.",
     features: [
       "Product catalog with search and filters",
       "Shopping cart and wishlist",
@@ -260,6 +263,90 @@ const PROJECTS_DATA = [
       { label: "Active Drivers", value: "500+", type: "scale" },
       { label: "Daily Rides", value: "1,000+", type: "scale" }
     ]
+  },
+  {
+    id: 9,
+    name: "GymLife - Fitness Website",
+    client: "GymLife",
+    category: "web",
+    industry: "Fitness",
+    year: "2025",
+    image: gymWebsiteImg,
+    isRealProject: true,
+    description: "Modern gym and fitness website with class schedules, trainer profiles, and membership management.",
+    techStack: ["React", "Tailwind CSS", "Framer Motion", "Node.js"],
+    liveUrl: "https://themewagon.github.io/gymlife/index.html",
+    challenge: "Gym needed an engaging online presence to attract new members and showcase their facilities.",
+    solution: "Created a dynamic fitness website with class booking, trainer showcase, and membership plans.",
+    features: [
+      "Class schedule and booking",
+      "Trainer profiles and certifications",
+      "Membership plan comparison",
+      "Success stories gallery",
+      "BMI calculator tool",
+      "Newsletter integration"
+    ],
+    results: [
+      { label: "Member Sign-ups", value: "45% increase", type: "improvement" },
+      { label: "Page Engagement", value: "3.2 min avg", type: "performance" },
+      { label: "Class Bookings", value: "200+/week", type: "scale" }
+    ]
+  },
+  {
+    id: 10,
+    name: "Sorano - Plant Store",
+    client: "Sorano Plants",
+    category: "web",
+    industry: "E-commerce",
+    year: "2025",
+    image: plantWebsiteImg,
+    isRealProject: true,
+    description: "Beautiful plant store e-commerce platform with plant care guides and subscription boxes.",
+    techStack: ["React", "Shopify API", "Tailwind CSS", "Stripe"],
+    liveUrl: "https://sorano.framer.website/",
+    challenge: "Plant business needed an elegant online store with educational content and recurring subscriptions.",
+    solution: "Built a serene plant shopping experience with care guides, plant subscriptions, and community features.",
+    features: [
+      "Plant catalog with filters",
+      "Plant care guides and blogs",
+      "Subscription box service",
+      "Gift cards and bundles",
+      "Customer plant diaries",
+      "Expert consultation booking"
+    ],
+    results: [
+      { label: "Subscription Rate", value: "28%", type: "improvement" },
+      { label: "Plant Varieties", value: "150+", type: "scale" },
+      { label: "Customer Reviews", value: "4.9/5", type: "rating" }
+    ]
+  },
+  {
+    id: 11,
+    name: "Pawsy - Pet Clinic",
+    client: "Pawsy Veterinary",
+    category: "web",
+    industry: "Healthcare",
+    year: "2025",
+    image: petClinicImg,
+    isRealProject: true,
+    description: "Comprehensive pet clinic website with appointment booking, pet health records, and emergency services.",
+    techStack: ["React", "Node.js", "MongoDB", "Twilio", "Video SDK"],
+    liveUrl: "https://pawsy.framer.website/",
+    challenge: "Veterinary clinic needed a digital platform for appointments and pet health management.",
+    solution: "Developed a full-featured pet clinic platform with online booking, telemedicine, and pet health tracking.",
+    features: [
+      "Online appointment scheduling",
+      "Pet health records portal",
+      "24/7 emergency contact",
+      "Telemedicine consultations",
+      "Medication reminders",
+      "Pet wellness blog"
+    ],
+    results: [
+      { label: "Appointment No-shows", value: "Reduced 60%", type: "improvement" },
+      { label: "Pet Patients", value: "5,000+", type: "scale" },
+      { label: "Client Satisfaction", value: "96%", type: "rating" }
+    ]
   }
 ];
 
@@ -293,6 +380,18 @@ function Portfolio() {
       { opacity: 1, y: 0, stagger: 0.08, duration: 0.6, scrollTrigger: { trigger: ".portfolio-grid", start: "top 80%" } }
     );
   }, []);
+
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (selectedProject) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [selectedProject]);
 
   const getFilteredProjects = () => {
     let projects = activeFilter === "all" 
@@ -786,7 +885,7 @@ function Portfolio() {
         </div>
       </section>
 
-      {/* Project Modal (Case Study Deep Page) */}
+      {/* Project Modal - Appears ABOVE everything with highest z-index */}
       {selectedProject && (
         <div style={{
           position: "fixed",
@@ -794,11 +893,11 @@ function Portfolio() {
           left: 0,
           right: 0,
           bottom: 0,
-          background: "rgba(10, 15, 30, 0.95)",
-          backdropFilter: "blur(8px)",
-          zIndex: 2000,
+          background: "rgba(10, 15, 30, 0.98)",
+          backdropFilter: "blur(12px)",
+          zIndex: 99999,
           overflowY: "auto",
-          padding: "clamp(1rem, 5vw, 2rem)"
+          padding: "clamp(1rem, 5vw, 2rem)",
         }} onClick={() => setSelectedProject(null)}>
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -807,12 +906,13 @@ function Portfolio() {
             className="modal-content"
             style={{
               maxWidth: 900,
-              margin: "0 auto",
+              margin: "80px auto 40px auto",
               background: C.bg,
               border: `1px solid ${C.border}`,
               borderRadius: 20,
               padding: "clamp(1.5rem, 5vw, 2rem)",
-              position: "relative"
+              position: "relative",
+              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
             }}
             onClick={(e) => e.stopPropagation()}
           >
@@ -833,7 +933,8 @@ function Portfolio() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                transition: "all 0.2s"
+                transition: "all 0.2s",
+                zIndex: 10,
               }}
               onMouseEnter={(e) => {
                 e.target.style.borderColor = C.blue;
@@ -850,12 +951,12 @@ function Portfolio() {
             <div style={{ marginBottom: "2rem" }}>
               <div className="modal-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "1rem", marginBottom: "1rem" }}>
                 <div>
-                  <h1 style={{ fontFamily: "'Sora', sans-serif", fontSize: "clamp(1.3rem, 5vw, 1.8rem)", fontWeight: 700, marginTop: "0.5rem", color: C.textPrimary }}>{selectedProject.name}</h1>
-                  <p style={{ color: C.textBody, marginTop: "0.5rem", lineHeight: 1.6, fontSize: "clamp(0.85rem, 3vw, 1rem)" }}>{selectedProject.description}</p>
+                  <h1 style={{ fontFamily: "'Sora', sans-serif", fontSize: "clamp(1.5rem, 6vw, 2.2rem)", fontWeight: 700, marginTop: "0.5rem", marginBottom: "0.5rem", color: C.textPrimary }}>{selectedProject.name}</h1>
+                  <p style={{ color: C.textBody, marginTop: "0.5rem", lineHeight: 1.6, fontSize: "clamp(0.9rem, 3vw, 1.05rem)" }}>{selectedProject.description}</p>
                 </div>
                 <div style={{ textAlign: "right" }}>
                   <div style={{ fontSize: "clamp(0.7rem, 2.5vw, 0.8rem)", color: C.textMuted }}>Client</div>
-                  <div style={{ fontSize: "clamp(0.85rem, 3vw, 1rem)", fontWeight: 600, color: C.textPrimary }}>{selectedProject.client}</div>
+                  <div style={{ fontSize: "clamp(0.9rem, 3vw, 1.05rem)", fontWeight: 600, color: C.textPrimary }}>{selectedProject.client}</div>
                   <div style={{ fontSize: "clamp(0.7rem, 2.5vw, 0.8rem)", color: C.blue }}>{selectedProject.year}</div>
                 </div>
               </div>
