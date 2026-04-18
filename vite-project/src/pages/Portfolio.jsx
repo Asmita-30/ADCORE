@@ -20,6 +20,7 @@ import bizcartImg from "../assets/images/CAB.jpeg";
 import gymWebsiteImg from "../assets/images/gym.avif";
 import plantWebsiteImg from "../assets/images/plant.avif";
 import petClinicImg from "../assets/images/pet-clinic.webp";
+import educationImg from "../assets/images/education.jpeg"; // Add this image to your assets
 
 // ─── DESIGN SYSTEM (Consistent with Home page) ──────────────────────────────
 const C = {
@@ -346,6 +347,38 @@ const PROJECTS_DATA = [
       { label: "Appointment No-shows", value: "Reduced 60%", type: "improvement" },
       { label: "Pet Patients", value: "5,000+", type: "scale" },
       { label: "Client Satisfaction", value: "96%", type: "rating" }
+    ]
+  },
+  // ─── NEW EDUCATION CARD ADDED ──────────────────────────────────────────────
+  {
+    id: 12,
+    name: "EduVantage - University Portal",
+    client: "State University System",
+    category: "web",
+    industry: "Education",
+    year: "2025",
+    image: educationImg, // Make sure this image exists in your assets
+    isRealProject: true,
+    description: "Comprehensive university portal with course management, student engagement, and administrative tools.",
+    techStack: ["React", "Node.js", "MongoDB", "AWS", "Socket.io"],
+    liveUrl: "https://www.wix.com/website/templates/html/education/schools-universities",
+    challenge: "University needed to modernize their legacy systems and provide a seamless digital experience for 25,000+ students and faculty.",
+    solution: "Built an all-in-one educational platform with real-time notifications, course management, and integrated communication tools.",
+    features: [
+      "Course registration and management",
+      "Assignment submission and grading",
+      "Virtual classroom integration",
+      "Student progress analytics",
+      "Faculty administrative dashboard",
+      "Mobile-responsive design",
+      "Real-time announcements and messaging",
+      "Exam scheduling and results portal"
+    ],
+    results: [
+      { label: "Student Engagement", value: "+65%", type: "improvement" },
+      { label: "Admin Efficiency", value: "40% faster", type: "performance" },
+      { label: "Active Users", value: "28,000+", type: "scale" },
+      { label: "Satisfaction Rate", value: "4.7/5", type: "rating" }
     ]
   }
 ];
